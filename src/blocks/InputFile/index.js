@@ -1,5 +1,6 @@
 import React from 'react';
 import './InputFile.css';
+import Button from '../Button';
 
 class InputFile extends React.Component {
 
@@ -21,9 +22,10 @@ class InputFile extends React.Component {
       <React.Fragment>
         <input type="file" id="addfile" className="inputfile" onChange={e => this.handleChange(e.target)} />
         <label htmlFor="addfile">
-          <i class="far fa-folder-open"></i>
+          <i className="far fa-folder-open"></i>
           <span className="InputFile-Text">Choose a file</span>
         </label>
+        <Button text="Upload" />
       </React.Fragment>
     );
   }
