@@ -1,0 +1,15 @@
+.flex-block {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.one-date {
+  padding: 10px;
+
+  &__date-stage,
+  &__name-stage {
+    margin: 5px;
+  }
+}

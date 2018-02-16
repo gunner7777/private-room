@@ -1,0 +1,20 @@
+.Button {
+  padding: 0 20px;
+  height: 35px;
+  min-width: 40px;
+  line-height: 35px;
+  color: #ffffff;
+  border-radius: 4px;
+  background-color: #1fb6ff;
+  white-space: nowrap;
+  border: none;
+  outline: none;
+
+  &:hover {
+    box-shadow: inset 0 -2px 0 rgba(31,45,61,.15);
+  }
+
+  &:focus {
+    box-shadow: inset 0 2px 0 rgba(31,45,61,.15)
+  }
+}

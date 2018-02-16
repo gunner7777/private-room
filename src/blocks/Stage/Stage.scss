@@ -1,0 +1,9 @@
+.stage {
+  flex: 1;
+  border: 2px solid #000000;
+  margin: 10px;
+
+  &--active {
+    border: 2px solid #005300;
+  }
+}
