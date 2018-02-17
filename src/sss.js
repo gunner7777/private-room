@@ -1,5 +1,4 @@
 document.querySelector('.add').addEventListener('click', (e) => {
-  e.preventDefault();
   console.log(document.querySelector('.InputFile').value);
   let pathArr = document.querySelector('.InputFile').value.split('\\');
 
@@ -8,8 +7,17 @@ document.querySelector('.add').addEventListener('click', (e) => {
 
   let data = new FormData();
 
-  data.append('file', document.querySelector('.InputFile').files[0]);
+  data.append('upload', document.querySelector('.InputFile').files[0]);
 
   console.log(data);
-  return false;
+  const config = {
+    headers: { 'content-type': 'multipart/form-data' }
+}
+
+  axios.post('upl.php', data, config)
+  .then(function (res) {
+    /*output.className = 'container';
+    output.innerHTML = res.data;*/
+    console.log(res);
+  })
 });

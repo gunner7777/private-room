@@ -9,8 +9,8 @@
 </head>
 <body>
   <p>Загрузка</p>
-  <form action="" enctype="multipart/form-data">
-    <input type="file" class="InputFile" />
+  <form action="" enctype="multipart/form-data" onsubmit="return false;">
+    <input type="file" class="InputFile" name='upload' />
     <button class='add'>Add</button>
   </form>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.17.1/axios.min.js"></script>
