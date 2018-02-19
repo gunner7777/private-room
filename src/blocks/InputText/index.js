@@ -4,8 +4,9 @@ import './InputText.css';
 const InputText = (props) => {
   return (
     <div>
-      <label htmlFor={props.inputLabelLink}>{props.labelText}</label><br/>
+      <label>{props.labelText}<br/>
       <input type="text" id={props.inputLabelLink} className="InputField" placeholder={props.labelText} />
+      </label>
     </div>
   );
 };

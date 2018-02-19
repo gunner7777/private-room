@@ -8,6 +8,7 @@ const AppMenu = () => {
       <AppMenuItem alink="/">Main</AppMenuItem>
       <AppMenuItem alink="/about">About</AppMenuItem>
       <AppMenuItem alink="/settings">Settings</AppMenuItem>
+      <AppMenuItem alink="/addDogovor">New dogovor</AppMenuItem>
     </ul>
   );
 };

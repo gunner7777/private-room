@@ -1,6 +1,7 @@
 import React from 'react';
 import './InputFile.css';
 import Button from '../Button';
+import Select from '../Select';
 
 class InputFile extends React.Component {
 
@@ -25,6 +26,7 @@ class InputFile extends React.Component {
           <i className="far fa-folder-open"></i>
           <span className="InputFile-Text">Choose a file</span>
         </label>
+        { this.props.withSelect ? <Select /> : "" }
         <Button text="Upload" />
       </React.Fragment>
     );
