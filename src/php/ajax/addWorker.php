@@ -20,7 +20,7 @@ $res->bindValue(':photo_link', $photo_link);
 $res->bindValue(':phone', $phone);
 $res->bindValue(':mail', $mail);
 try {
-$res->execute();
+    $res->execute();
 } catch(PDOException $e) {
     echo $e->getMessage();
 }
