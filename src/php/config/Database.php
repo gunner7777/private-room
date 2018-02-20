@@ -2,28 +2,36 @@
 /*
 return new object with set dbconfig params
 */
-
+/*
 require 'dbConfig.php';
 
 $dbconfig = new dbConfig();
+*/
 
-class dbConnect {
+class Database {
+    private $host = "localhost";
+    private $db = "u1959_houses";
+    private $user = "u1959_houses";
+    private $pass = "zB7cA2z";
+    private $charset = "utf8";
     private $params;
     private $dsn;
     private $opt;
+    public $pdo;
 
     function __construct($params) {
         $this->params = $params;
       }
     
     public function connect() {
-        $this->dsn = "mysql:host=" . $this->params->host . ";dbname=" . $this->params->db . ";charset=" . $this->params->charset;
+        $this->dsn = "mysql:host=" . $this->host . ";dbname=" . $this->db . ";charset=" . $this->charset;
 	    $this->opt = array(
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         );
         try {
-            return $pdo = new PDO($this->dsn, $this->params->user, $this->params->pass, $this->opt);
+            $pdo = new PDO($this->dsn, $this->user, $this->pass, $this->opt);
+            return $pdo;
         } catch(PDOException $e) {
             return $e->getMessage();
         }
@@ -31,7 +39,7 @@ class dbConnect {
     }
 }
 
-$dbconnect = new dbConnect($dbconfig);
+//$dbconnect = new dbConnect($dbconfig);
 
 
 /* in modules

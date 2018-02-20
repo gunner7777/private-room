@@ -1,5 +1,5 @@
 <?php
-include '../dbConnectClass.php';
+include_once '../dbConnectClass.php';
 
 // в других файлах уже делаем
 $db = $dbconnect->connect();

@@ -1,7 +1,7 @@
 <?php
 echo 'dff';
 //require_once '../dbConfig.php';
-include '../dbConnectClass.php';
+include_once '../dbConnectClass.php';
 //$dbconfig = new dbConfig();
 //$dbconnect = new dbConnect($dbconfig);
 
