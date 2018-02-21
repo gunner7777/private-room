@@ -14,27 +14,28 @@ class Database {
     private $user = "u1959_houses";
     private $pass = "zB7cA2z";
     private $charset = "utf8";
-    private $params;
     private $dsn;
     private $opt;
     public $pdo;
 
-    function __construct($params) {
+    /*function __construct($params) {
         $this->params = $params;
-      }
+      }*/
     
     public function connect() {
+        $this->pdo = null;
+        
         $this->dsn = "mysql:host=" . $this->host . ";dbname=" . $this->db . ";charset=" . $this->charset;
 	    $this->opt = array(
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         );
         try {
-            $pdo = new PDO($this->dsn, $this->user, $this->pass, $this->opt);
-            return $pdo;
+            $this->pdo = new PDO($this->dsn, $this->user, $this->pass, $this->opt);
         } catch(PDOException $e) {
             return $e->getMessage();
         }
+        return $this->pdo;
 
     }
 }

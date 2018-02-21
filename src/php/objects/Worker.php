@@ -3,7 +3,7 @@
 class Worker {
     private $conn;
     private $table_name = "workers";
-    private $rel_table_name = "dogovor-workers";
+    private $rel_table_name = "dogovor_workers";
 
     public $id;
     public $fi;
@@ -12,7 +12,7 @@ class Worker {
     public $phone;
     public $mail;
 
-    function __constuct($db) {
+    public function __construct($db) {
         $this->conn = $db;
     }
 
@@ -35,7 +35,7 @@ class Worker {
         $stmt->bindValue(':mail', $this->mail);
 
         if($stmt->execute()) {
-            return true
+            return true;
         }
 
         return false;
@@ -78,8 +78,8 @@ class Worker {
 
     function delete() {
         // удаляем из двух таблиц. Если в таблице сотрудник-договор нет сотрудника с полем ответственный за проект, то выводим ответсвтвенный не назначен.
-        $query = "DELETE " . $this->table_name . " FROM " . $this->table_name . " w LEFT JOIN " . $this->rel_table_name . " dw ON w.id_worker = dw.id_worker WHERE w.id_worker = :id";
-        
+        $query = "DELETE " . $this->table_name . ", " . $this->rel_table_name . " FROM " . $this->table_name . " INNER JOIN " . $this->rel_table_name . " ON " . $this->table_name . ".id_worker = " . $this->rel_table_name . ".id_worker WHERE " . $this->table_name . ".id_worker = :id";
+        //$query = "DELETE FROM workers WHERE id_worker = :id";
         $this->id = htmlspecialchars(strip_tags($this->id));
 
         $stmt = $this->conn->prepare($query);  
