@@ -50,12 +50,6 @@ class Worker {
         $stmt->execute();
 
         return $stmt;
-        
-        /*$workersArr = array();
-        foreach($stmt->fetchAll() as $k => $v) {
-            $workersArr.push()
-        }
-        return json_encode();*/
     }
 
     function readOne() {

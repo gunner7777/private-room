@@ -1,11 +1,12 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-/*header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: *");
+echo "11111";
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
-header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");*/
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/tyryr/config/Database.php";
 include $_SERVER['DOCUMENT_ROOT'] . "/tyryr/objects/Worker.php";
@@ -23,7 +24,7 @@ $worker->id = 14;
 
 
 if($worker->delete()) {
-  echo json_encode(array("message" => "Сотрудник удален"));
+  echo json_encode(array("message" => "Сотрудник удален"), JSON_UNESCAPED_UNICODE);
 } else {
-  echo json_encode(array("message" => "Ошибка при удалении"), JSON_PRETTY_PRINT);
+  echo json_encode(array("message" => "Ошибка при удалении"), JSON_UNESCAPED_UNICODE);
 }
