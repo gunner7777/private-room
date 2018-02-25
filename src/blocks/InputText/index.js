@@ -1,6 +1,41 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './InputText.css';
 
+class InputText extends Component {
+  constructor() {
+    super();
+    this.state = {
+      value: ''
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.setState({
+      value: e.target.value
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <label>{this.props.labelText}<br/>
+        <input 
+          type="text"
+          id={this.props.inputLabelLink}
+          className="InputField"
+          placeholder={this.props.labelText}
+          value={this.state.value}
+          onChange={this.handleChange}/>
+        </label>
+      </div>
+    );
+  }
+}
+
+
+/*
 const InputText = (props) => {
   return (
     <div>
@@ -9,6 +44,6 @@ const InputText = (props) => {
       </label>
     </div>
   );
-};
+};*/
 
 export default InputText;

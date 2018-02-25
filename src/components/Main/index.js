@@ -6,6 +6,9 @@ import Settings from '../Settings';
 import InputFile from '../../blocks/InputFile';
 import Select from '../../blocks/Select';
 import DogovorInfo from '../DogovorInfo';
+import WorkerList from '../../containers/WorkerList';
+import WorkerAdd from '../../containers/WorkerAdd';
+import WorkerInfo from '../../containers/WorkerInfo';
 
 const Main = () => {
   return (
@@ -14,6 +17,9 @@ const Main = () => {
       <Route path='/about' component={FormInput} />
       <Route path='/settings' component={Select} />
       <Route path='/addDogovor' component={DogovorInfo} />
+      <Route path='/allWorkers' component={WorkerList} />
+      <Route exact path="/workers/:id?" component={WorkerInfo} />
+      <Route path='/addWorker' component={WorkerAdd} />
     </Switch>
   );
 }

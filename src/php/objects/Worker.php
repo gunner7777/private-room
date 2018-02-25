@@ -21,14 +21,14 @@ class Worker {
             (FI, post, photo_link, phone, mail) 
             VALUES(:FI, :post, :photo_link, :phone, :mail)";
 
-        $this->FI = htmlspecialchars(strip_tags($this->FI));
+        $this->fi = htmlspecialchars(strip_tags($this->fi));
         $this->post = htmlspecialchars(strip_tags($this->post));
         $this->photo_link = htmlspecialchars(strip_tags($this->photo_link));
         $this->phone = htmlspecialchars(strip_tags($this->phone));
         $this->mail = htmlspecialchars(strip_tags($this->mail));
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bindValue(':FI', $this->FI);
+        $stmt->bindValue(':FI', $this->fi);
         $stmt->bindValue(':post', $this->post);
         $stmt->bindValue(':photo_link', $this->photo_link);
         $stmt->bindValue(':phone', $this->phone);

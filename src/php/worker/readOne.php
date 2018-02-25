@@ -6,9 +6,9 @@ header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Credentials: true");
 header('Content-Type: application/json');
 
-include_once '../config/Database.php';
-include_once '../objects/Worker.php';
- 
+include_once $_SERVER['DOCUMENT_ROOT'] . "/tyryr/config/Database.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/tyryr/objects/Worker.php";
+
 $database = new Database();
 $db = $database->connect();
  
@@ -20,7 +20,7 @@ $worker->readOne();
 
 $workerItem = array(
     "id_worker" => $worker->id,
-    "FI" => $worker->FI,
+    "FI" => $worker->fi,
     "post" => $worker->post,
     "photo_link" => $worker->photo_link,
     "phone" => $worker->phone,

@@ -17,10 +17,6 @@ class Database {
     private $dsn;
     private $opt;
     public $pdo;
-
-    /*function __construct($params) {
-        $this->params = $params;
-      }*/
     
     public function connect() {
         $this->pdo = null;
