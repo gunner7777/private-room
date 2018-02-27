@@ -23,7 +23,7 @@ $worker->phone = $data->phone;
 $worker->mail = $data->mail;
 
 if($worker->create()) {
-    echo json_encode(array("message" => "Сотрудник добавлен"), JSON_PRETTY_PRINT);
+    echo json_encode(array("message" => "Сотрудник добавлен"), JSON_UNESCAPED_UNICODE);
 } else {
-    echo json_encode(array("message" => "Ошибка при добавлении"), JSON_PRETTY_PRINT);
+    echo json_encode(array("message" => "Ошибка при добавлении"), JSON_UNESCAPED_UNICODE);
 }

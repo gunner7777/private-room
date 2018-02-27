@@ -43,17 +43,19 @@ export const workersHaveError = (bool) => {
 }
 
 export const getSingleWorker = (url) => {
+  console.log("dfd");
   return dispatch => {
     axios.get(url)
       .then((response) => {
+        console.log("response", response);
         if(response.status !== 200) {
           throw Error(response.statusText);
         }
-
+        
         return response;
       })
       .then((response) => {
-        console.log(response.data);
+        
         dispatch(getSingleWorkerSuccess(response.data));
       })
       .catch(() => dispatch(singleWorkerHaveError(true)));

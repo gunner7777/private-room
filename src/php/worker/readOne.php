@@ -27,5 +27,5 @@ $workerItem = array(
     "mail" => $worker->mail
 );
 
-echo json_encode($workerItem);
+echo json_encode($workerItem, JSON_UNESCAPED_UNICODE);
 
