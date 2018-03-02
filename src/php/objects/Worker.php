@@ -42,8 +42,7 @@ class Worker {
     }
 
     function readAll() {
-        $query = "SELECT 
-                id_worker, FI, post, photo_link 
+        $query = "SELECT * 
             FROM " . $this->table_name;
 
         $stmt = $this->conn->prepare($query);
@@ -72,8 +71,8 @@ class Worker {
 
     function delete() {
         // удаляем из двух таблиц. Если в таблице сотрудник-договор нет сотрудника с полем ответственный за проект, то выводим ответсвтвенный не назначен.
-        $query = "DELETE " . $this->table_name . ", " . $this->rel_table_name . " FROM " . $this->table_name . " INNER JOIN " . $this->rel_table_name . " ON " . $this->table_name . ".id_worker = " . $this->rel_table_name . ".id_worker WHERE " . $this->table_name . ".id_worker = :id";
-        //$query = "DELETE FROM workers WHERE id_worker = :id";
+        //$query = "DELETE " . $this->table_name . ", " . $this->rel_table_name . " FROM " . $this->table_name . " INNER JOIN " . $this->rel_table_name . " ON " . $this->table_name . ".id_worker = " . $this->rel_table_name . ".id_worker WHERE " . $this->table_name . ".id_worker = :id";
+        $query = "DELETE FROM workers WHERE id_worker = :id";
         $this->id = htmlspecialchars(strip_tags($this->id));
 
         $stmt = $this->conn->prepare($query);  
