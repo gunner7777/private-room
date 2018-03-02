@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { getSingleWorker } from '../../actions';
 
 class WorkerInfo extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
 
     componentDidMount() {
