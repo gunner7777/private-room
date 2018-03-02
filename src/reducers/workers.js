@@ -31,7 +31,6 @@ export const workers = (state=initialState, action) => {
 export const singleWorker = (state={}, action) => {
   switch(action.type) {
     case GET_SINGLE_WORKER_SUCCESS:
-    console.log("reducer", action.worker);
       return action.worker;
     default:
       return state;

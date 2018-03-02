@@ -6,28 +6,35 @@ class WorkerInfo extends Component {
     constructor(props) {
         super(props);
     }
-
+    
     componentDidMount() {
-        console.log('id', this.props.workerInfo.id_worker);
+        console.log("mount");
         this.props.fetchData('http://теплофф.рф/tyryr/worker/readOne.php?idw=' + this.props.workerInfo.id_worker);
     }
-
+    
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.worker.id_worker !== this.props.worker.id_worker) {
+            console.log("nextPtops good");
+        } else
+            console.log("bad");
+    }
     render() {
-        console.log("this", this.props.worker);
+        console.log("info", this.props.workerInfo);
+        console.log("worker", this.props.worker);
         return (
             <div>
+               ss 
                 
-                4W 
             </div>
 
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    console.log("state", state.singleWorker);
+const mapStateToProps = (state, ownProps) => {
+    //console.log("state", state.worker);
     return {
-        worker: state.singleWorker,
+        worker: state.worker,
         workerInfo: state.workerInfo
     }
 }

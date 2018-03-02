@@ -16,7 +16,6 @@ class WorkerList extends Component {
 
     render() {
         const { workers } = this.props;
-        console.log(workers);
         const listOfWorkers = workers.map((worker, index) => {
             return (
                 <li key={worker.id}>
