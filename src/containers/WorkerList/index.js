@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import WorkerForm from '../../components/WorkerForm';
+import WorkerCard from '../../components/WorkerCard';
 import { getAllWorkers, getInfo } from '../../actions';
+import './WorkerList.css';
 
 class WorkerList extends Component {
     constructor() {
@@ -18,20 +20,30 @@ class WorkerList extends Component {
         const { workers } = this.props;
         const listOfWorkers = workers.map((worker, index) => {
             return (
-                <li key={worker.id}>
+                <WorkerCard 
+                    photoLink={worker.photo_link}
+                    fi={worker.fi}
+                    post={worker.post}
+                    phone={worker.phone}
+                    mail={worker.mail}
+                />
+                /*<li key={worker.id}>
                     <Link
                         to={`/workers/${worker.id_worker}`}
                         onClick={() => this.props.getInfo(worker)}>
                             {worker.FI} {worker.post}
                     </Link>
-                </li>
+                </li>*/
             );
         });
 
         return (
-            <ul>
+            <div className="WorkerList">
+            {/*<ul>
                 {listOfWorkers}
-            </ul>
+            </ul>*/}
+                {listOfWorkers}
+            </div>
         );
     }
 }
