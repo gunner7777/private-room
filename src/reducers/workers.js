@@ -47,7 +47,7 @@ export const newWorker = (state={}, action) => {
 
 export const workerInfo = (state={}, action) => {
   switch(action.type) {
-    case GET_INFO: return action.person;
+    case GET_INFO: return action.data;
     default: return state;
   }
 }

@@ -117,6 +117,6 @@ export const uploadFileSuccess = (fileState) => {
 export const getInfo = (data) => {
   return {
     type: GET_INFO,
-    person: data
+    data 
   }
 }

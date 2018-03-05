@@ -9,6 +9,7 @@ import DogovorInfo from '../DogovorInfo';
 import WorkerList from '../../containers/WorkerList';
 import WorkerAdd from '../../containers/WorkerAdd';
 import WorkerInfo from '../../containers/WorkerInfo';
+import WorkerEditor from '../../containers/WorkerEditor';
 
 const Main = () => {
   return (
@@ -18,7 +19,7 @@ const Main = () => {
       <Route path='/settings' component={Select} />
       <Route path='/addDogovor' component={DogovorInfo} />
       <Route path='/allWorkers' component={WorkerList} />
-      <Route exact path="/workers/:id?" component={WorkerInfo} />
+      <Route exact path="/workers/:id?/edit" component={WorkerEditor} />
       <Route path='/addWorker' component={WorkerAdd} />
     </Switch>
   );

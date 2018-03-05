@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import WorkerForm from '../../components/WorkerForm';
 import WorkerCard from '../../components/WorkerCard';
 import { getAllWorkers, getInfo } from '../../actions';
+import { getSingleWorker } from '../../actions';
 import './WorkerList.css';
 
 class WorkerList extends Component {
@@ -20,12 +21,14 @@ class WorkerList extends Component {
         const { workers } = this.props;
         const listOfWorkers = workers.map((worker, index) => {
             return (
-                <WorkerCard 
+                <WorkerCard
+                    id={worker.id_worker}
                     photoLink={worker.photo_link}
-                    fi={worker.fi}
+                    fi={worker.FI}
                     post={worker.post}
                     phone={worker.phone}
                     mail={worker.mail}
+                    getInfo={this.props.getInfo}
                 />
                 /*<li key={worker.id}>
                     <Link
