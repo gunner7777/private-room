@@ -5,7 +5,7 @@ import { file } from './file.js';
 const rootReducer = combineReducers({
   workers: workers,
   worker: singleWorker,
-  workerInfo: workerInfo,
+  //workerInfo: workerInfo,
   file: file
 });
 

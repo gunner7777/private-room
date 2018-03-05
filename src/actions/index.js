@@ -114,9 +114,9 @@ export const uploadFileSuccess = (fileState) => {
   }
 }
 
-export const getInfo = (data) => {
+export const getInfo = (id) => {
   return {
     type: GET_INFO,
-    data 
+    id
   }
 }

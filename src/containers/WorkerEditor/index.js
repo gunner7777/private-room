@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 class WorkerEditor extends Component {
   render() {
-    console.log(this.props.worker);
+    console.log("editro", this.props.worker);
     return (
       <div>
         state
@@ -17,7 +17,7 @@ class WorkerEditor extends Component {
 const mapStateToProps = (state) => {
   //console.log("state", state.worker);
   return {
-      worker: state.workerInfo
+      worker: state.workers
   }
 }
 

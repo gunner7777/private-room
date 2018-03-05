@@ -18,6 +18,7 @@ class WorkerList extends Component {
     }
 
     render() {
+        console.log(this.props);
         const { workers } = this.props;
         const listOfWorkers = workers.map((worker, index) => {
             return (
@@ -53,13 +54,13 @@ class WorkerList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        workers: state.workers
+        workers: state.workers.workers
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getInfo: (data) => dispatch(getInfo(data)),
+        getInfo: (id) => dispatch(getInfo(id)),
         fetchData: (url) => dispatch(getAllWorkers(url))
     }
 }
