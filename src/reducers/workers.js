@@ -38,7 +38,7 @@ const initialState = {
       email: "Lukaku@epl.com"
     },
   ],
-  single: {},
+  //single: {}
 };
 
 export const workers = (state=initialState, action) => {
@@ -46,14 +46,16 @@ export const workers = (state=initialState, action) => {
     case GET_ALL_WORKERS_SUCCESS:
       return {...state, workers: action.workers};
     case GET_INFO:
-      console.log("state", state);
-      state.workers.map(worker => {
-        
-        if(worker.id_worker === action.id)
+      const w = state.workers.filter(worker => {
+        if(worker.id_worker === action.id) {
           console.log("worker", worker);
-          return {...state, single: worker};
-      }); 
-      return state;
+          return worker;
+        } else {
+          // undefined?
+        }
+      });
+      return {...state, single: w };
+      //return Object.assign({}, state, {single: w});
     default:
       return state;
   }
