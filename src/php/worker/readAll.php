@@ -22,7 +22,7 @@ if($num>0) {
 
         $workersItem = array(
             "id_worker" => $id_worker,
-            "FI" => $FI,
+            "fi" => $fi,
             "post" => $post,
             "photo_link" => $photo_link,
             "phone" => $phone,

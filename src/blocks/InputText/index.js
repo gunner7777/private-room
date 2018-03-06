@@ -11,6 +11,13 @@ class InputText extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    console.log(this.props.inpValue);
+    this.setState({
+      value: this.props.inpValue === undefined ? '' : this.props.inpValue
+    });
+  }
+
   handleChange(e) {
     this.setState({
       value: e.target.value

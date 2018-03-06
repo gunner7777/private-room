@@ -20,7 +20,7 @@ $worker->readOne();
 
 $workerItem = array(
     "id_worker" => $worker->id,
-    "FI" => $worker->fi,
+    "fi" => $worker->fi,
     "post" => $worker->post,
     "photo_link" => $worker->photo_link,
     "phone" => $worker->phone,

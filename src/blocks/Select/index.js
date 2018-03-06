@@ -6,9 +6,15 @@ class Select extends Component {
     constructor() {
         super();
         this.state = {
-            value: 'Менеджер'
+            value: ''
         };
         this.handleChange = this.handleChange.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            value: this.props.selValue === undefined ? this.props.selectOption[0] : this.props.selValue
+        });
     }
 
     handleChange(e) {
@@ -18,6 +24,8 @@ class Select extends Component {
     }
 
     render() {
+        console.log(this.props.selValue);
+        console.log('sel state', this.state.value);
         const opt = this.props.selectOption.map(item => {
             return (
                 <option>{item}</option>

@@ -25,7 +25,7 @@ class WorkerList extends Component {
                 <WorkerCard
                     id={worker.id_worker}
                     photoLink={worker.photo_link}
-                    fi={worker.FI}
+                    fi={worker.fi}
                     post={worker.post}
                     phone={worker.phone}
                     mail={worker.mail}
@@ -60,7 +60,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getInfo: (id) => dispatch(getInfo(id)),
+        getInfo: (data) => dispatch(getInfo(data)),
         fetchData: (url) => dispatch(getAllWorkers(url))
     }
 }

@@ -18,8 +18,8 @@ class Worker {
 
     function create() {
         $query = "INSERT INTO " . $this->table_name . " 
-            (FI, post, photo_link, phone, mail) 
-            VALUES(:FI, :post, :photo_link, :phone, :mail)";
+            (fi, post, photo_link, phone, mail) 
+            VALUES(:fi, :post, :photo_link, :phone, :mail)";
 
         $this->fi = htmlspecialchars(strip_tags($this->fi));
         $this->post = htmlspecialchars(strip_tags($this->post));
@@ -28,7 +28,7 @@ class Worker {
         $this->mail = htmlspecialchars(strip_tags($this->mail));
 
         $stmt = $this->conn->prepare($query);
-        $stmt->bindValue(':FI', $this->fi);
+        $stmt->bindValue(':fi', $this->fi);
         $stmt->bindValue(':post', $this->post);
         $stmt->bindValue(':photo_link', $this->photo_link);
         $stmt->bindValue(':phone', $this->phone);
@@ -62,7 +62,7 @@ class Worker {
 
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         
-        $this->fi = $row['FI'];
+        $this->fi = $row['fi'];
         $this->post = $row['post'];
         $this->photo_link = $row['photo_link'];
         $this->phone = $row['phone'];
@@ -87,7 +87,7 @@ class Worker {
     function update() {
         $query = "UPDATE " . $this->table_name . "
             SET 
-                FI = :fi,
+                fi = :fi,
                 post = :post,
                 photo_link = :photo_link,
                 phone = :phone,
@@ -95,15 +95,16 @@ class Worker {
             WHERE id_worker = :id";
         
         $this->id = htmlspecialchars(strip_tags($this->id));
-        $this->FI = htmlspecialchars(strip_tags($this->FI));
+        $this->fi = htmlspecialchars(strip_tags($this->fi));
         $this->post = htmlspecialchars(strip_tags($this->post));
         $this->photo_link = htmlspecialchars(strip_tags($this->photo_link));
         $this->phone = htmlspecialchars(strip_tags($this->phone));
         $this->mail = htmlspecialchars(strip_tags($this->mail));
 
         $stmt = $this->conn->prepare($query);
+        
         $stmt->bindValue(':id', $this->id);
-        $stmt->bindValue(':FI', $this->FI);
+        $stmt->bindValue(':fi', $this->fi);
         $stmt->bindValue(':post', $this->post);
         $stmt->bindValue(':photo_link', $this->photo_link);
         $stmt->bindValue(':phone', $this->phone);

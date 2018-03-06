@@ -9,6 +9,8 @@ export const ADD_WORKER = "ADD_WORKER";
 export const UPLOAD_FILE = "UPLOAD_FILE";
 export const UPLOAD_FILE_SUCCESS = "UPLOAD_FILE_SUCCESS";
 export const GET_INFO = "GET_INFO";
+export const UPDATE_WORKER_INFO = "UPDATE_WORKER_INFO";
+export const UPDATE_WORKER_INFO_SUCCESS = "UPDATE_WORKER_INFO_SUCCESS";
 
 
 export const getAllWorkers = (url) => {
@@ -114,9 +116,21 @@ export const uploadFileSuccess = (fileState) => {
   }
 }
 
-export const getInfo = (id) => {
+export const getInfo = (data) => {
   return {
     type: GET_INFO,
-    id
+    data
+  }
+}
+
+export const updateWorkerInfo = (url, data) => {
+  return dispatch => {
+    axios.post(url, data)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log("errororro", error.response);
+      });
   }
 }
