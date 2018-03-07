@@ -14,31 +14,36 @@ const WorkerCard = (props) => {
     mail: props.mail
   }
 
-  const photo = (props.photoLink !== undefined && props.photoLink.match(/.jpg/i)) ? <img src={props.photoLink} alt="worker" /> : <i class="fas fa-user"></i>;
+  const photo = (props.photoLink !== undefined && props.photoLink.match(/.jpg/i)) ? <img className="WorkerCard-Avatar" src={props.photoLink} alt="worker" /> : <i className="WorkerCard-Icon fas fa-user"></i>;
   return (
     <div className="WorkerCard">
       <div className="WorkerCard-Img">
         {photo}
       </div>
       <div className="WorkerCard-Info">
-        <p>
+        <h4 className="WorkerCard-Name">
           {props.fi}
-        </p>
-        <p>
+        </h4>
+        <p className="WorkerCard-Text">
           {props.post}
         </p>
-        <p>
-          {props.phone}
+        <p className="WorkerCard-Text">
+          тел.: {props.phone}
         </p>
-        <p>
-          {props.mail}
+        <p className="WorkerCard-Text">
+          e-mail: {props.mail}
         </p>
-        <Link
-          to={`/workers/${props.id}/edit`}
-          onClick={() => props.getInfo(person)}>
-            <i class="fas fa-edit"></i>
-        </Link>
-        <i class="fas fa-trash-alt"></i>
+        <div className="WorkerCard-Controls">
+          <Link
+            to={`/workers/${props.id}/edit`}
+            onClick={() => props.getInfo(person)}>
+              <i class="fas fa-edit"></i>
+          </Link>
+          <Link
+            to={`/workers/${props.id}/delete`}>
+              <i class="fas fa-trash-alt"></i>
+          </Link>
+        </div>
       </div>
     </div>
   )

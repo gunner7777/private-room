@@ -2,9 +2,45 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
-    flex-basis: 200px;
+    flex-basis: 300px;
+    border: 0;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .2);
+    border-radius: 4px;
+    padding: 5px;
+    margin: 10px;
 
-    p {
-        margin: 0;
+    &-Info {
+        position: relative;
+    }
+
+    &-Img {
+        flex: 0 1 150px;
+    }
+
+    &-Avatar {
+        max-height: 100px;
+        height: 100px;
+        width: auto;
+    }
+
+    &-Icon {
+        height: 100px;
+        width: 100px !important;
+    }
+    &-Name {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 20px 0 8px;
+    }
+
+    &-Text {
+        margin: 4px 0;
+        color: rgba(0, 0, 0, .85);
+    }
+
+    &-Controls {
+        position: absolute;
+        right: 0;
+        top: 0;
     }
 }
