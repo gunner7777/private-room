@@ -33,7 +33,7 @@ class WorkerAdd extends Component {
             mail: document.getElementById('workerMail').value,
         };
 
-        this.props.addWorker('http://теплофф.рф/tyryr/worker/create.php', newWorker);
+        this.props.addWorker(newWorker);
     }
 
     render() {
@@ -64,7 +64,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addWorker: (url, data) => dispatch(addWorker(url, data))
+        addWorker: (data) => dispatch(addWorker(data))
     }
 }
 

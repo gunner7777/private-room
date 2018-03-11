@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import WorkerForm from '../../components/WorkerForm';
 import WorkerCard from '../../components/WorkerCard';
-import { getAllWorkers, getInfo } from '../../actions';
-import { getSingleWorker } from '../../actions';
+import { getAllWorkers, getInfo, deleteWorker, getSingleWorker } from '../../actions';
+// import { getSingleWorker } from '../../actions';
 import './WorkerList.css';
 
 class WorkerList extends Component {
@@ -14,7 +14,7 @@ class WorkerList extends Component {
     }
 
     componentDidMount() {
-        this.props.fetchData('http://теплофф.рф/tyryr/worker/readAll.php');
+        this.props.fetchData();
     }
 
     render() {
@@ -30,6 +30,7 @@ class WorkerList extends Component {
                     phone={worker.phone}
                     mail={worker.mail}
                     getInfo={this.props.getInfo}
+                    workerDel={this.props.deleteWorker}
                 />
                 /*<li key={worker.id}>
                     <Link
@@ -61,7 +62,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getInfo: (data) => dispatch(getInfo(data)),
-        fetchData: (url) => dispatch(getAllWorkers(url))
+        fetchData: () => dispatch(getAllWorkers()),
+        deleteWorker: (url, id) => dispatch(deleteWorker(url, id))
     }
 }
 

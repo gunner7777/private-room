@@ -37,12 +37,11 @@ const WorkerCard = (props) => {
           <Link
             to={`/workers/${props.id}/edit`}
             onClick={() => props.getInfo(person)}>
-              <i class="fas fa-edit"></i>
+              <i className="fas fa-edit"></i>
           </Link>
-          <Link
-            to={`/workers/${props.id}/delete`}>
-              <i class="fas fa-trash-alt"></i>
-          </Link>
+          <span onClick={() => props.workerDel('http://теплофф.рф/tyryr/worker/delete.php', props.id)}>
+            <i className="fas fa-trash-alt"></i>
+          </span>
         </div>
       </div>
     </div>

@@ -13,7 +13,8 @@ export const UPDATE_WORKER_INFO = "UPDATE_WORKER_INFO";
 export const UPDATE_WORKER_INFO_SUCCESS = "UPDATE_WORKER_INFO_SUCCESS";
 
 
-export const getAllWorkers = (url) => {
+export const getAllWorkers = () => {
+  const url = 'http://теплофф.рф/tyryr/worker/readAll.php';
   return (dispatch) => {
     axios.get(url)
       .then((response) => {
@@ -76,7 +77,8 @@ export const singleWorkerHaveError = (bool) => {
   }
 }
 
-export const addWorker = (url, data) => {
+export const addWorker = (data) => {
+  const url = 'http://теплофф.рф/tyryr/worker/create.php';
   return dispatch => {
     console.log(data);
     axios.post(url, data)
@@ -84,14 +86,14 @@ export const addWorker = (url, data) => {
         console.log(response);
       })
       .catch(error => {
-        console.log("errororro", error.response);
+        console.log("error add worker", error.response);
       });
   }
 }
 
 export const uploadFile = (type, data, fileName) => {
   return dispatch => {
-    let url = "http://теплофф.рф/upl.php";
+    const url = "http://теплофф.рф/upl.php";
     const config = {
       headers: { 'content-type': 'multipart/form-data' }
     };
@@ -104,7 +106,7 @@ export const uploadFile = (type, data, fileName) => {
         }));
       })
       .catch(error => {
-        console.log("errororro", error.response);
+        console.log("error upload file", error.response);
       });
   }
 }
@@ -130,7 +132,20 @@ export const updateWorkerInfo = (url, data) => {
         console.log(response);
       })
       .catch(error => {
-        console.log("errororro", error.response);
+        console.log("error update", error.response);
+      });
+  }
+}
+
+export const deleteWorker = (url, id) => {
+  return dispatch => {
+    axios.post(url, id)
+      .then(response => {
+        console.log(response);
+        dispatch(getAllWorkers());
+      })
+      .catch(error => {
+        console.log("error delete", error.response);
       });
   }
 }

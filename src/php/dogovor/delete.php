@@ -8,23 +8,23 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include_once $_SERVER['DOCUMENT_ROOT'] . "/tyryr/config/Database.php";
-include $_SERVER['DOCUMENT_ROOT'] . "/tyryr/objects/Worker.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/tyryr/objects/Dogovor.php";
 
 $database = new Database();
 $db = $database->connect();
 
-$worker = new Worker($db);
+$dogovor = new Dogovor($db);
 
 $id = json_decode(file_get_contents("php://input"));
 
-$worker->id = $id;
+$dogovor->id = $id;
 
 
 //$worker->delete();
 
 
-if($worker->delete()) {
-  echo json_encode(array("message" => "Сотрудник удален"), JSON_UNESCAPED_UNICODE);
+if($dogovor->delete()) {
+  echo json_encode(array("message" => "Договор удален"), JSON_UNESCAPED_UNICODE);
 } else {
   echo json_encode(array("message" => "Ошибка при удалении"), JSON_UNESCAPED_UNICODE);
 }

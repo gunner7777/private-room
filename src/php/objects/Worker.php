@@ -26,19 +26,25 @@ class Worker {
         $this->photo_link = htmlspecialchars(strip_tags($this->photo_link));
         $this->phone = htmlspecialchars(strip_tags($this->phone));
         $this->mail = htmlspecialchars(strip_tags($this->mail));
+        
+        try {
+            $this->conn->beginTransaction();
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindValue(':fi', $this->fi);
+            $stmt->bindValue(':post', $this->post);
+            $stmt->bindValue(':photo_link', $this->photo_link);
+            $stmt->bindValue(':phone', $this->phone);
+            $stmt->bindValue(':mail', $this->mail);
 
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindValue(':fi', $this->fi);
-        $stmt->bindValue(':post', $this->post);
-        $stmt->bindValue(':photo_link', $this->photo_link);
-        $stmt->bindValue(':phone', $this->phone);
-        $stmt->bindValue(':mail', $this->mail);
-
-        if($stmt->execute()) {
-            return true;
+            if($stmt->execute()) {
+                $this->conn->commit();
+                return true;
+            }
+            return false;
         }
-
-        return false;
+        catch(PDOException $e) {
+            $this->conn->rollBack();
+        }
     }
 
     function readAll() {
@@ -70,9 +76,7 @@ class Worker {
     }
 
     function delete() {
-        // удаляем из двух таблиц. Если в таблице сотрудник-договор нет сотрудника с полем ответственный за проект, то выводим ответсвтвенный не назначен.
-        //$query = "DELETE " . $this->table_name . ", " . $this->rel_table_name . " FROM " . $this->table_name . " INNER JOIN " . $this->rel_table_name . " ON " . $this->table_name . ".id_worker = " . $this->rel_table_name . ".id_worker WHERE " . $this->table_name . ".id_worker = :id";
-        $query = "DELETE FROM workers WHERE id_worker = :id";
+        $query = "DELETE FROM " . $this->table_name . " WHERE id_worker = :id";
         $this->id = htmlspecialchars(strip_tags($this->id));
 
         $stmt = $this->conn->prepare($query);  
@@ -100,19 +104,24 @@ class Worker {
         $this->photo_link = htmlspecialchars(strip_tags($this->photo_link));
         $this->phone = htmlspecialchars(strip_tags($this->phone));
         $this->mail = htmlspecialchars(strip_tags($this->mail));
+        try {
+            $this->conn->beginTransaction();
+            $stmt = $this->conn->prepare($query);
+            
+            $stmt->bindValue(':id', $this->id);
+            $stmt->bindValue(':fi', $this->fi);
+            $stmt->bindValue(':post', $this->post);
+            $stmt->bindValue(':photo_link', $this->photo_link);
+            $stmt->bindValue(':phone', $this->phone);
+            $stmt->bindValue(':mail', $this->mail);
 
-        $stmt = $this->conn->prepare($query);
-        
-        $stmt->bindValue(':id', $this->id);
-        $stmt->bindValue(':fi', $this->fi);
-        $stmt->bindValue(':post', $this->post);
-        $stmt->bindValue(':photo_link', $this->photo_link);
-        $stmt->bindValue(':phone', $this->phone);
-        $stmt->bindValue(':mail', $this->mail);
-
-        if($stmt->execute()) {
-            return true;
+            if($stmt->execute()) {
+                $this->conn->commit();
+                return true;
+            }
+            return false;
+        } catch(PDOException $e) {
+            $this->conn->rollBack();
         }
-        return false;
     }
 }
