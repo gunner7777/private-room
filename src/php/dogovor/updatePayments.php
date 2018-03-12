@@ -17,15 +17,11 @@ $dogovor = new Dogovor($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
-$worker->id = $data->id;
-$worker->fi = $data->fi;
-$worker->post = $data->post;
-$worker->photo_link = $data->photo_link;
-$worker->phone = $data->phone;
-$worker->mail = $data->mail;
+$dogovor->id = $data->id;
+$dogovor->payments = $data->payments;
 
-if($worker->update()) {
-    echo json_encode(array("message" => "Информация о сотруднике изменена"), JSON_UNESCAPED_UNICODE);
+if($dogovor->update("pay")) {
+    echo json_encode(array("message" => "Информация о договоре изменена"), JSON_UNESCAPED_UNICODE);
 } else {
     echo json_encode(array("message" => "Ошибка при изменении"), JSON_UNESCAPED_UNICODE);
 }

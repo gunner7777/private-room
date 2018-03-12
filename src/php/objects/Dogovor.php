@@ -69,6 +69,7 @@ class Dogovor {
         $res->bindValue(':fi_zakaz', $this->fi_zakaz);
         $res->bindValue(':o_zakaz', $this->o_zakaz);
         $res->bindValue(':phone', $this->phone);
+        $res->bindValue(':comments', $this->comments);
         $res->execute();
 
         $this->id = $this->conn->lastInsertId();
@@ -297,7 +298,124 @@ class Dogovor {
     return false;
   }
 
+  function update(type) {
+    try {
+      $this->conn->beginTransaction();
+
+      switch(type) {
+        case "docs": 
+        default: break;
+      }
+      
+      $this->conn->commit();
+    } catch(PDOException $e) {
+      $this->conn->rollBack();
+    }
+  }
+
+
   function update() {
+    try {
+      $this->conn->beginTransaction();
+      
+      $this->id = htmlspecialchars(strip_tags($this->id));
+      $this->name = htmlspecialchars(strip_tags($this->name));
+      $this->date = htmlspecialchars(strip_tags($this->date));
+      $this->fi_zakaz = htmlspecialchars(strip_tags($this->fi_zakaz));
+      $this->o_zakaz = htmlspecialchars(strip_tags($this->o_zakaz));
+      $this->phone = htmlspecialchars(strip_tags($this->phone));
+      $this->comments = htmlspecialchars(strip_tags($this->comments));
+
+      $query = "UPDATE " . $this->table_name . "
+        SET
+          name = :name,
+          date = :date,
+          fi_zakaz = :fi_zakaz,
+          o_zakaz = :o_zakaz,
+          phone = :phone,
+          comments = :comments
+        WHERE id_dog = :id";
+
+      $stmt = $this->conn->prepare($query);
+      $stmt->bindValue(':id', $this->id);
+      $stmt->bindValue(':name', $this->name);
+      $stmt->bindValue(':date', $this->date);
+      $stmt->bindValue(':fi_zakaz', $this->fi_zakaz);
+      $stmt->bindValue(':o_zakaz', $this->o_zakaz);
+      $stmt->bindValue(':phone', $this->phone);
+      $stmt->bindValue(':comments', $this->comments);
+      $stmt->execute();
+
+      // update docs table
+      $query = "UPDATE " . $table_name_docs . "
+        SET
+          type = :type,
+          link = :link
+        WHERE id_dog = :id_dog";
+
+      $res = $this->conn->prepare($query);
+      $res->bindValue(':id_dog', $this->id);
+
+      foreach($this->docs as $doc) {
+        $res->bindValue(':type', $doc['type']);
+        $res->bindValue(':link', $doc['link']);
+        $res->execute();
+      }
+
+      // update plan_rabot
+      $query = "UPDATE " . $table_name_plan . "
+        SET 
+        date = :date,
+        workname = :workname,
+        status = :status
+      WHERE id_dog = :id_dog";
+
+      $res = $this->conn->prepare($query);
+      $res->bindValue(':id_dog', $this->id);
+
+      foreach($this->plan as $p) {
+        $res->bindValue(':date', $p['date']);
+        $res->bindValue(':workname', $p['workname']);
+        $res->bindValue(':status', $p['status']);
+        $res->execute();
+      }
+
+      // insert into payments
+      $query = "UPDATE " . $table_name_payments . "
+        SET
+          stage_payment = :stage_payment,
+          summa = :summa,
+          status = :status
+        WHERE id_dog = :id_dog";
+
+      $res = $this->conn->prepare($query);
+      $res->bindValue(':id_dog', $this->id);
+
+      foreach($this->payments as $pay) {
+        $res->bindValue(':stage_payment', $pay['stage_payment']);
+        $res->bindValue(':summa', $pay['summa']);
+        $res->bindValue(':status', $pay['status']);
+        $res->execute();
+      }
+
+      // insert into dogovor_workers
+      $query = "INSERT INTO " . $table_name_dogovor_workers . "
+      (id_dog, id_worker, main_worker) 
+      VALUES(:id_dog, :id_worker, :main_worker)";
+
+        $res = $this->conn->prepare($query);
+        $res->bindValue(':id_dog', $this->id);
+
+        foreach($this->d_w as $dw) {
+          $res->bindValue(':id_worker', $dw['id_worker']);
+          $res->bindValue(':main_worker', $dw['main_worker']);
+          $res->execute();
+        }
+
+
+    } catch(PDOException $e) {
+      $this->conn->rollBack();
+  }
 
   }
 }
