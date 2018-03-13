@@ -23,12 +23,12 @@ $dogovor->date = $data->date;
 $dogovor->fi_zakaz = $data->fi_zakaz;
 $dogovor->o_zakaz = $data->o_zakaz;
 $dogovor->phone = $data->phone;
-$dogovor->docs = $data->docs;
+/*$dogovor->docs = $data->docs;
 $dogovor->plan = $data->plan;
 $dogovor->payments = $data->payments;
-$dogovor->d_w = $data->d_w;
+$dogovor->d_w = $data->d_w;*/
 
-if($dogovor->update()) {
+if($dogovor->update("dog")) {
     echo json_encode(array("message" => "Информация о договоре изменена"), JSON_UNESCAPED_UNICODE);
 } else {
     echo json_encode(array("message" => "Ошибка при изменении"), JSON_UNESCAPED_UNICODE);
