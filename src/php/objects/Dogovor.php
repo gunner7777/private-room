@@ -333,16 +333,21 @@ class Dogovor {
           break;
 
         case "docs": 
-          $query = "UPDATE " . $table_name_docs . "
+          $query = "INSERT INTO " . $table_name_docs . "
+            (id_doc, id_dog, type, link)
+            VALUES(:id_doc, :id_dog, :type, :link)
+            ON DUPLICATE KEY UPDATE type=:type, link=:link";  
+        /*$query = "UPDATE " . $table_name_docs . "
             SET
               type = :type,
               link = :link
-            WHERE id_dog = :id_dog";
+            WHERE id_dog = :id_dog AND id_doc = :id_doc";*/
 
           $res = $this->conn->prepare($query);
           $res->bindValue(':id_dog', $this->id);
 
           foreach($this->docs as $doc) {
+            $res->bindValue(':id_doc', $doc['id_doc']);
             $res->bindValue(':type', $doc['type']);
             $res->bindValue(':link', $doc['link']);
             $res->execute();
@@ -350,17 +355,22 @@ class Dogovor {
           break;
 
         case "plan":
-          $query = "UPDATE " . $table_name_plan . "
+          $query = "INSERT INTO " . $table_name_plan . "
+            (id_plan, id_dog, date, workname, status)
+            VALUES(:id_plan, :id_dog, :date, :workname, :status)
+            ON DUPLICATE KEY UPDATE date=:date, workname=:workname, status=:status";
+          /*$query = "UPDATE " . $table_name_plan . "
             SET 
               date = :date,
               workname = :workname,
               status = :status
-            WHERE id_dog = :id_dog";
+            WHERE id_dog = :id_dog";*/
 
           $res = $this->conn->prepare($query);
           $res->bindValue(':id_dog', $this->id);
 
           foreach($this->plan as $p) {
+            $res->bindValue(':id_plan', $p['id_plan']);
             $res->bindValue(':date', $p['date']);
             $res->bindValue(':workname', $p['workname']);
             $res->bindValue(':status', $p['status']);
@@ -369,17 +379,22 @@ class Dogovor {
           break;
         
         case "pay":
-        $query = "UPDATE " . $table_name_payments . "
+          $query = "INSERT INTO " . $table_name_payments . "
+              (id_pay, id_dog, stage_payment, summa, status)
+              VALUES(:id_plan, :id_dog, :stage_payment, :summa, :status)
+              ON DUPLICATE KEY UPDATE stage_payment=:stage_payment, summa=:summa, status=:status";
+        /*$query = "UPDATE " . $table_name_payments . "
           SET
             stage_payment = :stage_payment,
             summa = :summa,
             status = :status
-          WHERE id_dog = :id_dog";
+          WHERE id_dog = :id_dog";*/
 
           $res = $this->conn->prepare($query);
           $res->bindValue(':id_dog', $this->id);
 
           foreach($this->payments as $pay) {
+            $res->bindValue(':id_pay', $pay['id_pay']);
             $res->bindValue(':stage_payment', $pay['stage_payment']);
             $res->bindValue(':summa', $pay['summa']);
             $res->bindValue(':status', $pay['status']);
@@ -387,7 +402,20 @@ class Dogovor {
           }
           break;
 
-        
+        case "dw":
+          $query = "INSERT INTO " . $table_name_dogovor_workers . "
+            (id_dw, id_dog, id_worker)
+            VALUES(:id_dw, :id_dog, :id_worker)
+            ON DUPLICATE KEY UPDATE id_worker=:id_worker";
+            $res = $this->conn->prepare($query);
+            $res->bindValue(':id_dog', $this->id);
+  
+          foreach($this->dw as $d_w) {
+            $res->bindValue(':id_dw', $d_w['id_dw']);
+            $res->bindValue(':id_worker', $d_w['id_worker']);
+            $res->execute();
+          }
+
         default: break;
       }
       
