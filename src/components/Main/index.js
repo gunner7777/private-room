@@ -10,6 +10,8 @@ import WorkerList from '../../containers/WorkerList';
 import WorkerAdd from '../../containers/WorkerAdd';
 import WorkerInfo from '../../containers/WorkerInfo';
 import WorkerEditor from '../../containers/WorkerEditor';
+import DogovorList from '../../containers/Dogovor/DogovorList';
+import DogovorEditor from '../../containers/Dogovor/DogovorEditor';
 
 const Main = () => {
   return (
@@ -21,6 +23,8 @@ const Main = () => {
       <Route path='/allWorkers' component={WorkerList} />
       <Route exact path="/workers/:id?/edit" component={WorkerEditor} />
       <Route path='/addWorker' component={WorkerAdd} />
+      <Route path='/allDogovor' component={DogovorList} />
+      <Route exact path="/dogovor/:id?/edit" component={DogovorEditor} />
     </Switch>
   );
 }

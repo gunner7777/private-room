@@ -11,7 +11,11 @@ export const UPLOAD_FILE_SUCCESS = "UPLOAD_FILE_SUCCESS";
 export const GET_INFO = "GET_INFO";
 export const UPDATE_WORKER_INFO = "UPDATE_WORKER_INFO";
 export const UPDATE_WORKER_INFO_SUCCESS = "UPDATE_WORKER_INFO_SUCCESS";
-
+export const GET_ALL_DOGOVOR = "GET_ALL_DOGOVOR";
+export const GET_ALL_DOGOVOR_HAS_ERROR = "GET_ALL_DOGOVOR_HAS_ERROR";
+export const GET_ALL_DOGOVOR_SUCCESS = "GET_ALL_DOGOVOR_SUCCESS";
+export const GET_ONE_DOGOVOR_HAS_ERROR = "GET_ONE_DOGOVOR_HAS_ERROR";
+export const GET_ONE_DOGOVOR_SUCCESS = "GET_ONE_DOGOVOR_SUCCESS";
 
 export const getAllWorkers = () => {
   const url = 'http://теплофф.рф/tyryr/worker/readAll.php';
@@ -25,6 +29,7 @@ export const getAllWorkers = () => {
         return response;
       })
       .then((response) => {
+        //console.log("resp[onse", response);
         dispatch(getAllWorkersSuccess(response.data));
       })
       .catch(() => dispatch(workersHaveError(true)));
@@ -91,33 +96,6 @@ export const addWorker = (data) => {
   }
 }
 
-export const uploadFile = (type, data, fileName) => {
-  return dispatch => {
-    const url = "http://теплофф.рф/upl.php";
-    const config = {
-      headers: { 'content-type': 'multipart/form-data' }
-    };
-
-    axios.post(url, data, config)
-      .then(function (res) {
-        dispatch(uploadFileSuccess({
-          ok: true,
-          fileName: fileName
-        }));
-      })
-      .catch(error => {
-        console.log("error upload file", error.response);
-      });
-  }
-}
-
-export const uploadFileSuccess = (fileState) => {
-  return {
-    type: UPLOAD_FILE_SUCCESS,
-    fileState
-  }
-}
-
 export const getInfo = (data) => {
   return {
     type: GET_INFO,
@@ -147,5 +125,101 @@ export const deleteWorker = (url, id) => {
       .catch(error => {
         console.log("error delete", error.response);
       });
+  }
+}
+
+
+
+/** File actions */
+export const uploadFile = (type, data, fileName) => {
+  return dispatch => {
+    const url = "http://теплофф.рф/upl.php";
+    const config = {
+      headers: { 'content-type': 'multipart/form-data' }
+    };
+
+    axios.post(url, data, config)
+      .then(function (res) {
+        dispatch(uploadFileSuccess({
+          ok: true,
+          fileName: fileName
+        }));
+      })
+      .catch(error => {
+        console.log("error upload file", error.response);
+      });
+  }
+}
+
+export const uploadFileSuccess = (fileState) => {
+  return {
+    type: UPLOAD_FILE_SUCCESS,
+    fileState
+  }
+}
+
+
+
+/** Dogovor actions */
+export const getAllDogovor = () => {
+  const url = 'http://теплофф.рф/tyryr/dogovor/readAll.php';
+  return (dispatch) => {
+    axios.get(url)
+      .then((response) => {
+        if(response.status !== 200) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then((response) => {
+        console.log("resp", response);
+        dispatch(getAllDogovorSuccess(response.data));
+      })
+      .catch(() => dispatch(getAllDogovorHasError(true)));
+  }
+}
+
+export const getAllDogovorSuccess = (dogovor) => {
+  return {
+    type: GET_ALL_DOGOVOR_SUCCESS,
+    dogovor
+  }
+}
+
+export const getAllDogovorHasError = (bool) => {
+  return {
+    type: GET_ALL_DOGOVOR_HAS_ERROR,
+    bool
+  }
+}
+
+export const getOneDogovor = (id) => {
+  const url  = 'http://теплофф.рф/tyryr/dogovor/readOne.php';
+  return (dispatch) => {
+    axios.get(url, id)
+      .then(response => {
+        if(response.status !== 200) {
+          throw Error(response.statusText);
+        }
+        return response;
+      })
+      .then((response) => {
+        dispatch(getOneDogovorSuccess(response.data));
+      })
+      .catch(() => dispatch(getOneDogovorHasError(true)));
+  }
+}
+
+export const getOneDogovorSuccess = (dog) => {
+  return {
+    type: GET_ONE_DOGOVOR_SUCCESS,
+    dog
+  }
+}
+
+export const getOneDogovorHasError = (bool) => {
+  return {
+    type: GET_ONE_DOGOVOR_HAS_ERROR,
+    bool
   }
 }

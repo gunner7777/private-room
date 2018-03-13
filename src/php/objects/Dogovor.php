@@ -298,7 +298,7 @@ class Dogovor {
     return false;
   }
 
-  function update(type) {
+  function update($type) {
     try {
       $this->conn->beginTransaction();
       $this->id = htmlspecialchars(strip_tags($this->id));
@@ -309,7 +309,7 @@ class Dogovor {
       $this->phone = htmlspecialchars(strip_tags($this->phone));
       $this->comments = htmlspecialchars(strip_tags($this->comments));
 
-      switch(type) {
+      switch($type) {
         case "dog":
           $query = "UPDATE " . $this->table_name . "
             SET

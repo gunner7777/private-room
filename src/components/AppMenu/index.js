@@ -11,6 +11,7 @@ const AppMenu = () => {
       <AppMenuItem alink="/addDogovor">New dogovor</AppMenuItem>
       <AppMenuItem alink="/allWorkers">All workers</AppMenuItem>
       <AppMenuItem alink="/addWorker">New worker</AppMenuItem>
+      <AppMenuItem alink="/allDogovor">All dogovor</AppMenuItem>
     </ul>
   );
 };
