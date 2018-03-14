@@ -16,6 +16,8 @@ export const GET_ALL_DOGOVOR_HAS_ERROR = "GET_ALL_DOGOVOR_HAS_ERROR";
 export const GET_ALL_DOGOVOR_SUCCESS = "GET_ALL_DOGOVOR_SUCCESS";
 export const GET_ONE_DOGOVOR_HAS_ERROR = "GET_ONE_DOGOVOR_HAS_ERROR";
 export const GET_ONE_DOGOVOR_SUCCESS = "GET_ONE_DOGOVOR_SUCCESS";
+export const DOGOVOR_IS_LOADING = "DOGOVOR_IS_LOADING";
+
 
 export const getAllWorkers = () => {
   const url = 'http://теплофф.рф/tyryr/worker/readAll.php';
@@ -196,24 +198,34 @@ export const getAllDogovorHasError = (bool) => {
 export const getOneDogovor = (id) => {
   const url  = 'http://теплофф.рф/tyryr/dogovor/readOne.php';
   return (dispatch) => {
+    dispatch(dogovorIsLoading(true));
     axios.get(url, id)
       .then(response => {
         if(response.status !== 200) {
           throw Error(response.statusText);
         }
+        dispatch(dogovorIsLoading(false));
         return response;
       })
       .then((response) => {
+        console.log("action", response.data);
         dispatch(getOneDogovorSuccess(response.data));
       })
       .catch(() => dispatch(getOneDogovorHasError(true)));
   }
 }
 
-export const getOneDogovorSuccess = (dog) => {
+export const getOneDogovorSuccess = (data) => {
   return {
     type: GET_ONE_DOGOVOR_SUCCESS,
-    dog
+    data
+  }
+}
+
+export const dogovorIsLoading = (bool) => {
+  return {
+    type: DOGOVOR_IS_LOADING,
+    bool
   }
 }
 
