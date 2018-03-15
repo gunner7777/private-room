@@ -5,13 +5,13 @@ import FormInput from '../FormInput';
 import Settings from '../Settings';
 import InputFile from '../../blocks/InputFile';
 import Select from '../../blocks/Select';
-import DogovorInfo from '../DogovorInfo';
+import ContractInfo from '../ContractInfo';
 import WorkerList from '../../containers/WorkerList';
 import WorkerAdd from '../../containers/WorkerAdd';
 import WorkerInfo from '../../containers/WorkerInfo';
 import WorkerEditor from '../../containers/WorkerEditor';
-import DogovorList from '../../containers/Dogovor/DogovorList';
-import DogovorEditor from '../../containers/Dogovor/DogovorEditor';
+import ContractsList from '../../containers/Contracts/ContractsList';
+import ContractEditor from '../../containers/Contracts/ContractEditor';
 
 const Main = () => {
   return (
@@ -19,12 +19,12 @@ const Main = () => {
       <Route exact path='/' component={InputFile} />
       <Route path='/about' component={FormInput} />
       <Route path='/settings' component={Select} />
-      <Route path='/addDogovor' component={DogovorInfo} />
+      <Route path='/addContract' component={ContractInfo} />
       <Route path='/allWorkers' component={WorkerList} />
       <Route exact path="/workers/:id?/edit" component={WorkerEditor} />
       <Route path='/addWorker' component={WorkerAdd} />
-      <Route path='/allDogovor' component={DogovorList} />
-      <Route exact path="/dogovor/:id?/edit" component={DogovorEditor} />
+      <Route path='/allContracts' component={ContractsList} />
+      <Route exact path="/contract/:id?/edit" component={ContractEditor} />
     </Switch>
   );
 }

@@ -1,23 +1,23 @@
 import axios from 'axios';
-
-export const GET_ALL_WORKERS = "GET_ALL_WORKERS";
-export const GET_ALL_WORKERS_SUCCESS = "GET_ALL_WORKERS_SUCCESS";
-export const WORKERS_HAVE_ERROR = "WORKERS_HAVE_ERROR";
-export const GET_SINGLE_WORKER_SUCCESS = "GET_SINGLE_WORKER_SUCCESS";
-export const SINGLE_WORKER_HAVE_ERROR = "SINGLE_WORKER_HAVE_ERROR";
-export const ADD_WORKER = "ADD_WORKER";
-export const UPLOAD_FILE = "UPLOAD_FILE";
-export const UPLOAD_FILE_SUCCESS = "UPLOAD_FILE_SUCCESS";
-export const GET_INFO = "GET_INFO";
-export const UPDATE_WORKER_INFO = "UPDATE_WORKER_INFO";
-export const UPDATE_WORKER_INFO_SUCCESS = "UPDATE_WORKER_INFO_SUCCESS";
-export const GET_ALL_DOGOVOR = "GET_ALL_DOGOVOR";
-export const GET_ALL_DOGOVOR_HAS_ERROR = "GET_ALL_DOGOVOR_HAS_ERROR";
-export const GET_ALL_DOGOVOR_SUCCESS = "GET_ALL_DOGOVOR_SUCCESS";
-export const GET_ONE_DOGOVOR_HAS_ERROR = "GET_ONE_DOGOVOR_HAS_ERROR";
-export const GET_ONE_DOGOVOR_SUCCESS = "GET_ONE_DOGOVOR_SUCCESS";
-export const DOGOVOR_IS_LOADING = "DOGOVOR_IS_LOADING";
-
+import {
+  GET_ALL_WORKERS,
+  GET_ALL_WORKERS_SUCCESS,
+  WORKERS_HAVE_ERROR,
+  GET_SINGLE_WORKER_SUCCESS,
+  SINGLE_WORKER_HAVE_ERROR,
+  ADD_WORKER,
+  UPLOAD_FILE,
+  UPLOAD_FILE_SUCCESS,
+  GET_INFO,
+  UPDATE_WORKER_INFO,
+  UPDATE_WORKER_INFO_SUCCESS,
+  GET_ALL_CONTRACTS,
+  GET_ALL_CONTRACTS_HAS_ERROR,
+  GET_ALL_CONTRACTS_SUCCESS,
+  GET_CONTRACT_HAS_ERROR,
+  GET_CONTRACT_SUCCESS,
+  CONTRACT_IS_LOADING
+} from '../constants/actionTypes';
 
 export const getAllWorkers = () => {
   const url = 'http://теплофф.рф/tyryr/worker/readAll.php';
@@ -163,7 +163,7 @@ export const uploadFileSuccess = (fileState) => {
 
 
 /** Dogovor actions */
-export const getAllDogovor = () => {
+export const getAllContracts = () => {
   const url = 'http://теплофф.рф/tyryr/dogovor/readAll.php';
   return (dispatch) => {
     axios.get(url)
@@ -175,63 +175,63 @@ export const getAllDogovor = () => {
       })
       .then((response) => {
         console.log("resp", response);
-        dispatch(getAllDogovorSuccess(response.data));
+        dispatch(getAllContractsSuccess(response.data));
       })
-      .catch(() => dispatch(getAllDogovorHasError(true)));
+      .catch(() => dispatch(getAllContractsHasError(true)));
   }
 }
 
-export const getAllDogovorSuccess = (dogovor) => {
+export const getAllContractsSuccess = (dogovor) => {
   return {
-    type: GET_ALL_DOGOVOR_SUCCESS,
+    type: GET_ALL_CONTRACTS_SUCCESS,
     dogovor
   }
 }
 
-export const getAllDogovorHasError = (bool) => {
+export const getAllContractsHasError = (bool) => {
   return {
-    type: GET_ALL_DOGOVOR_HAS_ERROR,
+    type: GET_ALL_CONTRACTS_HAS_ERROR,
     bool
   }
 }
 
-export const getOneDogovor = (id) => {
+export const getContract = (id) => {
   const url  = 'http://теплофф.рф/tyryr/dogovor/readOne.php';
   return (dispatch) => {
-    dispatch(dogovorIsLoading(true));
+    dispatch(contractIsLoading(true));
     axios.get(url, id)
       .then(response => {
         if(response.status !== 200) {
           throw Error(response.statusText);
         }
-        dispatch(dogovorIsLoading(false));
         return response;
       })
       .then((response) => {
         console.log("action", response.data);
-        dispatch(getOneDogovorSuccess(response.data));
+        dispatch(getContractSuccess(response.data));
+        dispatch(contractIsLoading(false));
       })
-      .catch(() => dispatch(getOneDogovorHasError(true)));
+      .catch(() => dispatch(getContractHasError(true)));
   }
 }
 
-export const getOneDogovorSuccess = (data) => {
+export const getContractSuccess = (data) => {
   return {
-    type: GET_ONE_DOGOVOR_SUCCESS,
+    type: GET_CONTRACT_SUCCESS,
     data
   }
 }
 
-export const dogovorIsLoading = (bool) => {
+export const contractIsLoading = (bool) => {
   return {
-    type: DOGOVOR_IS_LOADING,
+    type: CONTRACT_IS_LOADING,
     bool
   }
 }
 
-export const getOneDogovorHasError = (bool) => {
+export const getContractHasError = (bool) => {
   return {
-    type: GET_ONE_DOGOVOR_HAS_ERROR,
+    type: GET_CONTRACT_HAS_ERROR,
     bool
   }
 }

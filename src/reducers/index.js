@@ -1,14 +1,16 @@
 import { combineReducers } from 'redux';
 import { workers, workerInfo, singleWorker } from './workers';
 import { file } from './file';
-import { dogovor } from './dogovor';
+import { contracts } from './contracts';
+import { contract } from './contract';
 
 const rootReducer = combineReducers({
   workers: workers,
   //worker: singleWorker,
   //workerInfo: workerInfo,
   file: file,
-  dogovor: dogovor
+  contracts: contracts,
+  contract: contract
 });
 
 export default rootReducer;

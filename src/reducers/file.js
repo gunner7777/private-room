@@ -1,4 +1,4 @@
-import { UPLOAD_FILE_SUCCESS } from '../actions';
+import { UPLOAD_FILE_SUCCESS } from '../constants/actionTypes';
 
 const fileS = {
     ok: "false",

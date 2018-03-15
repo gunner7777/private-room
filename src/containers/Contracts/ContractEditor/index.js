@@ -4,10 +4,10 @@ import InputText from '../../../blocks/InputText';
 import Select from '../../../blocks/Select';
 import InputFile from '../../../blocks/InputFile';
 import Button from '../../../blocks/Button';
-import { getOneDogovor } from '../../../actions';
+import { getContract } from '../../../actions';
 
 
-class DogovorEditor extends Component {
+class ContractEditor extends Component {
     constructor(props) {
       super(props);
   
@@ -23,11 +23,12 @@ class DogovorEditor extends Component {
         return <p>Loading data</p>;
       }
 
-      //const {id_dog, name, date, fi_zakaz, o_zakaz, comments, docs, plan, payments} = this.props.single;
+      const {id_dog, name, date, fi_zakaz, o_zakaz, comments, docs, plan, payments} = this.props.contract;
+      console.log(this.props.single);
         return (
           <div>
             <h4>Общая информация</h4>
-            <InputText inputLabelLink="dogovorName" labelText="Договор" inpValue="name"/>
+            <InputText inputLabelLink="dogovorName" labelText="Договор" inpValue={name}/>
           </div>
         );
     }
@@ -35,17 +36,17 @@ class DogovorEditor extends Component {
   
   
   const mapStateToProps = (state) => {
-    console.log("state", state.dogovor.single);
+    //console.log("state", state.dogovor.single);
     return {
-      single: state.dogovor.single,
-      isLoading: state.dogovor.isLoading
+      contract: state.contract,
+      isLoading: state.contract.isLoading
     }
   }
   
   const mapDispatchToProps = (dispatch) => {
     return {
-      fetchData: (id) => dispatch(getOneDogovor(id))
+      fetchData: (id) => dispatch(getContract(id))
     }
   }
   
-  export default connect(mapStateToProps, mapDispatchToProps)(DogovorEditor);
+  export default connect(mapStateToProps, mapDispatchToProps)(ContractEditor);

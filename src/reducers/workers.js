@@ -1,4 +1,9 @@
-import { GET_ALL_WORKERS_SUCCESS, GET_SINGLE_WORKER_SUCCESS, GET_INFO, UPDATE_WORKER_INFO_SUCCESS } from '../actions';
+import { 
+  GET_ALL_WORKERS_SUCCESS, 
+  GET_SINGLE_WORKER_SUCCESS, 
+  GET_INFO, 
+  UPDATE_WORKER_INFO_SUCCESS 
+} from '../constants/actionTypes';
 
 /*const initialState = [
   {
