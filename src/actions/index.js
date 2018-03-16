@@ -181,10 +181,10 @@ export const getAllContracts = () => {
   }
 }
 
-export const getAllContractsSuccess = (dogovor) => {
+export const getAllContractsSuccess = (contracts) => {
   return {
     type: GET_ALL_CONTRACTS_SUCCESS,
-    dogovor
+    contracts
   }
 }
 

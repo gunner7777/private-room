@@ -11,24 +11,48 @@ class ContractEditor extends Component {
     constructor(props) {
       super(props);
   
-      //this.handleClick = this.handleClick.bind(this);
+      this.handleClick = this.handleClick.bind(this);
     }
     
     componentDidMount() {
       this.props.fetchData(this.props.match.params.id);
     }
-  
+    
+    handleClick() {
+
+    }
+
     render() {
       if(this.props.isLoading) {
         return <p>Loading data</p>;
       }
+      console.log(this.props.contract);
+      const {id_dog, name, date, fi_zakaz, o_zakaz, phone, comments, docs, plan, payments} = this.props.contract;
 
-      const {id_dog, name, date, fi_zakaz, o_zakaz, comments, docs, plan, payments} = this.props.contract;
-      console.log(this.props.single);
+      const docsForm = docs.map((doc) => {
+        return (
+          <div>
+            <p>Должность сотрудника</p>
+            <Select selectOption = {this.props.selectOpt} selectName="contractDocs" />
+            <InputText inputLabelLink="docName" labelText="Документ" inpValue={doc.type}/>
+            <InputText inputLabelLink="docLink" labelText="Ссылка на документ" inpValue={doc.link}/>
+          </div>
+        )
+      });
+
         return (
           <div>
             <h4>Общая информация</h4>
-            <InputText inputLabelLink="dogovorName" labelText="Договор" inpValue={name}/>
+            <InputText inputLabelLink="contractName" labelText="Договор" inpValue={name}/>
+            <InputText inputLabelLink="contractDate" labelText="Дата" inpValue={date}/>
+            <InputText inputLabelLink="contractFI" labelText="Фамилия Имя заказчика" inpValue={fi_zakaz}/>
+            <InputText inputLabelLink="contractO" labelText="Отчество заказчика" inpValue={o_zakaz}/>
+            <InputText inputLabelLink="contractPhone" labelText="Телефон" inpValue={phone}/>
+            <InputText inputLabelLink="contractComments" labelText="Комментарии к договору" inpValue={comments}/>
+            <Button text="Сохранить" buttonClick={this.handleClick} />
+            <hr/>
+
+            {docsForm}
           </div>
         );
     }
@@ -36,10 +60,10 @@ class ContractEditor extends Component {
   
   
   const mapStateToProps = (state) => {
-    //console.log("state", state.dogovor.single);
     return {
-      contract: state.contract,
-      isLoading: state.contract.isLoading
+      contract: state.contract.contract,
+      isLoading: state.contract.isLoading,
+      selectOpt: state.contract.selectOpt
     }
   }
   

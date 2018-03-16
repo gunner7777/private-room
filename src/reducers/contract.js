@@ -4,7 +4,16 @@ import {
   CONTRACT_IS_LOADING
 } from '../constants/actionTypes';
 
-export const contract = (state={isLoading: true}, action) => {
+const initialState = {
+  isLoading: true,
+  selectOpt: [
+    'Договор',
+    'Приложение',
+    'Дополнительное соглашение'
+  ],
+};
+
+export const contract = (state=initialState, action) => {
   switch(action.type) {
     case GET_CONTRACT_SUCCESS:
       return {

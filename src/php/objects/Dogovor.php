@@ -186,7 +186,7 @@ class Dogovor {
 
   function readOne() {
     // dogovor join docs
-    $query = "SELECT dog.id_dog, dog.name, dog.date, dog.fi_zakaz, dog.o_zakaz, dog.phone, docs.id_doc, docs.type, docs.link 
+    $query = "SELECT dog.id_dog, dog.name, dog.date, dog.fi_zakaz, dog.o_zakaz, dog.phone, dog.comments, docs.id_doc, docs.type, docs.link 
       FROM " . $this->table_name . " dog 
       INNER JOIN " . $this->table_name_docs . " docs 
       ON dog.id_dog = docs.id_dog
@@ -207,6 +207,7 @@ class Dogovor {
       $this->fi_zakaz = $row['fi_zakaz'];
       $this->o_zakaz = $row['o_zakaz'];
       $this->phone = $row['phone'];
+      $this->comments = $row['comments'];
       $this->docs[] = array(
         'id_doc' => $row['id_doc'],
         'type' => $row['type'],

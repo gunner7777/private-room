@@ -26,6 +26,7 @@ $dogovorItem = array(
     "fi_zakaz" => $dogovor->fi_zakaz,
     "o_zakaz" => $dogovor->o_zakaz,
     "phone" => $dogovor->phone,
+    "comments" => $dogovor->comments,
     "docs" => $dogovor->docs,
     "plan" => $dogovor->plan,
     "payments" => $dogovor->payments,
