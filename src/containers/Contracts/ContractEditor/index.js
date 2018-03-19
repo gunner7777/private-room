@@ -4,6 +4,14 @@ import InputText from '../../../blocks/InputText';
 import Select from '../../../blocks/Select';
 import InputFile from '../../../blocks/InputFile';
 import Button from '../../../blocks/Button';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';
+import MomentLocaleUtils, {
+  formatDate,
+  parseDate,
+} from 'react-day-picker/moment';
+
+import 'moment/locale/ru';
 import { getContract } from '../../../actions';
 
 
@@ -40,6 +48,17 @@ class ContractEditor extends Component {
         )
       });
 
+      const planList = plan.map(p => {
+        return (
+          <div>
+            <InputText inputLabelLink="pName" labelText="Документ" inpValue={p.workname}/>
+            <DayPickerInput
+              value={p.date}
+            />
+          </div>
+        )
+      });
+
         return (
           <div>
             <h4>Общая информация</h4>
@@ -53,6 +72,9 @@ class ContractEditor extends Component {
             <hr/>
 
             {docsForm}
+            <hr/>
+
+            {planList}
           </div>
         );
     }
