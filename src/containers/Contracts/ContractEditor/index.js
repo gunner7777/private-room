@@ -55,8 +55,17 @@ class ContractEditor extends Component {
             <DayPickerInput
               value={p.date}
             />
+            <p>{p.status}</p>
           </div>
         )
+      });
+
+      const paymentsList = payments.map(pay => {
+        return (
+          <div>
+            <InputText inputLabelLink="payName" labelText="Документ" inpValue={pay.workname}/>
+          </div>
+        );
       });
 
         return (
