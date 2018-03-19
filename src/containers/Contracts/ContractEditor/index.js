@@ -62,8 +62,10 @@ class ContractEditor extends Component {
 
       const paymentsList = payments.map(pay => {
         return (
-          <div>
-            <InputText inputLabelLink="payName" labelText="Документ" inpValue={pay.workname}/>
+          <div data-id={pay.id_pay}>
+            <InputText inputLabelLink="payName" labelText="Документ" inpValue={pay.stage_payment}/>
+            <InputText inputLabelLink="paySumma" labelText="Документ" inpValue={pay.summa}/>
+            <p>{pay.status}</p>
           </div>
         );
       });
@@ -84,6 +86,9 @@ class ContractEditor extends Component {
             <hr/>
 
             {planList}
+            <hr/>
+
+            {paymentsList}
           </div>
         );
     }
