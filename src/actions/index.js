@@ -16,7 +16,9 @@ import {
   GET_ALL_CONTRACTS_SUCCESS,
   GET_CONTRACT_HAS_ERROR,
   GET_CONTRACT_SUCCESS,
-  CONTRACT_IS_LOADING
+  CONTRACT_IS_LOADING,
+  UPDATE_MAIN_INFO_SUCCESS,
+  UPDATE_DOCS_SUCCESS
 } from '../constants/actionTypes';
 
 export const getAllWorkers = () => {
@@ -233,5 +235,50 @@ export const getContractHasError = (bool) => {
   return {
     type: GET_CONTRACT_HAS_ERROR,
     bool
+  }
+}
+
+
+export const updateMainInfo = (data) => {
+  const url = 'http://теплофф.рф/tyryr/dogovor/updateDogovor.php';
+  //console.log("data", data);
+  return dispatch => {
+    axios.post(url, data)
+      .then(response => {
+        dispatch(updateMainInfoSuccess(data));
+        console.log(response);
+      })
+      .catch(error => {
+        console.log("error update", error.response);
+      });
+  }
+}
+
+export const updateMainInfoSuccess = (data) => {
+  return {
+    type: UPDATE_MAIN_INFO_SUCCESS,
+    data
+  }
+}
+
+export const updateDocs = (data) => {
+  const url = 'http://теплофф.рф/tyryr/dogovor/updateDocs.php';
+  console.log("data", data);
+  return dispatch => {
+    axios.post(url, data)
+      .then(response => {
+        dispatch(updateDocsSuccess(data.docs));
+        console.log(response);
+      })
+      .catch(error => {
+        console.log("error update", error.response);
+      });
+  }
+}
+
+export const updateDocsSuccess = (data) => {
+  return {
+    type: UPDATE_DOCS_SUCCESS,
+    data
   }
 }

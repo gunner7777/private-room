@@ -23,6 +23,7 @@ $dogovor->date = $data->date;
 $dogovor->fi_zakaz = $data->fi_zakaz;
 $dogovor->o_zakaz = $data->o_zakaz;
 $dogovor->phone = $data->phone;
+$dogovor->comments = $data->comments;
 /*$dogovor->docs = $data->docs;
 $dogovor->plan = $data->plan;
 $dogovor->payments = $data->payments;

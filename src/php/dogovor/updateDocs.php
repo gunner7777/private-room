@@ -16,6 +16,7 @@ $db = $database->connect();
 $dogovor = new Dogovor($db);
 
 $data = json_decode(file_get_contents("php://input"));
+//print_r($data->docs[0]->type);
 
 $dogovor->id = $data->id;
 $dogovor->docs = $data->docs;

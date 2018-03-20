@@ -12,7 +12,7 @@ class InputText extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.inpValue);
+    //console.log(this.props.inpValue);
     this.setState({
       value: this.props.inpValue === undefined ? '' : this.props.inpValue
     });
@@ -25,13 +25,14 @@ class InputText extends Component {
   }
 
   render() {
+    const allClass = this.props.dopClass === undefined ? "InputField" : `InputField ${this.props.dopClass}`;
     return (
       <div>
         <label>{this.props.labelText}<br/>
         <input 
           type="text"
           id={this.props.inputLabelLink}
-          className="InputField"
+          className={allClass}
           placeholder={this.props.labelText}
           value={this.state.value}
           onChange={this.handleChange}/>

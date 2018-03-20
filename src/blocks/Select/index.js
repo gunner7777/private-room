@@ -24,8 +24,8 @@ class Select extends Component {
     }
 
     render() {
-        console.log(this.props.selValue);
-        console.log('sel state', this.state.value);
+        //console.log(this.props.selValue);
+        //console.log('sel state', this.state.value);
         const opt = this.props.selectOption.map(item => {
             return (
                 <option>{item}</option>
@@ -35,6 +35,7 @@ class Select extends Component {
         return (
           <select
             id={this.props.selectName}
+            className={this.props.selectName}
             value={this.state.value}
             onChange={this.handleChange}>
             {opt}

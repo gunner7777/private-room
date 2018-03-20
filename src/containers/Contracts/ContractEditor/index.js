@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ContractMainInfoEditor from '../../../components/Contracts/ContractMainInfoEditor';
+import ContractDocsEditor from '../../../components/Contracts/ContractDocsEditor';
 import InputText from '../../../blocks/InputText';
 import Select from '../../../blocks/Select';
 import InputFile from '../../../blocks/InputFile';
@@ -13,32 +14,67 @@ import MomentLocaleUtils, {
 } from 'react-day-picker/moment';
 
 import 'moment/locale/ru';
-import { getContract } from '../../../actions';
+import { getContract, updateMainInfo, updateDocs } from '../../../actions';
 
 
 class ContractEditor extends Component {
     constructor(props) {
       super(props);
   
-      this.handleClick = this.handleClick.bind(this);
+      this.handleClickMI = this.handleClickMI.bind(this);
+      this.handleClickDocs = this.handleClickDocs.bind(this);
     }
     
     componentDidMount() {
       this.props.fetchData(this.props.match.params.id);
     }
     
-    handleClick() {
-      console.log("dfdfdf");
+    handleClickMI() {
+      const mInfo = {
+        id: this.props.contract.id_dog,
+        name: document.getElementById('contractName').value,
+        date: document.getElementById('contractDate').value,
+        fi_zakaz: document.getElementById('contractFI').value,
+        o_zakaz: document.getElementById('contractO').value,
+        phone: document.getElementById('contractPhone').value,
+        comments: document.getElementById('contractComments').value
+      }
+      this.props.updateMInfo(mInfo);
+    }
+
+    handleClickDocs() {
+      const docsArr = [];
+      const docNodes = document.querySelectorAll('.docBlock');
+      //console.log(docNodes);
+      /*const docsArr = docNodes.map(docs => {
+         return docs.getAttribute('data-docid');
+      });*/
+      for(const item of docNodes) {
+        //console.log(item.getAttribute('data-docid'));
+        //console.log(item.querySelector('.inputDocsName').value);
+        docsArr.push({
+          id_doc: item.getAttribute('data-docid'),
+          type: item.querySelector('.inputDocsName').value,
+          link: item.querySelector('.inputDocsLink').value
+        });
+      }
+      //console.log(docsArr);
+      const docsUpdater = {
+        id: this.props.contract.id_dog,
+        docs: docsArr
+      };
+      console.log("docsupdater", docsUpdater);
+      this.props.updateDocs(docsUpdater);
     }
 
     render() {
       if(this.props.isLoading) {
         return <p>Loading data</p>;
       }
-      console.log(this.props.contract);
+      //console.log(this.props.contract);
       const {id_dog, name, date, fi_zakaz, o_zakaz, phone, comments, docs, plan, payments} = this.props.contract;
 
-      const docsForm = docs.map((doc) => {
+      /*const docsForm = docs.map((doc) => {
         return (
           <div>
             <p>Должность сотрудника</p>
@@ -47,7 +83,7 @@ class ContractEditor extends Component {
             <InputText inputLabelLink="docLink" labelText="Ссылка на документ" inpValue={doc.link}/>
           </div>
         )
-      });
+      });*/
 
       const planList = plan.map(p => {
         return (
@@ -80,11 +116,15 @@ class ContractEditor extends Component {
               o_zakaz={o_zakaz}
               phone={phone}
               comments={comments}
-              updateMainInfo={this.handleClick}
+              updateMainInfo={this.handleClickMI}
             />
             <hr/>
 
-            {docsForm}
+            <ContractDocsEditor 
+              docs={docs}
+              options={this.props.selectOpt}
+              updateDocs={this.handleClickDocs}
+            />
             <hr/>
 
             {planList}
@@ -107,7 +147,9 @@ class ContractEditor extends Component {
   
   const mapDispatchToProps = (dispatch) => {
     return {
-      fetchData: (id) => dispatch(getContract(id))
+      fetchData: (id) => dispatch(getContract(id)),
+      updateMInfo: (data) => dispatch(updateMainInfo(data)),
+      updateDocs: (data) => dispatch(updateDocs(data)),
     }
   }
   
