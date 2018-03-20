@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import ContractMainInfoEditor from '../../../components/Contracts/ContractMainInfoEditor';
 import InputText from '../../../blocks/InputText';
 import Select from '../../../blocks/Select';
 import InputFile from '../../../blocks/InputFile';
@@ -27,7 +28,7 @@ class ContractEditor extends Component {
     }
     
     handleClick() {
-
+      console.log("dfdfdf");
     }
 
     render() {
@@ -72,14 +73,15 @@ class ContractEditor extends Component {
 
         return (
           <div>
-            <h4>Общая информация</h4>
-            <InputText inputLabelLink="contractName" labelText="Договор" inpValue={name}/>
-            <InputText inputLabelLink="contractDate" labelText="Дата" inpValue={date}/>
-            <InputText inputLabelLink="contractFI" labelText="Фамилия Имя заказчика" inpValue={fi_zakaz}/>
-            <InputText inputLabelLink="contractO" labelText="Отчество заказчика" inpValue={o_zakaz}/>
-            <InputText inputLabelLink="contractPhone" labelText="Телефон" inpValue={phone}/>
-            <InputText inputLabelLink="contractComments" labelText="Комментарии к договору" inpValue={comments}/>
-            <Button text="Сохранить" buttonClick={this.handleClick} />
+            <ContractMainInfoEditor
+              name={name}
+              date={date}
+              fi_zakaz={fi_zakaz}
+              o_zakaz={o_zakaz}
+              phone={phone}
+              comments={comments}
+              updateMainInfo={this.handleClick}
+            />
             <hr/>
 
             {docsForm}
