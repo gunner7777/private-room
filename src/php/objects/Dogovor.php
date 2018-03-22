@@ -383,7 +383,7 @@ class Dogovor {
         case "pay":
           $query = "INSERT INTO " . $this->table_name_payments . "
               (id_pay, id_dog, stage_payment, summa, status)
-              VALUES(:id_plan, :id_dog, :stage_payment, :summa, :status)
+              VALUES(:id_pay, :id_dog, :stage_payment, :summa, :status)
               ON DUPLICATE KEY UPDATE stage_payment=:stage_payment, summa=:summa, status=:status";
         /*$query = "UPDATE " . $table_name_payments . "
           SET
@@ -394,8 +394,9 @@ class Dogovor {
 
           $res = $this->conn->prepare($query);
           $res->bindValue(':id_dog', $this->id);
-
+//print_r($this->payments);
           foreach($this->payments as $pay) {
+            //print_r($pay->id_pay);
             $res->bindValue(':id_pay', $pay->id_pay);
             $res->bindValue(':stage_payment', $pay->stage_payment);
             $res->bindValue(':summa', $pay->summa);
@@ -422,12 +423,13 @@ class Dogovor {
       }
       
       $this->conn->commit();
+      return true;
     } catch(PDOException $e) {
       $this->conn->rollBack();
     }
   }
 
-
+/*
   function update1() {
     try {
       $this->conn->beginTransaction();
@@ -531,5 +533,5 @@ class Dogovor {
       $this->conn->rollBack();
   }
 
-  }
+  }*/
 }

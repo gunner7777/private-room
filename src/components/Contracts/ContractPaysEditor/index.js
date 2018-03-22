@@ -8,10 +8,20 @@ import Button from '../../../blocks/Button';
 const ContractPaysEditor = (props) => {
   const paymentsList = props.payments.map(pay => {
     return (
-      <div className="payBlock" data-payid={pay.id_plan}>
-        <InputText inputLabelLink="payName" labelText="Документ" inpValue={pay.stage_payment}/>
-        <InputText inputLabelLink="paySumma" labelText="Документ" inpValue={pay.summa}/>
-        <p>{pay.status}</p>
+      <div className="payBlock" data-payid={pay.id_pay}>
+        <InputText
+          inputLabelLink="payName"
+          labelText="Документ"
+          dopClass="payStageName"
+          inpValue={pay.stage_payment}
+        />
+        <InputText
+          inputLabelLink="paySumma"
+          labelText="Документ"
+          dopClass="paySumma"
+          inpValue={pay.summa}
+        />
+        <p><input type="checkbox" value={pay.status} />Статус готовности</p>
       </div>
     );
   });

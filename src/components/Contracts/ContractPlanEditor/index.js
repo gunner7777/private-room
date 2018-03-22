@@ -6,12 +6,13 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
 const ContractPlanEditor = (props) => {
+  console.log("niside", props.plan);
   const planForm = props.plan.map(p => {
     return (
       <div className="planBlock" data-planid={p.id_plan}>
         <InputText
           inputLabelLink="pName"
-          labelText="Документ"
+          labelText="План работ"
           dopClass="inputPlanWorkname"
           inpValue={p.workname}
         />

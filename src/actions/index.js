@@ -211,7 +211,7 @@ export const getContract = (id) => {
         return response;
       })
       .then((response) => {
-        console.log("action", response.data);
+        //console.log("action", response.data);
         dispatch(getContractSuccess(response.data));
         dispatch(contractIsLoading(false));
       })
@@ -248,7 +248,7 @@ export const updateMainInfo = (data) => {
     axios.post(url, data)
       .then(response => {
         dispatch(updateMainInfoSuccess(data));
-        console.log(response);
+        //console.log(response);
       })
       .catch(error => {
         console.log("error update", error.response);
@@ -291,7 +291,7 @@ export const updatePlan = (data) => {
   return dispatch => {
     axios.post(url, data)
       .then(response => {
-        dispatch(updatePlanSuccess(data));
+        dispatch(updatePlanSuccess(data.plan));
       })
       .catch(error => {
         console.log("error", error.response);
@@ -311,7 +311,8 @@ export const updatePayments = (data) => {
   return dispatch => {
     axios.post(url, data)
       .then(response => {
-        dispatch(updatePaymentsSuccess(data));
+        //console.log(response.data);
+        dispatch(updatePaymentsSuccess(data.payments));
       })
       .catch(error => {
         console.log("error", error.response);

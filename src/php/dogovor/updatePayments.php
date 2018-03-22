@@ -16,10 +16,11 @@ $db = $database->connect();
 $dogovor = new Dogovor($db);
 
 $data = json_decode(file_get_contents("php://input"));
-
+//print_r($data);
 $dogovor->id = $data->id;
 $dogovor->payments = $data->payments;
 
+//print_r($dogovor->update("pay"));
 if($dogovor->update("pay")) {
     echo json_encode(array("message" => "Информация о договоре изменена"), JSON_UNESCAPED_UNICODE);
 } else {
