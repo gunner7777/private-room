@@ -3,7 +3,9 @@ import {
   GET_CONTRACT_SUCCESS,
   CONTRACT_IS_LOADING,
   UPDATE_MAIN_INFO_SUCCESS,
-  UPDATE_DOCS_SUCCESS
+  UPDATE_DOCS_SUCCESS,
+  UPDATE_PLAN_SUCCESS,
+  UPDATE_PAYS_SUCCESS
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -47,6 +49,22 @@ export const contract = (state=initialState, action) => {
         contract: {
           ...state.contract,
           docs: action.data
+        }
+      }
+    case UPDATE_PLAN_SUCCESS:
+      return {
+        ...state,
+        contract: {
+          ...state.contract,
+          plan: action.data
+        }
+      }
+    case UPDATE_PAYS_SUCCESS: 
+      return {
+        ...state,
+        contract: {
+          ...state.contract,
+          payments: action.data
         }
       }
     default: return state;

@@ -18,7 +18,9 @@ import {
   GET_CONTRACT_SUCCESS,
   CONTRACT_IS_LOADING,
   UPDATE_MAIN_INFO_SUCCESS,
-  UPDATE_DOCS_SUCCESS
+  UPDATE_DOCS_SUCCESS,
+  UPDATE_PLAN_SUCCESS,
+  UPDATE_PAYS_SUCCESS
 } from '../constants/actionTypes';
 
 export const getAllWorkers = () => {
@@ -268,7 +270,7 @@ export const updateDocs = (data) => {
     axios.post(url, data)
       .then(response => {
         dispatch(updateDocsSuccess(data.docs));
-        console.log(response);
+        //console.log(response);
       })
       .catch(error => {
         console.log("error update", error.response);
@@ -279,6 +281,47 @@ export const updateDocs = (data) => {
 export const updateDocsSuccess = (data) => {
   return {
     type: UPDATE_DOCS_SUCCESS,
+    data
+  }
+}
+  
+
+export const updatePlan = (data) => {
+  const url = 'http://теплофф.рф/tyryr/dogovor/updatePlan.php';
+  return dispatch => {
+    axios.post(url, data)
+      .then(response => {
+        dispatch(updatePlanSuccess(data));
+      })
+      .catch(error => {
+        console.log("error", error.response);
+      });
+  }
+}
+
+export const updatePlanSuccess = (data) => {
+  return {
+    type: UPDATE_PLAN_SUCCESS,
+    data
+  }
+}
+
+export const updatePayments = (data) => {
+  const url = 'http://теплофф.рф/tyryr/dogovor/updatePayments.php';
+  return dispatch => {
+    axios.post(url, data)
+      .then(response => {
+        dispatch(updatePaymentsSuccess(data));
+      })
+      .catch(error => {
+        console.log("error", error.response);
+      });
+  }
+}
+
+export const updatePaymentsSuccess = (data) => {
+  return {
+    type: UPDATE_PAYS_SUCCESS,
     data
   }
 }

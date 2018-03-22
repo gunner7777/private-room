@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ContractMainInfoEditor from '../../../components/Contracts/ContractMainInfoEditor';
 import ContractDocsEditor from '../../../components/Contracts/ContractDocsEditor';
+import ContractPlanEditor from '../../../components/Contracts/ContractPlanEditor';
+import ContractPaysEditor from '../../../components/Contracts/ContractPaysEditor';
 import InputText from '../../../blocks/InputText';
 import Select from '../../../blocks/Select';
 import InputFile from '../../../blocks/InputFile';
@@ -14,7 +16,7 @@ import MomentLocaleUtils, {
 } from 'react-day-picker/moment';
 
 import 'moment/locale/ru';
-import { getContract, updateMainInfo, updateDocs } from '../../../actions';
+import { getContract, updateMainInfo, updateDocs, updatePlan, updatePayments } from '../../../actions';
 
 
 class ContractEditor extends Component {
@@ -23,6 +25,8 @@ class ContractEditor extends Component {
   
       this.handleClickMI = this.handleClickMI.bind(this);
       this.handleClickDocs = this.handleClickDocs.bind(this);
+      this.handleClickPlan = this.handleClickPlan.bind(this);
+      this.handleClickPayments = this.handleClickPayments.bind(this);
     }
     
     componentDidMount() {
@@ -67,13 +71,43 @@ class ContractEditor extends Component {
       this.props.updateDocs(docsUpdater);
     }
 
+    handleClickPlan() {
+      const planArr = [];
+      const planNodes = document.querySelectorAll('.planBlock');
+      //console.log(docNodes);
+      /*const docsArr = docNodes.map(docs => {
+         return docs.getAttribute('data-docid');
+      });*/
+      for(const item of planNodes) {
+        //console.log(item.getAttribute('data-docid'));
+        //console.log(item.querySelector('.inputDocsName').value);
+        planArr.push({
+          id_plan: item.getAttribute('data-planid'),
+          date: item.querySelector('.DayPickerInput input').value,
+          workname: item.querySelector('.inputPlanWorkname').value,
+          status: "1"
+        });
+      }
+      //console.log(docsArr);
+      const planUpdater = {
+        id: this.props.contract.id_dog,
+        plan: planArr
+      };
+      console.log("planUpdater", planUpdater);
+      this.props.updatePlan(planUpdater);
+    }
+
+    handleClickPayments() {
+
+    }
+
     render() {
       if(this.props.isLoading) {
         return <p>Loading data</p>;
       }
       //console.log(this.props.contract);
       const {id_dog, name, date, fi_zakaz, o_zakaz, phone, comments, docs, plan, payments} = this.props.contract;
-
+console.log("plan", plan);
       /*const docsForm = docs.map((doc) => {
         return (
           <div>
@@ -85,7 +119,7 @@ class ContractEditor extends Component {
         )
       });*/
 
-      const planList = plan.map(p => {
+      /*const planList = plan.map(p => {
         return (
           <div>
             <InputText inputLabelLink="pName" labelText="Документ" inpValue={p.workname}/>
@@ -95,9 +129,9 @@ class ContractEditor extends Component {
             <p>{p.status}</p>
           </div>
         )
-      });
+      });*/
 
-      const paymentsList = payments.map(pay => {
+      /*const paymentsList = payments.map(pay => {
         return (
           <div data-id={pay.id_pay}>
             <InputText inputLabelLink="payName" labelText="Документ" inpValue={pay.stage_payment}/>
@@ -105,7 +139,7 @@ class ContractEditor extends Component {
             <p>{pay.status}</p>
           </div>
         );
-      });
+      });*/
 
         return (
           <div>
@@ -127,10 +161,16 @@ class ContractEditor extends Component {
             />
             <hr/>
 
-            {planList}
+            <ContractPlanEditor
+              plan={plan}
+              updatePlan={this.handleClickPlan}
+            />
             <hr/>
 
-            {paymentsList}
+            <ContractPaysEditor
+              payments={payments}
+              updatePays={this.handleClickPayments}
+            />
           </div>
         );
     }
@@ -150,6 +190,8 @@ class ContractEditor extends Component {
       fetchData: (id) => dispatch(getContract(id)),
       updateMInfo: (data) => dispatch(updateMainInfo(data)),
       updateDocs: (data) => dispatch(updateDocs(data)),
+      updatePlan: (data) => dispatch(updatePlan(data)),
+      updatePayments: (data) => dispatch(updatePayments(data))
     }
   }
   
