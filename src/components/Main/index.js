@@ -24,7 +24,7 @@ const Main = () => {
       <Route exact path="/workers/:id?/edit" component={WorkerEditor} />
       <Route path='/addWorker' component={WorkerAdd} />
       <Route path='/allContracts' component={ContractsList} />
-      <Route exact path="/contract/:id?/edit" component={ContractEditor} />
+      <Route path="/contract/:id?/edit" component={ContractEditor} />
     </Switch>
   );
 }

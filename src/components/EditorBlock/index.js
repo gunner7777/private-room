@@ -4,13 +4,21 @@ import { connect } from 'react-redux';
 import ContractMainInfoEditor from '../../components/Contracts/ContractMainInfoEditor';
 import AllStages from '../AllStages';
 
-const EditorBlock = (props) => {
+const EditorBlock = ({match}) => {
   //console.log()
+  console.log(match);
   //const { name, date, fi_zakaz, o_zakaz, phone, comments, docs, plan, payments, workers } = props.contract;
   return (
+    <div>
+    
     <Switch>
       <Route
-        path='/common'
+        exact
+        path='/contract/1/edit1'
+        component={EditorBlock}
+      />
+      <Route
+        path='/contract/1/edit/common'
         component={AllStages}
       />
       <Route
@@ -18,6 +26,7 @@ const EditorBlock = (props) => {
         render={() => (<p>DOCS</p>)}
       />
     </Switch>
+    </div>
   );
 }
 
