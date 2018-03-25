@@ -20,7 +20,13 @@ import {
   UPDATE_MAIN_INFO_SUCCESS,
   UPDATE_DOCS_SUCCESS,
   UPDATE_PLAN_SUCCESS,
-  UPDATE_PAYS_SUCCESS
+  UPDATE_PAYS_SUCCESS,
+  ADD_NEW_DOC,
+  DELETE_DOC_SUCCESS,
+  ADD_NEW_PLAN,
+  ADD_NEW_PAY,
+  DELETE_PLAN_SUCCESS,
+  DELETE_PAY_SUCCESS
 } from '../constants/actionTypes';
 
 export const getAllWorkers = () => {
@@ -324,5 +330,86 @@ export const updatePaymentsSuccess = (data) => {
   return {
     type: UPDATE_PAYS_SUCCESS,
     data
+  }
+}
+
+export const addNewDoc = (data) => {
+  return {
+    type: ADD_NEW_DOC,
+    doc: data
+  }
+}
+
+export const addNewPlan = (data) => {
+  return {
+    type: ADD_NEW_PLAN,
+    plan: data
+  }
+}
+
+export const addNewPay = (data) => {
+  return {
+    type: ADD_NEW_PAY,
+    pay: data
+  }
+}
+
+export const deleteDoc = (id) => {
+  const url = 'http://теплофф.рф/tyryr/dogovor/deleteDoc.php';
+  return dispatch => {
+    axios.post(url, id)
+      .then(response => {
+        dispatch(deleteDocSuccess(id))
+      })
+      .catch(error => {
+        console.log('del doc error', error.response);
+      })
+  }
+}
+
+export const deleteDocSuccess = (id) => {
+  return {
+    type: DELETE_DOC_SUCCESS,
+    id
+  }
+}
+
+export const deletePlan = (id) => {
+  const url = 'http://теплофф.рф/tyryr/dogovor/deletePlan.php';
+  return dispatch => {
+    axios.post(url, id)
+      .then(response => {
+        dispatch(deletePlanSuccess(id))
+      })
+      .catch(error => {
+        console.log('del plan error', error.response);
+      })
+  }
+}
+
+export const deletePlanSuccess = (id) => {
+  return {
+    type: DELETE_PLAN_SUCCESS,
+    id
+  }
+}
+
+export const deletePay = (id) => {
+  const url = 'http://теплофф.рф/tyryr/dogovor/deletePay.php';
+  return dispatch => {
+    axios.post(url, id)
+      .then(response => {
+        dispatch(deletePaySuccess(id))
+      })
+      .catch(error => {
+        console.log('del pay error', error.response);
+      })
+  }
+}
+
+export const deletePaySuccess = (id) => {
+  return {
+    type: DELETE_PAY_SUCCESS,
+    id
   }
 }

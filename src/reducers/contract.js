@@ -5,7 +5,13 @@ import {
   UPDATE_MAIN_INFO_SUCCESS,
   UPDATE_DOCS_SUCCESS,
   UPDATE_PLAN_SUCCESS,
-  UPDATE_PAYS_SUCCESS
+  UPDATE_PAYS_SUCCESS,
+  ADD_NEW_DOC,
+  ADD_NEW_PLAN,
+  ADD_NEW_PAY,
+  DELETE_DOC_SUCCESS,
+  DELETE_PLAN_SUCCESS,
+  DELETE_PAY_SUCCESS
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -65,6 +71,63 @@ export const contract = (state=initialState, action) => {
         contract: {
           ...state.contract,
           payments: action.data
+        }
+      }
+    case ADD_NEW_DOC:
+      return {
+        ...state,
+        contract: {
+          ...state.contract,
+          docs: state.contract.docs.concat(action.doc)
+        }
+      }
+    case ADD_NEW_PLAN:
+      return {
+        ...state,
+        contract: {
+          ...state.contract,
+          plan: state.contract.plan.concat(action.plan)
+        }
+      }
+    case ADD_NEW_PAY:
+      return {
+        ...state,
+        contract: {
+          ...state.contract,
+          payments: state.contract.payments.concat(action.pay)
+        }
+      }
+    case DELETE_DOC_SUCCESS:
+      return {
+        ...state,
+        contract: {
+          ...state.contract,
+          docs: state.contract.docs.filter(doc => {
+            if(doc.id_doc !== action.id)
+              return doc;
+          })
+        }
+      }
+    case DELETE_PLAN_SUCCESS:
+      return {
+        ...state,
+        contract: {
+          ...state.contract,
+          plan: state.contract.plan.filter(p => {
+            if(p.id_plan !== action.id)
+              return p;
+          })
+        }
+      }
+    case DELETE_PAY_SUCCESS:
+      return {
+        ...state,
+        contract: {
+          ...state.contract,
+          payments: state.contract.payments.filter(pay => {
+            if(pay.id_pay !== action.id)
+              return pay;
+          })
         }
       }
     default: return state;
