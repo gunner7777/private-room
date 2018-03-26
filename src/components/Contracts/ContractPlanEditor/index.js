@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import InputText from '../../../blocks/InputText';
 import Button from '../../../blocks/Button';
 // import Select from '../../../blocks/Select';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
+import InputDate from '../../../blocks/InputDate';
+/*import DayPickerInput from 'react-day-picker/DayPickerInput';
+import 'react-day-picker/lib/style.css';*/
 import { addNewPlan, deletePlan } from '../../../actions';
 
 class ContractPlanEditor extends Component {
@@ -32,15 +33,14 @@ class ContractPlanEditor extends Component {
           <span onClick={() => this.props.deletePlan(p.id_plan)}>
             <i className="fas fa-trash-alt"></i>
           </span>
+          <InputDate 
+            eventDate={p.date}
+          />
           <InputText
             inputLabelLink="pName"
             labelText="План работ"
             dopClass="inputPlanWorkname"
             inpValue={p.workname}
-          />
-          <DayPickerInput
-            className="planDate"
-            value={p.date}
           />
           <p><input type="checkbox" value={p.status} />Статус готовности</p>
         </div>

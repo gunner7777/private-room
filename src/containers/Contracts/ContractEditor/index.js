@@ -42,7 +42,8 @@ class ContractEditor extends Component {
       const mInfo = {
         id: this.props.contract.id_dog,
         name: document.getElementById('contractName').value,
-        date: document.getElementById('contractDate').value,
+        //date: document.getElementById('contractDate').value,
+        date: document.querySelector('.DayPickerInput input').value,
         fi_zakaz: document.getElementById('contractFI').value,
         o_zakaz: document.getElementById('contractO').value,
         phone: document.getElementById('contractPhone').value,
@@ -57,7 +58,9 @@ class ContractEditor extends Component {
       for(const item of docNodes) {
         docsArr.push({
           id_doc: item.getAttribute('data-docid'),
-          type: item.querySelector('.inputDocsName').value,
+          //type: item.querySelector('.inputDocsName').value,
+          type: item.querySelector('.contractDocs').value,
+          
           link: item.querySelector('.inputDocsLink').value
         });
       }

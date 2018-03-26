@@ -11,7 +11,8 @@ import {
   ADD_NEW_PAY,
   DELETE_DOC_SUCCESS,
   DELETE_PLAN_SUCCESS,
-  DELETE_PAY_SUCCESS
+  DELETE_PAY_SUCCESS,
+  UPDATE_DOGOVOR_WORKERS_SUCCESS
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -71,6 +72,14 @@ export const contract = (state=initialState, action) => {
         contract: {
           ...state.contract,
           payments: action.data
+        }
+      }
+    case UPDATE_DOGOVOR_WORKERS_SUCCESS:
+      return {
+        ...state,
+        contract: {
+          ...state.contract,
+          workers: action.data
         }
       }
     case ADD_NEW_DOC:

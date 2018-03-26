@@ -9,13 +9,14 @@ import MomentLocaleUtils, {
 
 import 'moment/locale/ru';
 
-const InputDate = () => {
+const InputDate = (props) => {
   return (
     <div>
       <p>Please type a day:</p>
       <DayPickerInput
         formatDate={formatDate}
         parseDate={parseDate}
+        value={props.eventDate}
         format="L"
         placeholder={`${formatDate(new Date(), 'L', 'ru')}`}
         dayPickerProps={{

@@ -32,12 +32,8 @@ class ContractDocsEditor extends Component {
           <p>Тип документа</p>
           <Select
             selectOption = {this.props.options}
-            selectName="contractDocs" />
-          <InputText
-            inputLabelLink="docName"
-            labelText="Документ"
-            dopClass="inputDocsName"
-            inpValue={doc.type} />
+            selectName="contractDocs"
+            selValue={doc.type} />
           <InputText
             inputLabelLink="docLink"
             labelText="Ссылка на документ"

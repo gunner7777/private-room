@@ -26,7 +26,8 @@ import {
   ADD_NEW_PLAN,
   ADD_NEW_PAY,
   DELETE_PLAN_SUCCESS,
-  DELETE_PAY_SUCCESS
+  DELETE_PAY_SUCCESS,
+  UPDATE_DOGOVOR_WORKERS_SUCCESS
 } from '../constants/actionTypes';
 
 export const getAllWorkers = () => {
@@ -329,6 +330,26 @@ export const updatePayments = (data) => {
 export const updatePaymentsSuccess = (data) => {
   return {
     type: UPDATE_PAYS_SUCCESS,
+    data
+  }
+}
+
+export const updateDogovorWorkers = (data) => {
+  const url = 'http://теплофф.рф/tyryr/dogovor/updateWorkers.php';
+  return dispatch => {
+    axios.post(url, data)
+      .then(response => {
+        dispatch(updateDogovorWorkersSuccess(data.workers));
+      })
+      .catch(error => {
+        console.log("error", error.response);
+      });
+  }
+}
+
+export const updateDogovorWorkersSuccess = (data) => {
+  return {
+    type: UPDATE_DOGOVOR_WORKERS_SUCCESS,
     data
   }
 }
