@@ -264,7 +264,7 @@ class Dogovor {
     }
 
     // dogovor join workers
-    $query = "SELECT w.fi, w.post, w.photo_link, w.phone, w.mail, dw.id_dw
+    $query = "SELECT w.id_worker, w.fi, w.post, w.photo_link, w.phone, w.mail, dw.id_dw, dw.main_worker
       FROM " . $this->table_name_workers . " w 
       INNER JOIN " . $this->table_name_dogovor_workers . " dw 
       ON w.id_worker = dw.id_worker
@@ -281,11 +281,13 @@ class Dogovor {
     
       $this->workers[] = array(
         'id_dw' => $row['id_dw'],
+        'id_worker' => $row['id_worker'],
         'fi' => $row['fi'],
         'post' => $row['post'],
         'photo_link' => $row['photo_link'],
         'phone' => $row['phone'],
-        'mail' => $row['mail']
+        'mail' => $row['mail'],
+        'main_worker' => $row['main_worker']
       );
     }
   }
@@ -330,7 +332,7 @@ class Dogovor {
         break;
       
       case "dw":
-        $query = "DELETE FROM " . $table_name_dogovor_workers . " WHERE id_dw = :id";
+        $query = "DELETE FROM " . $this->table_name_dogovor_workers . " WHERE id_dw = :id";
         $this->dw_id = htmlspecialchars(strip_tags($this->dw_id));
         
         $stmt = $this->conn->prepare($query);  
@@ -454,15 +456,16 @@ class Dogovor {
 
         case "dw":
           $query = "INSERT INTO " . $this->table_name_dogovor_workers . "
-            (id_dw, id_dog, id_worker)
-            VALUES(:id_dw, :id_dog, :id_worker)
-            ON DUPLICATE KEY UPDATE id_worker=:id_worker";
+            (id_dw, id_dog, id_worker, main_worker)
+            VALUES(:id_dw, :id_dog, :id_worker, :main_worker)
+            ON DUPLICATE KEY UPDATE id_worker=:id_worker, main_worker=:main_worker";
             $res = $this->conn->prepare($query);
             $res->bindValue(':id_dog', $this->id);
   
           foreach($this->dw as $d_w) {
             $res->bindValue(':id_dw', $d_w->id_dw);
             $res->bindValue(':id_worker', $d_w->id_worker);
+            $res->bindValue(':main_worker', $d_w->main_worker);
             $res->execute();
           }
 

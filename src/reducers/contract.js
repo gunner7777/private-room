@@ -9,10 +9,12 @@ import {
   ADD_NEW_DOC,
   ADD_NEW_PLAN,
   ADD_NEW_PAY,
+  ADD_NEW_DW,
   DELETE_DOC_SUCCESS,
   DELETE_PLAN_SUCCESS,
   DELETE_PAY_SUCCESS,
-  UPDATE_DOGOVOR_WORKERS_SUCCESS
+  UPDATE_DOGOVOR_WORKERS_SUCCESS,
+  DELETE_DW_SUCCESS
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -106,6 +108,14 @@ export const contract = (state=initialState, action) => {
           payments: state.contract.payments.concat(action.pay)
         }
       }
+    case ADD_NEW_DW:
+      return {
+        ...state,
+        contract: {
+          ...state.contract,
+          workers: state.contract.workers.concat(action.dw)
+        }
+      }
     case DELETE_DOC_SUCCESS:
       return {
         ...state,
@@ -125,6 +135,17 @@ export const contract = (state=initialState, action) => {
           plan: state.contract.plan.filter(p => {
             if(p.id_plan !== action.id)
               return p;
+          })
+        }
+      }
+    case DELETE_DW_SUCCESS:
+      return {
+        ...state,
+        contract: {
+          ...state.contract,
+          workers: state.contract.workers.filter(dw => {
+            if(dw.id_dw !== action.id)
+              return dw;
           })
         }
       }

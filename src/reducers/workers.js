@@ -43,7 +43,11 @@ const initialState = {
       email: "Lukaku@epl.com"
     },
   ],
-  //single: {}
+  selectPost: [
+    'Менеджер',
+    'Архитектор',
+    'Бригадир'
+  ]
 };
 
 export const workers = (state=initialState, action) => {

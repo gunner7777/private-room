@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import InputText from '../../../blocks/InputText';
 import Button from '../../../blocks/Button';
-// import Select from '../../../blocks/Select';
-// import DayPickerInput from 'react-day-picker/DayPickerInput';
-// import 'react-day-picker/lib/style.css';
+import Checkbox from '../../../blocks/Checkbox';
 import { addNewPay, deletePay } from '../../../actions';
 
 class ContractPaysEditor extends Component {
@@ -44,7 +42,13 @@ class ContractPaysEditor extends Component {
             dopClass="paySumma"
             inpValue={pay.summa}
           />
-          <p><input type="checkbox" value={pay.status} />Статус готовности</p>
+          <p>
+            <Checkbox
+              nameClass="payStatus"
+              checkValue={pay.status}
+            />
+            Статус готовности
+          </p>
         </div>
       );
     });

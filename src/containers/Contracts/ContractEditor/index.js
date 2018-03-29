@@ -6,6 +6,7 @@ import ContractMainInfoEditor from '../../../components/Contracts/ContractMainIn
 import ContractDocsEditor from '../../../components/Contracts/ContractDocsEditor';
 import ContractPlanEditor from '../../../components/Contracts/ContractPlanEditor';
 import ContractPaysEditor from '../../../components/Contracts/ContractPaysEditor';
+import ContractDWEditor from '../../../components/Contracts/ContractDWEditor';
 import InputText from '../../../blocks/InputText';
 import Select from '../../../blocks/Select';
 import InputFile from '../../../blocks/InputFile';
@@ -18,7 +19,7 @@ import MomentLocaleUtils, {
 } from 'react-day-picker/moment';
 
 import 'moment/locale/ru';
-import { getContract, updateMainInfo, updateDocs, updatePlan, updatePayments } from '../../../actions';
+import { getContract, updateMainInfo, updateDocs, updatePlan, updatePayments, updateDogovorWorkers } from '../../../actions';
 
 
 import EditorMenu from '../../../components/EditorMenu';
@@ -32,6 +33,7 @@ class ContractEditor extends Component {
       this.handleClickDocs = this.handleClickDocs.bind(this);
       this.handleClickPlan = this.handleClickPlan.bind(this);
       this.handleClickPayments = this.handleClickPayments.bind(this);
+      this.handleClickDW = this.handleClickDW.bind(this); 
     }
     
     componentDidMount() {
@@ -79,7 +81,7 @@ class ContractEditor extends Component {
           id_plan: item.getAttribute('data-planid'),
           date: item.querySelector('.DayPickerInput input').value,
           workname: item.querySelector('.inputPlanWorkname').value,
-          status: "1"
+          status: item.querySelector('.planStatus').checked ? "1" : "0"
         });
       }
       const planUpdater = {
@@ -97,7 +99,7 @@ class ContractEditor extends Component {
           id_pay: item.getAttribute('data-payid'),
           stage_payment: item.querySelector('.payStageName').value,
           summa: item.querySelector('.paySumma').value,
-          status: "1"
+          status: item.querySelector('.payStatus').checked ? "1" : "0"
         });
       }
       const payUpdater = {
@@ -107,6 +109,34 @@ class ContractEditor extends Component {
       this.props.updatePayments(payUpdater);
     }
     
+    handleClickDW() {
+      const dwArr = [];
+      const dwNodes = document.querySelectorAll('.dwBlock');
+      for(const item of dwNodes) {
+        dwArr.push({
+          id_dw: item.getAttribute('data-dwid'),
+          id_worker: this.getIdByName(item.querySelector('.contractDwName').value),
+          main_worker: item.querySelector('.contractDwMain').checked ? "1" : "0"
+        });
+      }
+      const dwUpdater = {
+        id: this.props.contract.id_dog,
+        dw: dwArr
+      };
+      this.props.updateDogovorWorkers(dwUpdater, this.props.workers);
+    }
+
+    getIdByName(name) {
+      let findName;
+      this.props.workers.map(w => {
+        if(name.indexOf(w.fi) != -1) {
+          return findName = w.id_worker;
+        }
+      });
+
+      return findName;
+    }
+
     render() {
       if(this.props.isLoading) {
         return <p>Loading data</p>;
@@ -169,7 +199,12 @@ class ContractEditor extends Component {
       <Route
         path={`/contract/${this.props.match.params.id}/edit/workers`}
         render={() => 
-          <p>WORKERS</p>
+          <ContractDWEditor
+            dwlink={workers}
+            workersFiPost={this.props.workersFiPost}
+            selectPost={this.props.selectPost}
+            updateDwLink={this.handleClickDW}
+          />
         }
       />
     </Switch>
@@ -184,7 +219,15 @@ class ContractEditor extends Component {
     return {
       contract: state.contract.contract,
       isLoading: state.contract.isLoading,
-      selectOpt: state.contract.selectOpt
+      selectOpt: state.contract.selectOpt,
+      workers: state.workers.workers,
+      /*workersId: state.workers.workers.map(id => {
+        return id.id_worker;
+      }),*/
+      workersFiPost: state.workers.workers.map(w => {
+        return (w.fi + ", " + w.post);
+      }),
+      selectPost: state.workers.selectPost
     }
   }
   
@@ -194,7 +237,8 @@ class ContractEditor extends Component {
       updateMInfo: (data) => dispatch(updateMainInfo(data)),
       updateDocs: (data) => dispatch(updateDocs(data)),
       updatePlan: (data) => dispatch(updatePlan(data)),
-      updatePayments: (data) => dispatch(updatePayments(data))
+      updatePayments: (data) => dispatch(updatePayments(data)),
+      updateDogovorWorkers: (data, w) => dispatch(updateDogovorWorkers(data, w))
     }
   }
   

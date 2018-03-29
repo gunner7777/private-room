@@ -61,7 +61,7 @@ class ContractDocsEditor extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    contract: state.contract.contract,
+    //contract: state.contract.contract,
     selectOpt: state.contract.selectOpt
   }
 }

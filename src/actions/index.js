@@ -27,7 +27,9 @@ import {
   ADD_NEW_PAY,
   DELETE_PLAN_SUCCESS,
   DELETE_PAY_SUCCESS,
-  UPDATE_DOGOVOR_WORKERS_SUCCESS
+  UPDATE_DOGOVOR_WORKERS_SUCCESS,
+  ADD_NEW_DW,
+  DELETE_DW_SUCCESS
 } from '../constants/actionTypes';
 
 export const getAllWorkers = () => {
@@ -334,12 +336,23 @@ export const updatePaymentsSuccess = (data) => {
   }
 }
 
-export const updateDogovorWorkers = (data) => {
+export const updateDogovorWorkers = (data, w) => {
   const url = 'http://теплофф.рф/tyryr/dogovor/updateWorkers.php';
   return dispatch => {
     axios.post(url, data)
       .then(response => {
-        dispatch(updateDogovorWorkersSuccess(data.workers));
+        console.log("data", response.data);
+        const updWorkers = data.dw.map(d => {
+          for (let item in w) {
+            if(w[item].id_worker === d.id_worker) {
+              return { ...w[item],
+                id_dw: d.id_dw,
+                main_worker: d.main_worker
+              };
+            }
+          }
+        });
+        dispatch(updateDogovorWorkersSuccess(updWorkers));
       })
       .catch(error => {
         console.log("error", error.response);
@@ -372,6 +385,13 @@ export const addNewPay = (data) => {
   return {
     type: ADD_NEW_PAY,
     pay: data
+  }
+}
+
+export const addNewDW = (data) => {
+  return {
+    type: ADD_NEW_DW,
+    dw: data
   }
 }
 
@@ -431,6 +451,27 @@ export const deletePay = (id) => {
 export const deletePaySuccess = (id) => {
   return {
     type: DELETE_PAY_SUCCESS,
+    id
+  }
+}
+
+export const deleteDW = (id) => {
+  console.log("id", id);
+  const url = 'http://теплофф.рф/tyryr/dogovor/deleteDw.php';
+  return dispatch => {
+    axios.post(url, id)
+      .then(response => {
+        dispatch(deleteDwSuccess(id))
+      })
+      .catch(error => {
+        console.log('del dw error', error.response);
+      })
+  }
+}
+
+export const deleteDwSuccess = (id) => {
+  return {
+    type: DELETE_DW_SUCCESS,
     id
   }
 }
