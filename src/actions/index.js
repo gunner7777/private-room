@@ -6,6 +6,7 @@ import {
   GET_SINGLE_WORKER_SUCCESS,
   SINGLE_WORKER_HAVE_ERROR,
   ADD_WORKER,
+  WORKERS_IS_LOADING,
   UPLOAD_FILE,
   UPLOAD_FILE_SUCCESS,
   GET_INFO,
@@ -35,18 +36,21 @@ import {
 export const getAllWorkers = () => {
   const url = 'http://теплофф.рф/tyryr/worker/readAll.php';
   return (dispatch) => {
+    dispatch(workersIsLoading(true));
     axios.get(url)
       .then((response) => {
         if(response.status !== 200) {
           throw Error(response.statusText);
         }
 
-        return response;
+        //return response;
+        dispatch(getAllWorkersSuccess(response.data));
+        dispatch(workersIsLoading(false));
       })
-      .then((response) => {
+      /*.then((response) => {
         //console.log("resp[onse", response);
         dispatch(getAllWorkersSuccess(response.data));
-      })
+      })*/
       .catch(() => dispatch(workersHaveError(true)));
   }
 }
@@ -62,6 +66,13 @@ export const workersHaveError = (bool) => {
   return {
     type: WORKERS_HAVE_ERROR,
     hasError: bool
+  }
+}
+
+export const workersIsLoading = (bool) => {
+  return {
+    type: WORKERS_IS_LOADING,
+    bool
   }
 }
 
@@ -278,6 +289,7 @@ export const updateDocs = (data) => {
   return dispatch => {
     axios.post(url, data)
       .then(response => {
+        data.docs[data.docs.length-1].id_doc = response.data;
         dispatch(updateDocsSuccess(data.docs));
         //console.log(response);
       })
@@ -300,6 +312,8 @@ export const updatePlan = (data) => {
   return dispatch => {
     axios.post(url, data)
       .then(response => {
+        data.plan[data.plan.length-1].id_plan = response.data;
+        //console.log(data.plan);
         dispatch(updatePlanSuccess(data.plan));
       })
       .catch(error => {
@@ -320,7 +334,7 @@ export const updatePayments = (data) => {
   return dispatch => {
     axios.post(url, data)
       .then(response => {
-        //console.log(response.data);
+        data.payments[data.payments.length-1].id_pay = response.data;
         dispatch(updatePaymentsSuccess(data.payments));
       })
       .catch(error => {
@@ -341,7 +355,7 @@ export const updateDogovorWorkers = (data, w) => {
   return dispatch => {
     axios.post(url, data)
       .then(response => {
-        console.log("data", response.data);
+        //console.log("data", response.data);
         const updWorkers = data.dw.map(d => {
           for (let item in w) {
             if(w[item].id_worker === d.id_worker) {
@@ -352,6 +366,10 @@ export const updateDogovorWorkers = (data, w) => {
             }
           }
         });
+        //console.log("data", updWorkers);
+        
+        updWorkers[updWorkers.length-1].id_dw = response.data;
+        console.log("data", updWorkers);
         dispatch(updateDogovorWorkersSuccess(updWorkers));
       })
       .catch(error => {

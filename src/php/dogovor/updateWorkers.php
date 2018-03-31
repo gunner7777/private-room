@@ -21,7 +21,8 @@ $dogovor->id = $data->id;
 $dogovor->dw = $data->dw;
 
 if($dogovor->update("dw")) {
-    echo json_encode(array("message" => "Информация о договоре изменена"), JSON_UNESCAPED_UNICODE);
+    //echo json_encode(array("message" => "Информация о договоре изменена"), JSON_UNESCAPED_UNICODE);
+    echo json_encode($dogovor->dw_id, JSON_UNESCAPED_UNICODE);
 } else {
     echo json_encode(array("message" => "Ошибка при изменении"), JSON_UNESCAPED_UNICODE);
 }

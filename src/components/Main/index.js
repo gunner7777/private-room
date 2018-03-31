@@ -12,6 +12,7 @@ import WorkerInfo from '../../containers/WorkerInfo';
 import WorkerEditor from '../../containers/WorkerEditor';
 import ContractsList from '../../containers/Contracts/ContractsList';
 import ContractEditor from '../../containers/Contracts/ContractEditor';
+import ContractAdder from '../../containers/Contracts/ContractAdder';
 
 const Main = () => {
   return (
@@ -19,7 +20,7 @@ const Main = () => {
       <Route exact path='/' component={InputFile} />
       <Route path='/about' component={FormInput} />
       <Route path='/settings' component={Select} />
-      <Route path='/addContract' component={ContractInfo} />
+      <Route path='/addContract' component={ContractAdder} />
       <Route path='/allWorkers' component={WorkerList} />
       <Route exact path="/workers/:id?/edit" component={WorkerEditor} />
       <Route path='/addWorker' component={WorkerAdd} />

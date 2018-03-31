@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-// import { bindActionCreators } from 'redux';
-import WorkerForm from '../../components/WorkerForm';
 import WorkerCard from '../../components/WorkerCard';
-import { getAllWorkers, getInfo, deleteWorker, getSingleWorker } from '../../actions';
-// import { getSingleWorker } from '../../actions';
+import { getAllWorkers, getInfo, deleteWorker } from '../../actions';
 import './WorkerList.css';
 
 class WorkerList extends Component {
@@ -19,6 +15,9 @@ class WorkerList extends Component {
 
     render() {
         console.log(this.props);
+        if(this.props.isLoading) {
+            return (<p>Загрузка</p>);
+        }
         const { workers } = this.props;
         const listOfWorkers = workers.map((worker, index) => {
             return (
@@ -55,7 +54,8 @@ class WorkerList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        workers: state.workers.workers
+        workers: state.workers.workers,
+        isLoading: state.workers.isLoading
     }
 }
 

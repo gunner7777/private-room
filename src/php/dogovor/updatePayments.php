@@ -22,7 +22,8 @@ $dogovor->payments = $data->payments;
 
 //print_r($dogovor->update("pay"));
 if($dogovor->update("pay")) {
-    echo json_encode(array("message" => "Информация о договоре изменена"), JSON_UNESCAPED_UNICODE);
+    //echo json_encode(array("message" => "Информация о договоре изменена"), JSON_UNESCAPED_UNICODE);
+    echo json_encode($dogovor->pay_id, JSON_UNESCAPED_UNICODE);
 } else {
     echo json_encode(array("message" => "Ошибка при изменении"), JSON_UNESCAPED_UNICODE);
 }

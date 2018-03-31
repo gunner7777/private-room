@@ -402,6 +402,7 @@ class Dogovor {
             $res->bindValue(':type', $doc->type);
             $res->bindValue(':link', $doc->link);
             $res->execute();
+            $this->doc_id = $this->conn->lastInsertId();
           }
           break;
 
@@ -426,6 +427,7 @@ class Dogovor {
             $res->bindValue(':workname', $p->workname);
             $res->bindValue(':status', $p->status);
             $res->execute();
+            $this->plan_id = $this->conn->lastInsertId();
           }
           break;
         
@@ -451,6 +453,7 @@ class Dogovor {
             $res->bindValue(':summa', $pay->summa);
             $res->bindValue(':status', $pay->status);
             $res->execute();
+            $this->pay_id = $this->conn->lastInsertId();
           }
           break;
 
@@ -467,6 +470,7 @@ class Dogovor {
             $res->bindValue(':id_worker', $d_w->id_worker);
             $res->bindValue(':main_worker', $d_w->main_worker);
             $res->execute();
+            $this->dw_id = $this->conn->lastInsertId();
           }
 
         default: break;

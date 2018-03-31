@@ -2,7 +2,8 @@ import {
   GET_ALL_WORKERS_SUCCESS, 
   GET_SINGLE_WORKER_SUCCESS, 
   GET_INFO, 
-  UPDATE_WORKER_INFO_SUCCESS 
+  UPDATE_WORKER_INFO_SUCCESS,
+  WORKERS_IS_LOADING
 } from '../constants/actionTypes';
 
 /*const initialState = [
@@ -63,16 +64,11 @@ export const workers = (state=initialState, action) => {
         ...state,
         single: action.data
       };
-      /*const w = state.workers.filter(worker => {
-        if(worker.id_worker === action.data) {
-          console.log("worker", worker);
-          return action.data;
-        } else {
-          // undefined?
-        }
-      });
-      return {...state, single: action.data };
-      //return Object.assign({}, state, {single: w});*/
+    case WORKERS_IS_LOADING:
+      return {
+        ...state,
+        isLoading: action.bool
+      }
     
     case UPDATE_WORKER_INFO_SUCCESS: return state;
 

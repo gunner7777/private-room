@@ -16,13 +16,13 @@ $db = $database->connect();
 $dogovor = new Dogovor($db);
 
 $data = json_decode(file_get_contents("php://input"));
-//print_r($data->docs[0]->type);
 
 $dogovor->id = $data->id;
 $dogovor->docs = $data->docs;
 
 if($dogovor->update("docs")) {
-    echo json_encode(array("message" => "Информация о договоре изменена"), JSON_UNESCAPED_UNICODE);
+    //echo json_encode(array("message" => "Информация о договоре изменена"), JSON_UNESCAPED_UNICODE);
+    echo json_encode($dogovor->doc_id, JSON_UNESCAPED_UNICODE);
 } else {
     echo json_encode(array("message" => "Ошибка при изменении"), JSON_UNESCAPED_UNICODE);
 }

@@ -6,7 +6,7 @@ import Button from '../../../blocks/Button';
 import Select from '../../../blocks/Select';
 import { addNewDoc, deleteDoc } from '../../../actions';
 
-class ContractDocsEditor extends Component {
+class ContractDocsAdd extends Component {
   constructor(props) {
     super(props);
 
@@ -24,34 +24,13 @@ class ContractDocsEditor extends Component {
   }
   
   render() {
-    const docsForm = this.props.docs.map((doc) => {
-      return (
-        <div className="docBlock" data-docid={doc.id_doc} key={doc.id_doc}>
-          <span onClick={() => this.props.deleteDoc(doc.id_doc)}>
-            <i className="fas fa-trash-alt"></i>
-          </span>
-          <p>Тип документа</p>
-          <Select
-            selectOption = {this.props.options}
-            selectName="contractDocs"
-            selValue={doc.type} />
-          {doc.link !== "" ? <InputText
-            inputLabelLink="docLink"
-            labelText="Ссылка на документ"
-            dopClass="inputDocsLink"
-            inpValue={doc.link} />
-            : <InputFile />}
-        </div>
-      )
-    });
-
     return (
       <div>
         <span onClick={this.handleClick}>
           <i className="fas fa-plus"></i>
         </span>
         <div className="docsArea">
-          {docsForm}
+          234
         </div>
       <Button
         text="Сохранить"
@@ -63,16 +42,14 @@ class ContractDocsEditor extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    //contract: state.contract.contract,
     selectOpt: state.contract.selectOpt
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addNewDoc: (newDoc) => dispatch(addNewDoc(newDoc)),
-    deleteDoc: (id) => dispatch(deleteDoc(id))
+
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContractDocsEditor);
+export default connect(mapStateToProps, mapDispatchToProps)(ContractDocsAdd);
