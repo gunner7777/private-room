@@ -30,7 +30,12 @@ import {
   DELETE_PAY_SUCCESS,
   UPDATE_DOGOVOR_WORKERS_SUCCESS,
   ADD_NEW_DW,
-  DELETE_DW_SUCCESS
+  DELETE_DW_SUCCESS,
+  SAVE_MAIN_INFO_TO_STORE,
+  SAVE_DOCS_TO_STORE,
+  SAVE_PLAN_TO_STORE,
+  SAVE_PAYMENTS_TO_STORE,
+  SAVE_DW_TO_STORE
 } from '../constants/actionTypes';
 
 export const getAllWorkers = () => {
@@ -491,5 +496,41 @@ export const deleteDwSuccess = (id) => {
   return {
     type: DELETE_DW_SUCCESS,
     id
+  }
+}
+
+
+export const saveMainInfoToStore = (data) => {
+  return {
+    type: SAVE_MAIN_INFO_TO_STORE,
+    data
+  }
+}
+
+export const saveDocsToStore = (data) => {
+  return {
+    type: SAVE_DOCS_TO_STORE,
+    data
+  }
+}
+
+export const savePlanToStore = (data) => {
+  return {
+    type: SAVE_PLAN_TO_STORE,
+    data
+  }
+}
+
+export const savePaymentsToStore = (data) => {
+  return {
+    type: SAVE_PAYMENTS_TO_STORE,
+    data
+  }
+}
+
+export const saveDwToStore = (data) => {
+  return {
+    type: SAVE_DW_TO_STORE,
+    data
   }
 }

@@ -26,9 +26,9 @@ class Select extends Component {
     render() {
         //console.log(this.props.selValue);
         //console.log('sel state', this.state.value);
-        const opt = this.props.selectOption.map(item => {
+        const opt = this.props.selectOption.map((item, index) => {
             return (
-                <option>{item}</option>
+                <option key={index}>{item}</option>
             );
         });
 

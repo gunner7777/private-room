@@ -4,37 +4,79 @@ import InputText from '../../../blocks/InputText';
 import InputFile from '../../../blocks/InputFile';
 import Button from '../../../blocks/Button';
 import Select from '../../../blocks/Select';
-import { addNewDoc, deleteDoc } from '../../../actions';
+import { saveDocsToStore } from '../../../actions';
 
 class ContractDocsAdd extends Component {
   constructor(props) {
     super(props);
 
-    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      counter: 0,
+      docs: []
+    };
+
+    this.handleClickAdd = this.handleClickAdd.bind(this);
+    this.handleClickDelete = this.handleClickDelete.bind(this);
+    this.saveDocs = this.saveDocs.bind(this);
   }
   
-  handleClick() {
+  handleClickAdd() {
     const newDoc = {
+      id_block: this.state.counter,
       id_doc: null,
       type: "",
       link: ""
     };
 
-    this.props.addNewDoc(newDoc);
+    this.setState({
+      counter: this.state.counter + 1,
+      docs: this.state.docs.concat(newDoc)
+    });
   }
   
+  handleClickDelete(id) {
+    this.setState({
+      docs: this.state.docs.filter(doc => {
+        if(doc.id_block !== id)
+          return doc;
+      })
+    });
+  }
+
+  saveDocs() {
+    // ref react!
+    // собрать массив
+  }
+
   render() {
+    
+    const docsForm = (Object.keys(this.state.docs).length == 0) ? "" : (
+      this.state.docs.map((doc) => {
+        return (
+        <div className="docBlock" key={doc.id_block}>
+          <span onClick={() => this.handleClickDelete(doc.id_block)}>
+            <i className="fas fa-trash-alt"></i>
+          </span>
+          <p>Тип документа</p>
+          <Select
+            selectOption = {this.props.options}
+            selectName="contractDocs"
+            selValue={doc.type} />
+          <InputFile />
+        </div>);
+      }));
+      console.log(docsForm);
     return (
       <div>
-        <span onClick={this.handleClick}>
+        <span onClick={this.handleClickAdd}>
           <i className="fas fa-plus"></i>
         </span>
         <div className="docsArea">
-          234
+          {docsForm}
         </div>
       <Button
         text="Сохранить"
-        buttonClick={this.props.updateDocs} />
+        buttonClick={this.saveDocs} />
       </div>
     );
   }
@@ -42,13 +84,13 @@ class ContractDocsAdd extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    selectOpt: state.contract.selectOpt
+    options: state.contract.selectOpt
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    saveDocsToStore: (data) => dispatch(saveDocsToStore(data))
   }
 }
 
