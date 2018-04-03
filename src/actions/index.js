@@ -171,6 +171,8 @@ export const uploadFile = (type, data, fileName) => {
 
     axios.post(url, data, config)
       .then(function (res) {
+        console.log(data);
+        console.log(res.data);
         dispatch(uploadFileSuccess({
           ok: true,
           fileName: fileName

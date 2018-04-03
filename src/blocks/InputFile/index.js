@@ -37,6 +37,9 @@ class InputFile extends React.Component {
     const data = new FormData();
     //let d = document.getElementById('addfile');
     data.append('upload', document.getElementById('addfile').files[0]);
+    // get dogovor number and create dir with this name
+    data.set('dirname', '123');
+    console.log("data", data);
     this.props.uploadFile(this.props.fileType, data, this.state.fileName);
   }
 
