@@ -46,6 +46,11 @@ class ContractDocsAdd extends Component {
   saveDocs() {
     // ref react!
     // собрать массив
+    const docBlock = document.querySelectorAll('.docBlock');
+    for(const item in docBlock) {
+      console.log(item);
+    }
+    //console.log(docBlock);
   }
 
   render() {
@@ -53,7 +58,7 @@ class ContractDocsAdd extends Component {
     const docsForm = (Object.keys(this.state.docs).length == 0) ? "" : (
       this.state.docs.map((doc) => {
         return (
-        <div className="docBlock" key={doc.id_block}>
+        <div className="docBlock" key={doc.id_block} data-blockid={doc.id_block}>
           <span onClick={() => this.handleClickDelete(doc.id_block)}>
             <i className="fas fa-trash-alt"></i>
           </span>
@@ -65,7 +70,7 @@ class ContractDocsAdd extends Component {
           <InputFile />
         </div>);
       }));
-      console.log(docsForm);
+
     return (
       <div>
         <span onClick={this.handleClickAdd}>
