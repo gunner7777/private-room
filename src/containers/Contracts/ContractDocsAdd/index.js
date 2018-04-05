@@ -44,18 +44,39 @@ class ContractDocsAdd extends Component {
   }
 
   saveDocs() {
-    // ref react!
-    // собрать массив
+    const docArr = [];
     const docBlock = document.querySelectorAll('.docBlock');
-    for(const item in docBlock) {
-      console.log(item);
+    for(const item of docBlock) {
+      docArr.push({
+        type: item.querySelector('.contractDocs').value,
+        link: '/contracts/' + this.props.newContract.name + '/' + item.querySelector('.InputFile-Text').innerHTML
+      })
     }
-    //console.log(docBlock);
+    this.props.saveDocsToStore(docArr);
   }
 
   render() {
-    
-    const docsForm = (Object.keys(this.state.docs).length == 0) ? "" : (
+    console.log(this.state.docs);
+    const docsForm = ((Object.keys(this.state.docs).length === 0)&&(this.props.newContract.docs !== undefined))
+    ? (this.props.newContract.docs.map(doc => {
+      // get filename from doc.link
+      return (
+        <div className="docBlock" key={doc.id_block} data-blockid={doc.id_block}>
+          <span onClick={() => this.handleClickDelete(doc.id_block)}>
+            <i className="fas fa-trash-alt"></i>
+          </span>
+          <p>Тип документа</p>
+          <Select
+            selectOption = {this.props.options}
+            selectName="contractDocs"
+            selValue={doc.type} 
+          />
+          <InputFile 
+            fName={doc.link} />
+        </div>
+      );
+    }))
+    : (
       this.state.docs.map((doc) => {
         return (
         <div className="docBlock" key={doc.id_block} data-blockid={doc.id_block}>
@@ -66,10 +87,27 @@ class ContractDocsAdd extends Component {
           <Select
             selectOption = {this.props.options}
             selectName="contractDocs"
-            selValue={doc.type} />
+            //selValue={doc.type} 
+          />
           <InputFile />
         </div>);
       }));
+    
+    /*const fillDocs = this.props.newContract.docs === undefined ? "" : this.props.newContract.docs.map(doc => {
+      return (
+        <div className="docBlock" key={doc.id_block} data-blockid={doc.id_block}>
+          <span onClick={() => this.handleClickDelete(doc.id_block)}>
+            <i className="fas fa-trash-alt"></i>
+          </span>
+          <p>Тип документа</p>
+          <Select
+            selectOption = {this.props.options}
+            selectName="contractDocs"
+            selValue={doc.type} 
+          />
+          <InputFile />
+        </div>);
+    });*/
 
     return (
       <div>
@@ -89,7 +127,8 @@ class ContractDocsAdd extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    options: state.contract.selectOpt
+    options: state.contract.selectOpt,
+    newContract: state.newContract.newContract
   }
 }
 

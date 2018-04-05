@@ -23,9 +23,12 @@ class InputFile extends React.Component {
     this.setState({
       fileName: pathArr[pathArr.length-1]
     });
-
+    
+    console.log(e.target.parentElement.parentElement);
+    console.log(e.target.nextSibling.lastChild.innerHTML);
+    const node = e.target.parentElement;
     setTimeout(() => {
-      document.querySelector('.InputFile-Text').innerHTML = this.state.fileName;
+      node.querySelector('.InputFile-Text').innerHTML = this.state.fileName;
     }, 300); 
   }
 
@@ -39,11 +42,12 @@ class InputFile extends React.Component {
     data.append('upload', document.getElementById('addfile').files[0]);
     // get dogovor number and create dir with this name
     data.set('dirname', '123');
-    console.log("data", data);
+    //console.log("data", data);
     this.props.uploadFile(this.props.fileType, data, this.state.fileName);
   }
 
   render() {
+    console.log(this.props.filename);
     return (
       <form action="" encType="multipart/form-data" onSubmit={this.handleSubmit}>
         <input
@@ -54,7 +58,7 @@ class InputFile extends React.Component {
           onChange={this.handleChange} />
         <label htmlFor="addfile">
           <i className="far fa-folder-open"></i>
-          <span className="InputFile-Text">Choose a file</span>
+          <span className="InputFile-Text">{this.props.fName !== undefined ? this.props.fName : "Choose a file"}</span>
         </label>
         { this.props.withSelect ? <Select /> : "" }
         <Button text="Upload" buttonClick={this.handleClick} />

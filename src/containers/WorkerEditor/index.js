@@ -27,7 +27,7 @@ class WorkerEditor extends Component {
   }
 
   render() {
-    console.log("editro", this.props.worker);
+    //console.log("editro", this.props.worker);
     const { id_worker, fi, post, photo_link, phone, mail } = this.props.worker;
     const select = ['Менеджер', 'Архитектор', 'Прораб'];
     return (

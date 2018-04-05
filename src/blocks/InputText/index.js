@@ -35,7 +35,7 @@ class InputText extends Component {
           className={allClass}
           placeholder={this.props.labelText}
           value={this.state.value}
-          onChange={this.handleChange}/>
+          onChange={this.handleChange} />
         </label>
       </div>
     );
