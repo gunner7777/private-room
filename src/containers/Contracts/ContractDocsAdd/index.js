@@ -21,6 +21,7 @@ class ContractDocsAdd extends Component {
   }
   
   handleClickAdd() {
+
     const newDoc = {
       id_block: this.state.counter,
       id_doc: null,
@@ -55,14 +56,38 @@ class ContractDocsAdd extends Component {
     this.props.saveDocsToStore(docArr);
   }
 
+  componentDidMount() {
+    console.log("DID");
+
+    if(this.props.newContract.docs !== undefined) {
+      this.setState({
+        counter: this.state.counter + 1,
+        docs: this.state.docs.concat(this.props.newContract.docs)
+      });
+      /*this.props.newContract.docs.map(doc => {
+        //return(
+          console.log(doc);
+          this.setState({
+            counter: this.state.counter + 1,
+            docs: this.state.docs.concat(doc)
+          })
+        //);
+      });*/
+    }
+  }
+
   render() {
+    console.log("RENDER");
     //console.log(this.state.docs);
+
+
+
     const docsForm = ((Object.keys(this.state.docs).length === 0)&&(this.props.newContract.docs !== undefined))
-    ? (this.props.newContract.docs.map(doc => {
+    ? (this.props.newContract.docs.map((doc, index) => {
       // get filename from doc.link
       return (
-        <div className="docBlock" key={doc.id_block} data-blockid={doc.id_block}>
-          <span onClick={() => this.handleClickDelete(doc.id_block)}>
+        <div className="docBlock" key={index} data-blockid={index}>
+          <span onClick={() => this.handleClickDelete(index)}>
             <i className="fas fa-trash-alt"></i>
           </span>
           <p>Тип документа</p>
