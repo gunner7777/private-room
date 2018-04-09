@@ -23,10 +23,9 @@ class InputFile extends React.Component {
     this.setState({
       fileName: pathArr[pathArr.length-1]
     });
-    
-    console.log(e.target.parentElement.parentElement);
-    console.log(e.target.nextSibling.lastChild.innerHTML);
-    const node = e.target.parentElement;
+  
+    const node = e.target.parentElement.parentElement;
+
     setTimeout(() => {
       node.querySelector('.InputFile-Text').innerHTML = this.state.fileName;
     }, 300); 
@@ -47,20 +46,20 @@ class InputFile extends React.Component {
   }
 
   render() {
-    console.log(this.props.filename);
+    let idInput = this.props.inputId === undefined ? "0" : this.props.inputId;
     return (
       <form action="" encType="multipart/form-data" onSubmit={this.handleSubmit}>
         <input
           type="file"
-          id="addfile"
+          id={`addfile_${idInput}`}
           className="inputFile"
           name="upload"
           onChange={this.handleChange} />
-        <label htmlFor="addfile">
+        <label htmlFor={`addfile_${idInput}`}>
           <i className="far fa-folder-open"></i>
           <span className="InputFile-Text">{this.props.fName !== undefined ? this.props.fName : "Choose a file"}</span>
         </label>
-        { this.props.withSelect ? <Select /> : "" }
+        {/*{ this.props.withSelect ? <Select /> : "" }*/}
         <Button text="Upload" buttonClick={this.handleClick} />
       </form>
     );

@@ -3,6 +3,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import AdderMenu from '../../../components/AdderMenu';
 import ContractMainInfoAdd from '../../../containers/Contracts/ContractMainInfoAdd';
 import ContractDocsAdd from '../../../containers/Contracts/ContractDocsAdd';
+import ContractPlanAdd from '../../../containers/Contracts/ContractPlanAdd';
 
 class ContractAdder extends Component {
   constructor() {
@@ -26,6 +27,12 @@ class ContractAdder extends Component {
             path="/addContract/docs"
             render={() => 
               <ContractDocsAdd
+              />}
+          />
+          <Route
+            path="/addContract/plan-rabot"
+            render={() => 
+              <ContractPlanAdd
               />}
           />
         </Switch>

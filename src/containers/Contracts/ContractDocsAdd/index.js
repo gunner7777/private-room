@@ -56,7 +56,7 @@ class ContractDocsAdd extends Component {
   }
 
   render() {
-    console.log(this.state.docs);
+    //console.log(this.state.docs);
     const docsForm = ((Object.keys(this.state.docs).length === 0)&&(this.props.newContract.docs !== undefined))
     ? (this.props.newContract.docs.map(doc => {
       // get filename from doc.link
@@ -89,7 +89,8 @@ class ContractDocsAdd extends Component {
             selectName="contractDocs"
             //selValue={doc.type} 
           />
-          <InputFile />
+          <InputFile 
+            inputId={doc.id_block}/>
         </div>);
       }));
     

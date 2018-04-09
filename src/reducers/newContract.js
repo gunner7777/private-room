@@ -39,6 +39,22 @@ export const newContract = (state=initialState, action) => {
           docs: action.data
         } 
       }
+    case SAVE_PLAN_TO_STORE:
+      return {
+        ...state, 
+        newContract: {
+          ...state.newContract,
+          plan: action.data
+        } 
+      }
+    case SAVE_PAYMENTS_TO_STORE:
+      return {
+        ...state, 
+        newContract: {
+          ...state.newContract,
+          payments: action.data
+        } 
+      }
     
     default: return state;
   }
