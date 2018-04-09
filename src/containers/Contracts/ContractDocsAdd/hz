@@ -57,7 +57,9 @@ class ContractDocsAdd extends Component {
   }
 
   componentDidMount() {
-    if(this.props.newContract.docs !== undefined) {
+    console.log("DID");
+
+    /*if(this.props.newContract.docs !== undefined) {
       this.setState({
         counter: this.state.counter + 1,
         docs: this.state.docs.concat(this.props.newContract.docs)
@@ -70,12 +72,69 @@ class ContractDocsAdd extends Component {
             docs: this.state.docs.concat(doc)
           })
         //);
-      });*/
-  }
+      });
+  }*/
   }
 
   render() {
-    const docsForm = "";
+    console.log("RENDER");
+    //console.log(this.state.docs);
+
+
+
+    const docsForm = ((Object.keys(this.state.docs).length === 0)&&(this.props.newContract.docs !== undefined))
+    ? (this.props.newContract.docs.map((doc, index) => {
+      // get filename from doc.link
+      return (
+        <div className="docBlock" key={index} data-blockid={index}>
+          <span onClick={() => this.handleClickDelete(index)}>
+            <i className="fas fa-trash-alt"></i>
+          </span>
+          <p>Тип документа</p>
+          <Select
+            selectOption = {this.props.options}
+            selectName="contractDocs"
+            selValue={doc.type} 
+          />
+          <InputFile 
+            fName={doc.link} />
+        </div>
+      );
+    }))
+    : (
+      this.state.docs.map((doc) => {
+        return (
+        <div className="docBlock" key={doc.id_block} data-blockid={doc.id_block}>
+          <span onClick={() => this.handleClickDelete(doc.id_block)}>
+            <i className="fas fa-trash-alt"></i>
+          </span>
+          <p>Тип документа</p>
+          <Select
+            selectOption = {this.props.options}
+            selectName="contractDocs"
+            //selValue={doc.type} 
+          />
+          <InputFile 
+            inputId={doc.id_block}/>
+        </div>);
+      }));
+    
+    /*const fillDocs = this.props.newContract.docs === undefined ? "" : this.props.newContract.docs.map(doc => {
+      return (
+        <div className="docBlock" key={doc.id_block} data-blockid={doc.id_block}>
+          <span onClick={() => this.handleClickDelete(doc.id_block)}>
+            <i className="fas fa-trash-alt"></i>
+          </span>
+          <p>Тип документа</p>
+          <Select
+            selectOption = {this.props.options}
+            selectName="contractDocs"
+            selValue={doc.type} 
+          />
+          <InputFile />
+        </div>);
+    });*/
+
     return (
       <div>
         <span onClick={this.handleClickAdd}>
