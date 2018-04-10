@@ -26,6 +26,7 @@ class ContractDocsAdd extends Component {
       id_block: this.state.counter,
       id_doc: null,
       type: "",
+      filename: "",
       link: ""
     };
 
@@ -50,6 +51,7 @@ class ContractDocsAdd extends Component {
     for(const item of docBlock) {
       docArr.push({
         type: item.querySelector('.contractDocs').value,
+        filename: item.querySelector('.InputFile-Text').innerHTML,
         link: '/contracts/' + this.props.newContract.name + '/' + item.querySelector('.InputFile-Text').innerHTML
       })
     }
@@ -58,24 +60,47 @@ class ContractDocsAdd extends Component {
 
   componentDidMount() {
     if(this.props.newContract.docs !== undefined) {
-      this.setState({
-        counter: this.state.counter + 1,
-        docs: this.state.docs.concat(this.props.newContract.docs)
+      let count = this.state.counter;
+      const arr = this.props.newContract.docs.map(doc => {
+        count += 1;
+        return {
+            id_block: count-1,
+            ...doc
+        };
+
       });
-      /*this.props.newContract.docs.map(doc => {
-        //return(
-          console.log(doc);
-          this.setState({
-            counter: this.state.counter + 1,
-            docs: this.state.docs.concat(doc)
-          })
-        //);
-      });*/
-  }
+    
+      console.log('arr', arr);
+      this.setState({
+        counter: count,
+        docs: this.state.docs.concat(arr)
+      });
+    }
+    setTimeout(() => {
+      console.log(this.state);
+    }, 500);
   }
 
   render() {
-    const docsForm = "";
+    const docsForm = this.state.docs.map(doc => {
+      return (
+        <div className="docBlock" key={doc.id_block} data-blockid={doc.id_block}>
+          <span onClick={() => this.handleClickDelete(doc.id_block)}>
+            <i className="fas fa-trash-alt"></i>
+          </span>
+          <p>Тип документа</p>
+          <Select
+            selectOption = {this.props.options}
+            selectName="contractDocs"
+            selValue={doc.type} 
+          />
+          <InputFile
+            fName={doc.filename}
+            inputId={doc.id_block}/>
+        </div>
+      );
+    });
+
     return (
       <div>
         <span onClick={this.handleClickAdd}>

@@ -132,8 +132,8 @@ class Dogovor {
 
       // insert into payments
       $query = "INSERT INTO " . $table_name_payments . "
-      (id_dog, stage_payment, summa, status) 
-      VALUES(:id_dog, :stage_payment, :summa, :status)";
+      (id_dog, stage_payment, date, summa, status) 
+      VALUES(:id_dog, :stage_payment, :date, :summa, :status)";
 
       try {
         $this->conn->beginTransaction();
@@ -143,6 +143,7 @@ class Dogovor {
 
         foreach($this->payments as $pay) {
           $res->bindValue(':stage_payment', $pay['stage_payment']);
+          $res->bindValue(':date', $pay['date']);
           $res->bindValue(':summa', $pay['summa']);
           $res->bindValue(':status', $pay['status']);
           $res->execute();
@@ -242,7 +243,7 @@ class Dogovor {
     }
 
     // dogovor join payments
-    $query = "SELECT id_pay, stage_payment, summa, status 
+    $query = "SELECT id_pay, stage_payment, date, summa, status 
       FROM " . $this->table_name_payments . " 
       WHERE id_dog = :id";
 
@@ -258,6 +259,7 @@ class Dogovor {
       $this->payments[] = array(
         'id_pay' => $row['id_pay'],
         'stage_payment' => $row['stage_payment'],
+        'date' => $row['date'],
         'summa' => $row['summa'],
         'status' => $row['status']
       );
@@ -433,9 +435,9 @@ class Dogovor {
         
         case "pay":
           $query = "INSERT INTO " . $this->table_name_payments . "
-              (id_pay, id_dog, stage_payment, summa, status)
-              VALUES(:id_pay, :id_dog, :stage_payment, :summa, :status)
-              ON DUPLICATE KEY UPDATE stage_payment=:stage_payment, summa=:summa, status=:status";
+              (id_pay, id_dog, stage_payment, date, summa, status)
+              VALUES(:id_pay, :id_dog, :stage_payment, :date, :summa, :status)
+              ON DUPLICATE KEY UPDATE stage_payment=:stage_payment, date=:date, summa=:summa, status=:status";
         /*$query = "UPDATE " . $table_name_payments . "
           SET
             stage_payment = :stage_payment,
@@ -450,6 +452,7 @@ class Dogovor {
             //print_r($pay->id_pay);
             $res->bindValue(':id_pay', $pay->id_pay);
             $res->bindValue(':stage_payment', $pay->stage_payment);
+            $res->bindValue(':date', $pay->date);
             $res->bindValue(':summa', $pay->summa);
             $res->bindValue(':status', $pay->status);
             $res->execute();

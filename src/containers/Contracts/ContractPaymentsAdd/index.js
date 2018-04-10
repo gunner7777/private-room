@@ -6,67 +6,69 @@ import InputDate from '../../../blocks/InputDate';
 import Checkbox from '../../../blocks/Checkbox';
 import Button from '../../../blocks/Button';
 import Select from '../../../blocks/Select';
-import { savePlanToStore } from '../../../actions';
+import { savePaymentsToStore } from '../../../actions';
 
-class ContractPlanAdd extends Component {
+class ContractPaymentsAdd extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       counter: 0,
-      plan: []
+      payments: []
     };
 
     this.handleClickAdd = this.handleClickAdd.bind(this);
     this.handleClickDelete = this.handleClickDelete.bind(this);
-    this.savePlan = this.savePlan.bind(this);
+    this.savePay = this.savePay.bind(this);
   }
 
   handleClickAdd() {
-    const newPlan = {
+    const newPay = {
       id_block: this.state.counter,
-      id_plan: null,
+      id_pay: null,
       date: "",
-      workname: "",
+      stage_payment: "",
+      summa: "",
       status: ""
     };
 
     this.setState({
       counter: this.state.counter + 1,
-      plan: this.state.plan.concat(newPlan)
+      payments: this.state.payments.concat(newPay)
     });
   }
 
   handleClickDelete(id) {
     this.setState({
-      plan: this.state.plan.filter(p => {
-        if(p.id_block !== id)
-          return p;
+      payments: this.state.payments.filter(pay => {
+        if(pay.id_block !== id)
+          return pay;
       })
     });
   }
 
-  savePlan() {
-    const planArr = [];
-    const planBlock = document.querySelectorAll('.planBlock');
-    for(const item of planBlock) {
-      planArr.push({
+  savePay() {
+    const payArr = [];
+    const payBlock = document.querySelectorAll('.payBlock');
+    for(const item of payBlock) {
+      payArr.push({
         date: item.querySelector('.DayPickerInput input').value,
-        workname: item.querySelector('.inputPlanWorkname').value,
-        status: item.querySelector('.planStatus').checked ? "1" : "0"
+        stage_payment: item.querySelector('.inputStagePayment').value,
+        summa: item.querySelector('.inputSumma').value,
+        status: item.querySelector('.payStatus').checked ? "1" : "0"
       })
     }
-    this.props.savePlanToStore(planArr);
+    this.props.savePaymentsToStore(payArr);
   }
 
   componentDidMount() {
-    if(this.props.newContract.plan !== undefined) {
+    if(this.props.newContract.payments !== undefined) {
       let count = this.state.counter;
-      const arr = this.props.newContract.plan.map(p => {
+      const arr = this.props.newContract.payments.map(pay => {
         count += 1;
         return {
             id_block: count-1,
-            ...p
+            ...pay
         };
 
       });
@@ -74,7 +76,7 @@ class ContractPlanAdd extends Component {
       console.log('arr', arr);
       this.setState({
         counter: count,
-        plan: this.state.plan.concat(arr)
+        payments: this.state.payments.concat(arr)
       });
     }
     setTimeout(() => {
@@ -83,7 +85,8 @@ class ContractPlanAdd extends Component {
   }
 
   render() {
-    const planForm = (this.state.plan.map(p => {
+    /*const planForm = ((Object.keys(this.state.plan).length === 0)&&(this.props.newContract.plan !== undefined))
+    ? (this.props.newContract.plan.map(p => {
       return (
         <div className="planBlock" key={p.id_block} data-blockid={p.id_block}>
           <span onClick={() => this.props.deletePlan(p.id_block)}>
@@ -107,6 +110,37 @@ class ContractPlanAdd extends Component {
           </p>
         </div>
       );
+    }))*/
+    const payForm = (this.state.payments.map(pay => {
+      return (
+        <div className="payBlock" key={pay.id_block} data-blockid={pay.id_block}>
+          <span onClick={() => this.props.deletePlan(pay.id_block)}>
+            <i className="fas fa-trash-alt"></i>
+          </span>
+          <InputText
+            inputLabelLink="payStage"
+            labelText="Этап оплаты"
+            dopClass="inputStagePayment"
+            inpValue={pay.stage_payment}
+          />
+          <InputDate 
+            eventDate={pay.date}
+          />
+          <InputText
+            inputLabelLink="paySumma"
+            labelText="Сумма"
+            dopClass="inputSumma"
+            inpValue={pay.summa}
+          />
+          <p>
+            <Checkbox
+              nameClass="payStatus"
+              checkValue={pay.status}
+            />
+            Статус готовности
+          </p>
+        </div>
+      );
     }));
 
     return (
@@ -114,12 +148,12 @@ class ContractPlanAdd extends Component {
         <span onClick={this.handleClickAdd}>
           <i className="fas fa-plus"></i>
         </span>
-        <div className="planArea">
-          {planForm}
+        <div className="payArea">
+          {payForm}
         </div>
       <Button
         text="Сохранить"
-        buttonClick={this.savePlan} />
+        buttonClick={this.savePay} />
       </div>
     );
   }
@@ -134,8 +168,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    savePlanToStore: (data) => dispatch(savePlanToStore(data))
+    savePaymentsToStore: (data) => dispatch(savePaymentsToStore(data))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContractPlanAdd);
+export default connect(mapStateToProps, mapDispatchToProps)(ContractPaymentsAdd);

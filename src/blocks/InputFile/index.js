@@ -57,7 +57,7 @@ class InputFile extends React.Component {
           onChange={this.handleChange} />
         <label htmlFor={`addfile_${idInput}`}>
           <i className="far fa-folder-open"></i>
-          <span className="InputFile-Text">{this.props.fName !== undefined ? this.props.fName : "Choose a file"}</span>
+          <span className="InputFile-Text">{this.props.fName !== "" ? this.props.fName : "Choose a file"}</span>
         </label>
         {/*{ this.props.withSelect ? <Select /> : "" }*/}
         <Button text="Upload" buttonClick={this.handleClick} />

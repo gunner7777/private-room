@@ -4,6 +4,8 @@ import AdderMenu from '../../../components/AdderMenu';
 import ContractMainInfoAdd from '../../../containers/Contracts/ContractMainInfoAdd';
 import ContractDocsAdd from '../../../containers/Contracts/ContractDocsAdd';
 import ContractPlanAdd from '../../../containers/Contracts/ContractPlanAdd';
+import ContractPaymentsAdd from '../../../containers/Contracts/ContractPaymentsAdd';
+import ContractDwAdd from '../../../containers/Contracts/ContractDwAdd';
 
 class ContractAdder extends Component {
   constructor() {
@@ -20,20 +22,27 @@ class ContractAdder extends Component {
           <Route
             path="/addContract/common"
             render={() => 
-              <ContractMainInfoAdd
-              />}
+              <ContractMainInfoAdd />}
           />
           <Route
             path="/addContract/docs"
             render={() => 
-              <ContractDocsAdd
-              />}
+              <ContractDocsAdd />}
           />
           <Route
             path="/addContract/plan-rabot"
             render={() => 
-              <ContractPlanAdd
-              />}
+              <ContractPlanAdd />}
+          />
+          <Route
+            path="/addContract/payments"
+            render={() => 
+              <ContractPaymentsAdd />}
+          />
+          <Route
+            path="/addContract/workers"
+            render={() => 
+              <ContractDwAdd />}
           />
         </Switch>
       </div>
