@@ -23,10 +23,11 @@ class ContractMainInfoAdd extends Component {
 
   saveMainInfo() {
     let name;
-    console.log("dfdf");
-    console.log(errorValid(document.getElementById('contractName').value, this));
-
+    //console.log("dfdf");
+    //console.log(errorValid(document.getElementById('contractName').value, this));
+    //console.log("input", document.getElementById('contractName').value);
     if(errorValid(document.getElementById('contractName').value, this) === true) {
+      console.log("true");
       return;
     }
     /*let checkVal;
@@ -56,7 +57,9 @@ class ContractMainInfoAdd extends Component {
   }
 
    render() {
-     //console.log(this.state.error.bool);
+    setTimeout(() => {
+      console.log("state comp", this.state.error.bool);
+    }, 800)
      const hasError = this.state.error.bool === false ? "" : <ErrorValidator fieldName={this.state.error.name} />;
      return (
       <div>
