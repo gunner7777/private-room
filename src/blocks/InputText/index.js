@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './InputText.css';
 
 class InputText extends Component {
@@ -12,7 +13,6 @@ class InputText extends Component {
   }
 
   componentDidMount() {
-    //console.log(this.props.inpValue);
     this.setState({
       value: this.props.inpValue === undefined ? '' : this.props.inpValue
     });
@@ -43,15 +43,10 @@ class InputText extends Component {
 }
 
 
-/*
-const InputText = (props) => {
-  return (
-    <div>
-      <label>{props.labelText}<br/>
-      <input type="text" id={props.inputLabelLink} className="InputField" placeholder={props.labelText} />
-      </label>
-    </div>
-  );
-};*/
+InputText.propTypes = {
+  dopClass: PropTypes.string,
+  inputLabelLink: PropTypes.string.isRequired,
+  labelText: PropTypes.string.isRequired
+};
 
 export default InputText;

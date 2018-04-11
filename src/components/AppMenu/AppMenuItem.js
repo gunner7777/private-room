@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './AppMenuItem.css';
 
 const AppMenuItem = (props) => {
@@ -9,5 +10,10 @@ const AppMenuItem = (props) => {
     </li>
   );
 };
+
+AppMenuItem.propTypes = {
+  alink: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired
+}
 
 export default AppMenuItem;

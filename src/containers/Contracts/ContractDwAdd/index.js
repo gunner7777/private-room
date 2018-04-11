@@ -26,12 +26,13 @@ class ContractDwAdd extends Component {
       id_block: this.state.counter,
       id_dw: null,
       id_worker: "",
-      main_worker: ""
+      main_worker: "",
+      w_info: ""
     };
 
     this.setState({
       counter: this.state.counter + 1,
-      dw: this.state.dw.concat(newDw)
+      dw: this.state.dw.concat(newDw) 
     });
   }
 
@@ -48,9 +49,18 @@ class ContractDwAdd extends Component {
     const dwArr = [];
     const dwBlock = document.querySelectorAll('.dwBlock');
     for(const item of dwBlock) {
+      let info = item.querySelector('.selectWorker').value;
+      let idWorker = this.props.workers.filter(worker => {
+        if(info.indexOf(worker.fi) !== -1) {
+          return worker.id_worker;
+        }
+        return "";
+      });
+
       dwArr.push({
-        id_worker: item.querySelector('.selectWorker').value,
-        main_worker: item.querySelector('.isMainWorker').checked ? "1" : "0"
+        id_worker: idWorker,
+        main_worker: item.querySelector('.isMainWorker').checked ? "1" : "0",
+        info: info
       })
     }
     this.props.saveDwToStore(dwArr);
@@ -58,6 +68,27 @@ class ContractDwAdd extends Component {
 
   componentDidMount() {
     this.props.getAllWorkers();
+    
+    if(this.props.newContract.dw !== undefined) {
+      let count = this.state.counter;
+      const arr = this.props.newContract.dw.map(w => {
+        count += 1;
+        return {
+            id_block: count-1,
+            ...w
+        };
+
+      });
+    
+      console.log('arr', arr);
+      this.setState({
+        counter: count,
+        dw: this.state.dw.concat(arr)
+      });
+    }
+    setTimeout(() => {
+      console.log(this.state);
+    }, 500);
   }
 
   render() {
@@ -65,7 +96,29 @@ class ContractDwAdd extends Component {
       return <p>Идет загрузка</p>
     }
 
-    const dwForm = this.props.workers;
+    const dwForm = this.state.dw.map(w => {
+      return (
+        <div className="dwBlock" key={w.id_block} data-blockid={w.id_block}>
+          <span onClick={() => this.handleClickDelete(w.id_block)}>
+            <i className="fas fa-trash-alt"></i>
+          </span>
+          <p>Сотрудник</p>
+          <Select
+            selectOption = {this.props.workersFiPost}
+            selectName="selectWorker"
+            selValue={w.info} />
+          <p>
+            <Checkbox
+              nameClass="isMainWorker"
+              checkValue={w.main_worker}
+            />
+            Ответственный за проект
+          </p>
+        </div>
+      );
+    });
+
+
     return (
       <div>
         <span onClick={this.handleClickAdd}>
@@ -88,7 +141,10 @@ const mapStateToProps = (state) => {
   return {
     newContract: state.newContract.newContract,
     workers: state.workers.workers,
-    workersIsLoading: state.workers.isLoading
+    workersIsLoading: state.workers.isLoading,
+    workersFiPost: state.workers.workers.map(w => {
+      return (w.fi + ", " + w.post);
+    }),
   }
 }
 

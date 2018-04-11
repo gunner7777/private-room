@@ -55,7 +55,15 @@ export const newContract = (state=initialState, action) => {
           payments: action.data
         } 
       }
-    
+    case SAVE_DW_TO_STORE:
+      return {
+        ...state, 
+        newContract: {
+          ...state.newContract,
+          dw: action.data
+        } 
+      }
+
     default: return state;
   }
 }

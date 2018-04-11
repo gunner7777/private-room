@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Checkbox extends Component {
   constructor() {
@@ -32,6 +33,10 @@ class Checkbox extends Component {
         checked={this.state.checked === true ? "checked" : ""} />
     );
   }
+}
+
+Checkbox.propTypes = {
+  nameClass: PropTypes.string
 }
 
 export default Checkbox;

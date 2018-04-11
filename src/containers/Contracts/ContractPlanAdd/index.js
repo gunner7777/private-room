@@ -86,7 +86,7 @@ class ContractPlanAdd extends Component {
     const planForm = (this.state.plan.map(p => {
       return (
         <div className="planBlock" key={p.id_block} data-blockid={p.id_block}>
-          <span onClick={() => this.props.deletePlan(p.id_block)}>
+          <span onClick={() => this.handleClickDelete(p.id_block)}>
             <i className="fas fa-trash-alt"></i>
           </span>
           <InputDate 

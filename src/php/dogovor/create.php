@@ -80,9 +80,9 @@ $dogovor->plan = $data->plan;
 $dogovor->payments = $data->payments;
 $dogovor->d_w = $data->d_w;
 
-/*
+
 if($dogovor->create()) {
     echo json_encode(array("message" => "Договор добавлен"), JSON_UNESCAPED_UNICODE);
 } else {
     echo json_encode(array("message" => "Ошибка при добавлении"), JSON_UNESCAPED_UNICODE);
-}*/
+}

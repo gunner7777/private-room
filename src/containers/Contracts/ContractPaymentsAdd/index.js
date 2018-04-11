@@ -114,7 +114,7 @@ class ContractPaymentsAdd extends Component {
     const payForm = (this.state.payments.map(pay => {
       return (
         <div className="payBlock" key={pay.id_block} data-blockid={pay.id_block}>
-          <span onClick={() => this.props.deletePlan(pay.id_block)}>
+          <span onClick={() => this.handleClickDelete(pay.id_block)}>
             <i className="fas fa-trash-alt"></i>
           </span>
           <InputText

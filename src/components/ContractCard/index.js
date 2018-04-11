@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './ContractCard.css';
 import 'font-awesome/css/font-awesome.min.css';
 
@@ -26,5 +27,15 @@ const ContractCard = (props) => {
     </div>
   )
 }
+
+ContractCard.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  fi_zakaz: PropTypes.string.isRequired,
+  o_zakaz: PropTypes.string,
+  phone: PropTypes.string.isRequired,
+  comments: PropTypes.string.isRequired
+};
 
 export default ContractCard;

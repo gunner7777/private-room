@@ -1,32 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-const EditorMenu = (props) => {
+const EditorMenu = () => {
   return (
     <div>
       <Link
         to={`/addContract`}>
-        Home
+          Home
       </Link>
       <Link
         to={`/addContract/common`}>
-        Common info
+          Common info
       </Link>
       <Link
         to={`/addContract/docs`}>
-        Docs
+          Docs
       </Link>
       <Link
         to={`/addContract/plan-rabot`}>
-        Plan rabot
+          Plan rabot
       </Link>
       <Link
         to={`/addContract/payments`}>
-        Payments
+          Payments
       </Link>
       <Link
         to={`/addContract/workers`}>
-        Workers
+          Workers
       </Link>
     </div>
   )

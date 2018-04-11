@@ -3,18 +3,48 @@ import { connect } from 'react-redux';
 import InputText from '../../../blocks/InputText';
 import Button from '../../../blocks/Button';
 import InputDate from '../../../blocks/InputDate';
+import ErrorValidator from '../../../blocks/ErrorValidator';
 import { saveMainInfoToStore } from '../../../actions';
+import { errorValid } from '../../../modules/errorValid';
 
 class ContractMainInfoAdd extends Component {
   constructor() {
     super();
 
+    this.state = {
+      error: {
+        bool: false,
+        field: ""
+      }
+    };
+
     this.saveMainInfo = this.saveMainInfo.bind(this);
   }
 
   saveMainInfo() {
+    let name;
+    console.log("dfdf");
+    console.log(errorValid(document.getElementById('contractName').value, this));
+
+    if(errorValid(document.getElementById('contractName').value, this) === true) {
+      return;
+    }
+    /*let checkVal;
+    checkVal = document.getElementById('contractName').value;
+    if(checkVal !== "") {
+      name = checkVal;
+    } else {
+      this.setState({
+        error: {
+          bool: !this.state.error.bool,
+          field: "ФИ заказчика"
+        }
+      });
+      return;
+    }*/
+
     const mainInfo = {
-      name: document.getElementById('contractName').value,
+      name: name,
       date: document.querySelector('.DayPickerInput input').value,
       fi_zakaz: document.getElementById('contractFI').value,
       o_zakaz: document.getElementById('contractO').value,
@@ -26,8 +56,11 @@ class ContractMainInfoAdd extends Component {
   }
 
    render() {
+     //console.log(this.state.error.bool);
+     const hasError = this.state.error.bool === false ? "" : <ErrorValidator fieldName={this.state.error.name} />;
      return (
       <div>
+        {hasError}
         <InputText
           inputLabelLink="contractName"
           labelText="Договор" 
