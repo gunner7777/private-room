@@ -51,6 +51,9 @@ class ContractPaymentsAdd extends Component {
     const payArr = [];
     const payBlock = document.querySelectorAll('.payBlock');
     for(const item of payBlock) {
+      if(item.querySelector('.inputStagePayment').value === "") {
+        continue;
+      }
       payArr.push({
         date: item.querySelector('.DayPickerInput input').value,
         stage_payment: item.querySelector('.inputStagePayment').value,

@@ -50,6 +50,9 @@ class ContractPlanAdd extends Component {
     const planArr = [];
     const planBlock = document.querySelectorAll('.planBlock');
     for(const item of planBlock) {
+      if(item.querySelector('.inputPlanWorkname').value === "") {
+        continue;
+      }
       planArr.push({
         date: item.querySelector('.DayPickerInput input').value,
         workname: item.querySelector('.inputPlanWorkname').value,

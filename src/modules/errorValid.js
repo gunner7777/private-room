@@ -1,10 +1,10 @@
-export const errorValid = (field, self) => {
+export const errorValid = (field, fieldDescr, self) => {
   console.log("field is", field);
-  if(field == "") {
+  if(field === "") {
     self.setState({
       error: {
         bool: true,
-        field: "ФИ заказчика"
+        field: fieldDescr
       }
     });
     return true;
@@ -12,7 +12,7 @@ export const errorValid = (field, self) => {
     self.setState({
       error: {
         bool: false,
-        field: "ФИ заказчика"
+        field: fieldDescr
       }
     });
     return;

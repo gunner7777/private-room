@@ -35,12 +35,15 @@ class InputFile extends React.Component {
     e.preventDefault();
   }
 
-  handleClick() {
+  handleClick(e) {
     const data = new FormData();
     //let d = document.getElementById('addfile');
-    data.append('upload', document.getElementById('addfile').files[0]);
+    //data.append('upload', document.getElementById('addfile').files[0]);
+    //console.log(e.target);
+    data.append('upload', e.target.previousSibling.previousSibling.files[0]);
     // get dogovor number and create dir with this name
-    data.set('dirname', '123');
+    //console.log(this.props.contractNumber);
+    data.set('dirname', this.props.contractNumber);
     //console.log("data", data);
     this.props.uploadFile(this.props.fileType, data, this.state.fileName);
   }
@@ -68,7 +71,8 @@ class InputFile extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    file: state.file
+    file: state.file,
+    contractNumber: state.newContract.newContract.name
   }
 };
 

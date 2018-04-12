@@ -23,33 +23,36 @@ class ContractMainInfoAdd extends Component {
 
   saveMainInfo() {
     let name;
-    //console.log("dfdf");
-    //console.log(errorValid(document.getElementById('contractName').value, this));
-    //console.log("input", document.getElementById('contractName').value);
-    if(errorValid(document.getElementById('contractName').value, this) === true) {
-      console.log("true");
+    let date;
+    let fi_zakaz;
+    let phone;
+    
+    name = document.getElementById('contractName').value;
+    if(errorValid(name, "Номер договора", this) === true) {
       return;
     }
-    /*let checkVal;
-    checkVal = document.getElementById('contractName').value;
-    if(checkVal !== "") {
-      name = checkVal;
-    } else {
-      this.setState({
-        error: {
-          bool: !this.state.error.bool,
-          field: "ФИ заказчика"
-        }
-      });
+
+    date = document.querySelector('.DayPickerInput input').value;
+    if(errorValid(date, "Дата договора", this) === true) {
       return;
-    }*/
+    }
+    
+    fi_zakaz = document.getElementById('contractFI').value;
+    if(errorValid(fi_zakaz, "ФИ заказчика", this) === true) {
+      return;
+    }
+
+    phone = document.getElementById('contractPhone').value;
+    if(errorValid(phone, "Телефон", this) === true) {
+      return;
+    }
 
     const mainInfo = {
       name: name,
-      date: document.querySelector('.DayPickerInput input').value,
-      fi_zakaz: document.getElementById('contractFI').value,
+      date: date,
+      fi_zakaz: fi_zakaz,
       o_zakaz: document.getElementById('contractO').value,
-      phone: document.getElementById('contractPhone').value,
+      phone: phone,
       comments: document.getElementById('contractComments').value
     };
 
@@ -60,7 +63,7 @@ class ContractMainInfoAdd extends Component {
     setTimeout(() => {
       console.log("state comp", this.state.error.bool);
     }, 800)
-     const hasError = this.state.error.bool === false ? "" : <ErrorValidator fieldName={this.state.error.name} />;
+     const hasError = this.state.error.bool === false ? "" : <ErrorValidator fieldName={this.state.error.field} />;
      return (
       <div>
         {hasError}

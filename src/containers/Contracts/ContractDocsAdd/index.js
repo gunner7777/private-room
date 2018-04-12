@@ -49,6 +49,14 @@ class ContractDocsAdd extends Component {
     const docArr = [];
     const docBlock = document.querySelectorAll('.docBlock');
     for(const item of docBlock) {
+
+// Нужно возвращать статус загрузки файла и по нему проверять добавлять ли в стейт данный файл
+
+      if(item.querySelector('.InputFile-Text').innerHTML === "Choose a file") {
+        continue;
+      }
+
+
       docArr.push({
         type: item.querySelector('.contractDocs').value,
         filename: item.querySelector('.InputFile-Text').innerHTML,

@@ -7,8 +7,11 @@ import {
   SINGLE_WORKER_HAVE_ERROR,
   ADD_WORKER,
   WORKERS_IS_LOADING,
+  
   UPLOAD_FILE,
   UPLOAD_FILE_SUCCESS,
+  UPLOAD_FILE_BEFORE,
+
   GET_INFO,
   UPDATE_WORKER_INFO,
   UPDATE_WORKER_INFO_SUCCESS,
@@ -164,6 +167,7 @@ export const deleteWorker = (url, id) => {
 /** File actions */
 export const uploadFile = (type, data, fileName) => {
   return dispatch => {
+    dispatch(uploadFileBefore(false))
     const url = "http://теплофф.рф/upl.php";
     const config = {
       headers: { 'content-type': 'multipart/form-data' }
@@ -191,6 +195,12 @@ export const uploadFileSuccess = (fileState) => {
   }
 }
 
+export const uploadFileBefore = (bool) => {
+  return {
+    type: UPLOAD_FILE_BEFORE,
+    bool
+  }
+}
 
 
 /** Dogovor actions */
