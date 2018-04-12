@@ -4,7 +4,7 @@ import {
 } from '../constants/actionTypes';
 
 const fileS = {
-  ok: "false",
+  ok: false,
   fileName: ''
 };
 
