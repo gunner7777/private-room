@@ -48,6 +48,10 @@ class InputFile extends React.Component {
     this.props.uploadFile(this.props.fileType, data, this.state.fileName);
   }
 
+  componentDidMount() {
+    
+  }
+
   render() {
     let idInput = this.props.inputId === undefined ? "0" : this.props.inputId;
     return (
