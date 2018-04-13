@@ -5,12 +5,10 @@ import './InputFile.css';
 import Button from '../Button';
 import Select from '../Select';
 
-
-
 class InputFile extends React.Component {
   constructor(props) {
     super(props);
-
+    let idInput = "0";
     this.state = {
       fileName: this.props.file.fileName,
       uploadSuccess: false
@@ -20,7 +18,13 @@ class InputFile extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+/*
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      uploadSuccess: nextProps.file.ok
+    });
+  }
+*/
   handleChange(e) {
     const pathArr = e.target.value.split('\\');
     this.setState({
@@ -42,52 +46,47 @@ class InputFile extends React.Component {
 
   handleClick(e) {
     const data = new FormData();
-    //let d = document.getElementById('addfile');
-    //data.append('upload', document.getElementById('addfile').files[0]);
-    //console.log(e.target);
+
     data.append('upload', e.target.previousSibling.previousSibling.files[0]);
+
+    //console.log(this.idInput);
     // get dogovor number and create dir with this name
-    //console.log(this.props.contractNumber);
     data.set('dirname', this.props.contractNumber);
-    //console.log("data", data);
-    this.props.uploadFile(this.props.fileType, data, this.state.fileName);
+    this.props.uploadFile(this.props.fileType, data, this.state.fileName, this.idInput);
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      uploadSuccess: nextProps.file.ok
-    });
-  }
 
+/*
   componentDidMount() {
     this.setState({
       uploadSuccess: this.props.file.ok
     });
     //console.log("was");
-  }
+  }*/
 
   render() {
     //console.log(this.state.uploadSuccess);
     //console.log(this.props.file.ok);
-    let uploadClass = this.state.uploadSuccess === false ? "" : "Button_uploaded";
+    //let uploadClass = this.props.uploaded !== undefined ? "" : "Button_uploaded";
     //console.log(uploadClass);
-    let idInput = this.props.inputId === undefined ? "0" : this.props.inputId;
+    this.idInput = this.props.inputId === undefined ? this.idInput : this.props.inputId;
     return (
       <form action="" encType="multipart/form-data" onSubmit={this.handleSubmit}>
         <input
           type="file"
-          id={`addfile_${idInput}`}
+          id={`addfile_${this.idInput}`}
           className="inputFile"
           name="upload"
           onChange={this.handleChange} />
-        <label htmlFor={`addfile_${idInput}`}>
+        <label htmlFor={`addfile_${this.idInput}`}>
           <i className="far fa-folder-open"></i>
           <span className="InputFile-Text">{this.props.fName !== "" ? this.props.fName : "Choose a file"}</span>
         </label>
         {/*{ this.props.withSelect ? <Select /> : "" }*/}
         <Button
           text="Upload"
-          uploaded={uploadClass}
+          id={this.idInput}
+          uplFile={this.props.uploaded}
           buttonClick={this.handleClick} />
       </form>
     );
@@ -103,7 +102,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    uploadFile: (type, data, fileName) => dispatch(uploadFile(type, data, fileName)),
+    uploadFile: (type, data, fileName, butId) => dispatch(uploadFile(type, data, fileName, butId)),
     uploadReset: (bool) => dispatch(uploadFileBefore(bool))
   }
 }

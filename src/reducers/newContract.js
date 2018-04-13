@@ -3,7 +3,8 @@ import {
   SAVE_DOCS_TO_STORE,
   SAVE_PLAN_TO_STORE,
   SAVE_PAYMENTS_TO_STORE,
-  SAVE_DW_TO_STORE
+  SAVE_DW_TO_STORE,
+  UPDATE_DOC_UPLOAD_STATUS
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -63,7 +64,14 @@ export const newContract = (state=initialState, action) => {
           dw: action.data
         } 
       }
-
+    case UPDATE_DOC_UPLOAD_STATUS: 
+      return {
+        ...state,
+        newContract: {
+          ...state.newContract,
+          docs: action.data
+        }
+      }
     default: return state;
   }
 }

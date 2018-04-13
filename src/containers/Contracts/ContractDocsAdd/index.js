@@ -18,7 +18,21 @@ class ContractDocsAdd extends Component {
     this.handleClickAdd = this.handleClickAdd.bind(this);
     this.handleClickDelete = this.handleClickDelete.bind(this);
     this.saveDocs = this.saveDocs.bind(this);
+    this.getUploadedResult = this.getUploadedResult.bind(this);  
   }
+
+  componentWillReceiveProps(nextProps) {
+    const newDocsState = this.state.docs.map(doc => {
+      if(doc.id_block === nextProps.file.buttonId) {
+        doc.uploaded = true;
+      }
+      return doc;
+    });
+    this.setState({
+      docs: newDocsState
+    });
+  }
+
   
   handleClickAdd() {
 
@@ -27,7 +41,8 @@ class ContractDocsAdd extends Component {
       id_doc: null,
       type: "",
       filename: "",
-      link: ""
+      link: "",
+      uploaded: false
     };
 
     this.setState({
@@ -45,22 +60,36 @@ class ContractDocsAdd extends Component {
     });
   }
 
+  getUploadedResult(bool, blockId) {
+    const updDocs = this.state.docs.map(doc => {
+      if(doc.id_block === blockId) {
+        doc.uploaded = bool;
+      }
+      return doc;
+    });
+    this.setState({
+      docs: updDocs
+    });
+  }
+
   saveDocs() {
     const docArr = [];
     const docBlock = document.querySelectorAll('.docBlock');
     for(const item of docBlock) {
 
 // Нужно возвращать статус загрузки файла и по нему проверять добавлять ли в стейт данный файл
-
-      if(item.querySelector('.InputFile-Text').innerHTML === "Choose a file") {
+      let isUploaded = item.querySelector('.Button').classList.contains('Button_uploaded');
+      if(!isUploaded) {
         continue;
       }
+
 
 
       docArr.push({
         type: item.querySelector('.contractDocs').value,
         filename: item.querySelector('.InputFile-Text').innerHTML,
-        link: '/contracts/' + this.props.newContract.name + '/' + item.querySelector('.InputFile-Text').innerHTML
+        link: '/contracts/' + this.props.newContract.name + '/' + item.querySelector('.InputFile-Text').innerHTML,
+        uploaded: isUploaded
       })
     }
     this.props.saveDocsToStore(docArr);
@@ -90,6 +119,7 @@ class ContractDocsAdd extends Component {
   }
 
   render() {
+    console.log("new state", this.state);
     const docsForm = this.state.docs.map(doc => {
       return (
         <div className="docBlock" key={doc.id_block} data-blockid={doc.id_block}>
@@ -104,7 +134,9 @@ class ContractDocsAdd extends Component {
           />
           <InputFile
             fName={doc.filename}
-            inputId={doc.id_block}/>
+            inputId={doc.id_block}
+            uploaded={doc.uploaded}
+            resultUpload={this.getUploadedResult} />
         </div>
       );
     });
@@ -128,7 +160,8 @@ class ContractDocsAdd extends Component {
 const mapStateToProps = (state) => {
   return {
     options: state.contract.selectOpt,
-    newContract: state.newContract.newContract
+    newContract: state.newContract.newContract,
+    file: state.file
   }
 }
 

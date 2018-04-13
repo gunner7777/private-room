@@ -23,6 +23,7 @@ import {
   CONTRACT_IS_LOADING,
   UPDATE_MAIN_INFO_SUCCESS,
   UPDATE_DOCS_SUCCESS,
+  UPDATE_DOC_UPLOAD_STATUS,
   UPDATE_PLAN_SUCCESS,
   UPDATE_PAYS_SUCCESS,
   ADD_NEW_DOC,
@@ -165,7 +166,7 @@ export const deleteWorker = (url, id) => {
 
 
 /** File actions */
-export const uploadFile = (type, data, fileName) => {
+export const uploadFile = (type, data, fileName, butId) => {
   return dispatch => {
     dispatch(uploadFileBefore(false))
     const url = "http://теплофф.рф/upl.php";
@@ -175,11 +176,15 @@ export const uploadFile = (type, data, fileName) => {
 
     axios.post(url, data, config)
       .then(function (res) {
-        console.log(data);
-        console.log(res.data);
+        //console.log(data);
+        //console.log(res.data);
         dispatch(uploadFileSuccess({
           ok: true,
-          fileName: fileName
+          fileName: fileName,
+          buttonId: butId
+        }));
+        dispatch(updateDocUploadStatus({
+          buttonId: butId
         }));
       })
       .catch(error => {
@@ -322,7 +327,16 @@ export const updateDocsSuccess = (data) => {
     data
   }
 }
-  
+
+export const updateDocUploadStatus = (butId) => {
+  return {
+    type: UPDATE_DOC_UPLOAD_STATUS,
+    butId
+  }
+}
+
+
+
 
 export const updatePlan = (data) => {
   const url = 'http://теплофф.рф/tyryr/dogovor/updatePlan.php';
