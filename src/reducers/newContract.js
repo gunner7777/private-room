@@ -4,6 +4,7 @@ import {
   SAVE_PLAN_TO_STORE,
   SAVE_PAYMENTS_TO_STORE,
   SAVE_DW_TO_STORE,
+  ADD_CONTRACT_SUCCESS,
   UPDATE_DOC_UPLOAD_STATUS
 } from '../constants/actionTypes';
 
@@ -15,6 +16,7 @@ const initialState = {
     'Приложение',
     'Дополнительное соглашение'
   ],
+  result: true
 };
 
 export const newContract = (state=initialState, action) => {
@@ -72,6 +74,11 @@ export const newContract = (state=initialState, action) => {
           docs: action.data
         }
       }
+    case ADD_CONTRACT_SUCCESS:
+      return {
+        ...state,
+        result: action.bool
+      };
     default: return state;
   }
 }

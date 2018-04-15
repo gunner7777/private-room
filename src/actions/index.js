@@ -34,6 +34,7 @@ import {
   DELETE_PAY_SUCCESS,
   UPDATE_DOGOVOR_WORKERS_SUCCESS,
   ADD_NEW_DW,
+  ADD_CONTRACT_SUCCESS,
   DELETE_DW_SUCCESS,
   SAVE_MAIN_INFO_TO_STORE,
   SAVE_DOCS_TO_STORE,
@@ -441,6 +442,31 @@ export const addNewDW = (data) => {
   return {
     type: ADD_NEW_DW,
     dw: data
+  }
+}
+
+export const addContract = (data) => {
+  const url = 'http://теплофф.рф/tyryr/dogovor/create.php';
+  console.log(data);
+  return {
+    type: ADD_CONTRACT_SUCCESS,
+    bool: false
+  }
+  /*return dispatch => {
+    axios.post(url, data)
+      .then(response => {
+        dispatch(addContractSuccess(true));
+      })
+      .catch(error => {
+        console.log("error", error.response);
+      });
+  }*/
+}
+
+export const addContractSuccess = (bool) => {
+  return {
+    type: ADD_CONTRACT_SUCCESS,
+    bool
   }
 }
 
