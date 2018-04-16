@@ -13,7 +13,14 @@ import { addContract } from '../../../actions';
 class ContractAdder extends Component {
   constructor() {
     super();
+
+    this.addNewContract = this.addNewContract.bind(this);
   }
+
+  addNewContract() {
+    this.props.addContract(this.props.newContract);
+  }
+
    render() {
      // Просто запоминаем все шаги (основная информация, доки и тд) в сторе.
      // Будет одна кнопка "Сохранить", которая в конце просто выгрузит все в базу
@@ -50,7 +57,7 @@ class ContractAdder extends Component {
         </Switch>
         <Button
         text="Добавить"
-        buttonClick={this.props.addContract(this.props.newContract)} />
+        buttonClick={this.addNewContract} />
       </div>
      );
    }

@@ -52,13 +52,14 @@ class ContractDwAdd extends Component {
       let info = item.querySelector('.selectWorker').value;
       let idWorker = this.props.workers.filter(worker => {
         if(info.indexOf(worker.fi) !== -1) {
-          return worker.id_worker;
+          return worker;
         }
         return "";
       });
 
+      console.log("idworker", idWorker[0]);
       dwArr.push({
-        id_worker: idWorker,
+        id_worker: idWorker[0].id_worker,
         main_worker: item.querySelector('.isMainWorker').checked ? "1" : "0",
         info: info
       })

@@ -447,20 +447,17 @@ export const addNewDW = (data) => {
 
 export const addContract = (data) => {
   const url = 'http://теплофф.рф/tyryr/dogovor/create.php';
-  console.log(data);
-  return {
-    type: ADD_CONTRACT_SUCCESS,
-    bool: false
-  }
-  /*return dispatch => {
+  
+  return dispatch => {
     axios.post(url, data)
       .then(response => {
+        console.log(response.data);
         dispatch(addContractSuccess(true));
       })
       .catch(error => {
         console.log("error", error.response);
       });
-  }*/
+  }
 }
 
 export const addContractSuccess = (bool) => {
