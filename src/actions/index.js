@@ -244,6 +244,7 @@ export const getAllContractsHasError = (bool) => {
 
 export const getContract = (id) => {
   const url  = 'http://теплофф.рф/tyryr/dogovor/readOne.php';
+  console.log("id", id);
   return (dispatch) => {
     dispatch(contractIsLoading(true));
     axios.get(url, id)
@@ -254,7 +255,8 @@ export const getContract = (id) => {
         return response;
       })
       .then((response) => {
-        //console.log("action", response.data);
+        console.log("action", response.data);
+
         dispatch(getContractSuccess(response.data));
         dispatch(contractIsLoading(false));
       })

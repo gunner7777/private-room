@@ -85,7 +85,7 @@ class Dogovor {
 
 
       // insert into docs
-      $query = "INSERT INTO " . $table_name_docs . "
+      $query = "INSERT INTO " . $this->table_name_docs . "
       (id_dog, type, link) 
       VALUES(:id_dog, :type, :link)";
 
@@ -96,8 +96,9 @@ class Dogovor {
         $res->bindValue(':id_dog', $this->id);
 
         foreach($this->docs as $doc) {
-          $res->bindValue(':type', $doc['type']);
-          $res->bindValue(':link', $doc['link']);
+          print_r($doc->type);
+          $res->bindValue(':type', $doc->type);
+          $res->bindValue(':link', $doc->link);
           $res->execute();
         }
 
@@ -108,7 +109,7 @@ class Dogovor {
 
 
       // insert into plan_rabot
-      $query = "INSERT INTO " . $table_name_plan . "
+      $query = "INSERT INTO " . $this->table_name_plan . "
       (id_dog, date, workname, status) 
       VALUES(:id_dog, :date, :workname, :status)";
 
@@ -119,9 +120,9 @@ class Dogovor {
         $res->bindValue(':id_dog', $this->id);
 
         foreach($this->plan as $p) {
-          $res->bindValue(':date', $p['date']);
-          $res->bindValue(':workname', $p['workname']);
-          $res->bindValue(':status', $p['status']);
+          $res->bindValue(':date', $p->date);
+          $res->bindValue(':workname', $p->workname);
+          $res->bindValue(':status', $p->status);
           $res->execute();
         }
 
@@ -131,7 +132,7 @@ class Dogovor {
       }
 
       // insert into payments
-      $query = "INSERT INTO " . $table_name_payments . "
+      $query = "INSERT INTO " . $this->table_name_payments . "
       (id_dog, stage_payment, date, summa, status) 
       VALUES(:id_dog, :stage_payment, :date, :summa, :status)";
 
@@ -142,10 +143,10 @@ class Dogovor {
         $res->bindValue(':id_dog', $this->id);
 
         foreach($this->payments as $pay) {
-          $res->bindValue(':stage_payment', $pay['stage_payment']);
-          $res->bindValue(':date', $pay['date']);
-          $res->bindValue(':summa', $pay['summa']);
-          $res->bindValue(':status', $pay['status']);
+          $res->bindValue(':stage_payment', $pay->stage_payment);
+          $res->bindValue(':date', $pay->date);
+          $res->bindValue(':summa', $pay->summa);
+          $res->bindValue(':status', $pay->status);
           $res->execute();
         }
 
@@ -156,7 +157,7 @@ class Dogovor {
 
 
       // insert into dogovor_workers
-      $query = "INSERT INTO " . $table_name_dogovor_workers . "
+      $query = "INSERT INTO " . $this->table_name_dogovor_workers . "
       (id_dog, id_worker, main_worker) 
       VALUES(:id_dog, :id_worker, :main_worker)";
 
@@ -167,8 +168,8 @@ class Dogovor {
         $res->bindValue(':id_dog', $this->id);
 
         foreach($this->d_w as $dw) {
-          $res->bindValue(':id_worker', $dw['id_worker']);
-          $res->bindValue(':main_worker', $dw['main_worker']);
+          $res->bindValue(':id_worker', $dw->id_worker);
+          $res->bindValue(':main_worker', $dw->main_worker);
           $res->execute();
         }
 
@@ -176,6 +177,7 @@ class Dogovor {
       } catch(PDOException $e) {
         $this->conn->rollBack();
       }
+      return true;
   }
 
 

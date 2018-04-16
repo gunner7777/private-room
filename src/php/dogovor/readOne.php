@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: access");
@@ -15,7 +17,8 @@ $db = $database->connect();
 $dogovor = new Dogovor($db);
 
 //$dogovor->id = (isset($_GET['id_dog'])) ? $_GET['id_dog'] : die();
-$dogovor->id = 1;
+print_r($_GET);
+//$dogovor->id = 1;
 
 $dogovor->readOne();
 
