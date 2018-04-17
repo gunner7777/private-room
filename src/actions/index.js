@@ -201,10 +201,10 @@ export const uploadFileSuccess = (fileState) => {
   }
 }
 
-export const uploadFileBefore = (bool) => {
+export const uploadFileBefore = (fileState) => {
   return {
     type: UPLOAD_FILE_BEFORE,
-    bool
+    fileState
   }
 }
 
@@ -243,11 +243,11 @@ export const getAllContractsHasError = (bool) => {
 }
 
 export const getContract = (id) => {
-  const url  = 'http://теплофф.рф/tyryr/dogovor/readOne.php';
-  console.log("id", id);
+  const url  = 'http://теплофф.рф/tyryr/dogovor/readOne.php?id_dog='+id;
+  //console.log("id", id);
   return (dispatch) => {
     dispatch(contractIsLoading(true));
-    axios.get(url, id)
+    axios.get(url)
       .then(response => {
         if(response.status !== 200) {
           throw Error(response.statusText);

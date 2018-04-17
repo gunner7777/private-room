@@ -16,8 +16,8 @@ $db = $database->connect();
 
 $dogovor = new Dogovor($db);
 
-//$dogovor->id = (isset($_GET['id_dog'])) ? $_GET['id_dog'] : die();
-print_r($_GET);
+$dogovor->id = (isset($_GET['id_dog'])) ? $_GET['id_dog'] : die();
+//print_r($_GET);
 //$dogovor->id = 1;
 
 $dogovor->readOne();

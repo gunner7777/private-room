@@ -18,13 +18,7 @@ class InputFile extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-/*
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      uploadSuccess: nextProps.file.ok
-    });
-  }
-*/
+
   handleChange(e) {
     const pathArr = e.target.value.split('\\');
     this.setState({
@@ -35,9 +29,13 @@ class InputFile extends React.Component {
 
     setTimeout(() => {
       node.querySelector('.InputFile-Text').innerHTML = this.state.fileName;
+      const noUpload = {
+        ok: false,
+        fileName: this.state.fileName,
+        buttonId: this.idInput
+      };
+      this.props.uploadReset(noUpload);
     }, 300);
-
-    this.props.uploadReset(false);
   }
 
   handleSubmit(e) {
@@ -49,26 +47,13 @@ class InputFile extends React.Component {
 
     data.append('upload', e.target.previousSibling.previousSibling.files[0]);
 
-    //console.log(this.idInput);
+
     // get dogovor number and create dir with this name
     data.set('dirname', this.props.contractNumber);
     this.props.uploadFile(this.props.fileType, data, this.state.fileName, this.idInput);
   }
 
-
-/*
-  componentDidMount() {
-    this.setState({
-      uploadSuccess: this.props.file.ok
-    });
-    //console.log("was");
-  }*/
-
   render() {
-    //console.log(this.state.uploadSuccess);
-    //console.log(this.props.file.ok);
-    //let uploadClass = this.props.uploaded !== undefined ? "" : "Button_uploaded";
-    //console.log(uploadClass);
     this.idInput = this.props.inputId === undefined ? this.idInput : this.props.inputId;
     return (
       <form action="" encType="multipart/form-data" onSubmit={this.handleSubmit}>
@@ -82,7 +67,7 @@ class InputFile extends React.Component {
           <i className="far fa-folder-open"></i>
           <span className="InputFile-Text">{this.props.fName !== "" ? this.props.fName : "Choose a file"}</span>
         </label>
-        {/*{ this.props.withSelect ? <Select /> : "" }*/}
+
         <Button
           text="Upload"
           id={this.idInput}
@@ -103,7 +88,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     uploadFile: (type, data, fileName, butId) => dispatch(uploadFile(type, data, fileName, butId)),
-    uploadReset: (bool) => dispatch(uploadFileBefore(bool))
+    uploadReset: (data) => dispatch(uploadFileBefore(data))
   }
 }
 

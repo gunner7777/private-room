@@ -22,12 +22,19 @@ class ContractDocsAdd extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    //console.log("next props", nextProps.file.buttonId);
+    console.log("docs", this.state.docs);
     const newDocsState = this.state.docs.map(doc => {
       if(doc.id_block === nextProps.file.buttonId) {
-        doc.uploaded = true;
-      }
+        //doc.uploaded = true;
+        doc.uploaded = nextProps.file.ok;
+      } /*else {
+        doc.uploaded = false;
+      }*/
       return doc;
     });
+
+    console.log(newDocsState);
     this.setState({
       docs: newDocsState
     });
@@ -107,19 +114,19 @@ class ContractDocsAdd extends Component {
 
       });
     
-      console.log('arr', arr);
+      //console.log('arr', arr);
       this.setState({
         counter: count,
         docs: this.state.docs.concat(arr)
       });
     }
-    setTimeout(() => {
+    /*setTimeout(() => {
       console.log(this.state);
-    }, 500);
+    }, 500);*/
   }
 
   render() {
-    console.log("new state", this.state);
+    //console.log("new state", this.state.docs);
     const docsForm = this.state.docs.map(doc => {
       return (
         <div className="docBlock" key={doc.id_block} data-blockid={doc.id_block}>
@@ -136,7 +143,8 @@ class ContractDocsAdd extends Component {
             fName={doc.filename}
             inputId={doc.id_block}
             uploaded={doc.uploaded}
-            resultUpload={this.getUploadedResult} />
+            //resultUpload={this.getUploadedResult} 
+          />
         </div>
       );
     });
