@@ -90,7 +90,7 @@ class ContractMainInfoAdd extends Component {
           labelText="Комментарии к договору"
           inpValue={this.props.newContract.comments !== undefined ? this.props.newContract.comments : ""} />
         <Button
-          text="Добавить"
+          text="Сохранить"
           buttonClick={this.saveMainInfo} />
       </div>
      );
