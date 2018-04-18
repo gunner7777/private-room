@@ -143,6 +143,7 @@ class ContractDocsAdd extends Component {
             fName={doc.filename}
             inputId={doc.id_block}
             uploaded={doc.uploaded}
+            dirname={this.props.newContract.name}
             //resultUpload={this.getUploadedResult} 
           />
         </div>

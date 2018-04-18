@@ -16,7 +16,7 @@ $db = $database->connect();
 
 $dogovor = new Dogovor($db);
 
-echo "dfdf";
+//echo "dfdf";
 /*$data2 = {
     date: 14.04.2018,
     name: "Договор"
@@ -75,6 +75,7 @@ $dogovor->date = $data->date;
 $dogovor->fi_zakaz = $data->fi_zakaz;
 $dogovor->o_zakaz = $data->o_zakaz;
 $dogovor->phone = $data->phone;
+$dogovor->comments = $data->comments;
 $dogovor->docs = $data->docs;
 $dogovor->plan = $data->plan;
 $dogovor->payments = $data->payments;

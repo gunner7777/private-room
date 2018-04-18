@@ -53,9 +53,10 @@ class Dogovor {
   function create() {
     // add dogovor table
     $query = "INSERT INTO " . $this->table_name . "
-      (date, fi_zakaz, o_zakaz, phone, comments) 
-      VALUES(:date, :fi_zakaz, :o_zakaz, :phone, :comments)";
-      
+      (name, date, fi_zakaz, o_zakaz, phone, comments) 
+      VALUES(:name, :date, :fi_zakaz, :o_zakaz, :phone, :comments)";
+
+      $this->name = htmlspecialchars(strip_tags($this->name));
       $this->date = htmlspecialchars(strip_tags($this->date));
       $this->fi_zakaz = htmlspecialchars(strip_tags($this->fi_zakaz));
       $this->o_zakaz = htmlspecialchars(strip_tags($this->o_zakaz));
@@ -69,6 +70,7 @@ class Dogovor {
         $this->conn->beginTransaction();
 
         $res = $this->conn->prepare($query);
+        $res->bindValue(':name', $this->name);
         $res->bindValue(':date', $this->date);
         $res->bindValue(':fi_zakaz', $this->fi_zakaz);
         $res->bindValue(':o_zakaz', $this->o_zakaz);

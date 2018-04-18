@@ -63,7 +63,7 @@ class ContractEditor extends Component {
           //type: item.querySelector('.inputDocsName').value,
           type: item.querySelector('.contractDocs').value,
           
-          link: item.querySelector('.inputDocsLink').value
+          link: '/contracts/' + this.props.contract.name + '/' + item.querySelector('.InputFile-Text').innerHTML,
         });
       }
       const docsUpdater = {
@@ -97,8 +97,9 @@ class ContractEditor extends Component {
       for(const item of payNodes) {
         payArr.push({
           id_pay: item.getAttribute('data-payid'),
-          stage_payment: item.querySelector('.payStageName').value,
-          summa: item.querySelector('.paySumma').value,
+          stage_payment: item.querySelector('.inputStagePayment').value,
+          date: item.querySelector('.DayPickerInput input').value,
+          summa: item.querySelector('.inputSumma').value,
           status: item.querySelector('.payStatus').checked ? "1" : "0"
         });
       }

@@ -49,7 +49,8 @@ class InputFile extends React.Component {
 
 
     // get dogovor number and create dir with this name
-    data.set('dirname', this.props.contractNumber);
+    //data.set('dirname', this.props.contractNumber);
+    data.set('dirname', this.props.dirname);
     this.props.uploadFile(this.props.fileType, data, this.state.fileName, this.idInput);
   }
 

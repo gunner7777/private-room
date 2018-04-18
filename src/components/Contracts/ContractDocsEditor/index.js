@@ -31,8 +31,10 @@ class ContractDocsEditor extends Component {
   }*/
   
   handleClick() {
+    //console.log(this.props.docs.length);
+    const currDocs = this.props.docs;
     const newDoc = {
-      id_block: +this.props.docs[this.props.docs.length-1].id_doc + 1,
+      id_block: currDocs.length !== 0 ? (+this.props.docs[this.props.docs.length-1].id_doc + 1) : 0,
       id_doc: null,
       type: "",
       link: "",
@@ -54,6 +56,10 @@ class ContractDocsEditor extends Component {
       if(doc.id_block === this.props.file.buttonId) {
         doc.uploaded = this.props.file.ok;
       }
+
+      const pathArr = doc.link.split('/');
+      let fileName = pathArr[pathArr.length-1];
+      //console.log(fileName);
       return (
         <div className="docBlock" data-docid={doc.id_doc} key={doc.id_doc}>
           <span onClick={() => this.props.deleteDoc(doc.id_doc)}>
@@ -65,9 +71,10 @@ class ContractDocsEditor extends Component {
             selectName="contractDocs"
             selValue={doc.type} />
           <InputFile 
-            fName={doc.link}
+            fName={fileName}
             inputId={doc.id_block}
             uploaded={doc.uploaded}
+            dirname={this.props.contract.name}
           />
           {/*
             {doc.link !== "" ? <InputText
@@ -100,6 +107,7 @@ class ContractDocsEditor extends Component {
 const mapStateToProps = (state) => {
   return {
     file: state.file,
+    contract: state.contract.contract,
     selectOpt: state.contract.selectOpt
   }
 }

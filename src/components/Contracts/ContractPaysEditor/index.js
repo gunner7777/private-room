@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import InputText from '../../../blocks/InputText';
+import InputDate from '../../../blocks/InputDate';
 import Button from '../../../blocks/Button';
 import Checkbox from '../../../blocks/Checkbox';
 import { addNewPay, deletePay } from '../../../actions';
@@ -31,6 +32,28 @@ class ContractPaysEditor extends Component {
             <i className="fas fa-trash-alt"></i>
           </span>
           <InputText
+            inputLabelLink="payStage"
+            labelText="Этап оплаты"
+            dopClass="inputStagePayment"
+            inpValue={pay.stage_payment}
+          />
+          <InputDate 
+            eventDate={pay.date}
+          />
+          <InputText
+            inputLabelLink="paySumma"
+            labelText="Сумма"
+            dopClass="inputSumma"
+            inpValue={pay.summa}
+          />
+          <p>
+            <Checkbox
+              nameClass="payStatus"
+              checkValue={pay.status}
+            />
+            Статус готовности
+          </p>
+          {/*<InputText
             inputLabelLink="payName"
             labelText="Документ"
             dopClass="payStageName"
@@ -48,7 +71,7 @@ class ContractPaysEditor extends Component {
               checkValue={pay.status}
             />
             Статус готовности
-          </p>
+          </p>*/}
         </div>
       );
     });
