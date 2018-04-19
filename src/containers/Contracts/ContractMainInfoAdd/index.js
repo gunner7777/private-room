@@ -31,7 +31,7 @@ class ContractMainInfoAdd extends Component {
     if(errorValid(name, "Номер договора", this) === true) {
       return;
     }
-    console.log(name);
+    //console.log(name);
     date = document.querySelector('.DayPickerInput input').value;
     if(errorValid(date, "Дата договора", this) === true) {
       return;

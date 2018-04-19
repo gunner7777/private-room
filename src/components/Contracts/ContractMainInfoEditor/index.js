@@ -2,10 +2,13 @@ import React from 'react';
 import InputText from '../../../blocks/InputText';
 import Button from '../../../blocks/Button';
 import InputDate from '../../../blocks/InputDate';
+import ErrorValidator from '../../../blocks/ErrorValidator';
 
 const ContractMainInfoEditor = (props) => {
+  const hasError = props.bool === false ? "" : <ErrorValidator fieldName={props.field} />;
   return (
     <div>
+      {hasError}
       <h4>Общая информация</h4>
       <InputText inputLabelLink="contractName" labelText="Договор" inpValue={props.name}/>
       <InputDate 

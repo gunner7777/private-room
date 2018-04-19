@@ -22,12 +22,22 @@ import 'moment/locale/ru';
 import { getContract, updateMainInfo, updateDocs, updatePlan, updatePayments, updateDogovorWorkers } from '../../../actions';
 
 
+
 import EditorMenu from '../../../components/EditorMenu';
 import EditorBlock from '../../../components/EditorBlock';
+import { errorValid } from '../../../modules/errorValid';
 
 class ContractEditor extends Component {
     constructor(props) {
       super(props);
+
+
+      this.state = {
+        error: {
+          bool: false,
+          field: ""
+        }
+      };
 
       this.handleClickMI = this.handleClickMI.bind(this);
       this.handleClickDocs = this.handleClickDocs.bind(this);
@@ -41,14 +51,39 @@ class ContractEditor extends Component {
     }
 
     handleClickMI() {
+
+      let name;
+      let date;
+      let fi_zakaz;
+      let phone;
+    
+      name = document.getElementById('contractName').value;
+      if(errorValid(name, "Номер договора", this) === true) {
+        return;
+      }
+
+      date = document.querySelector('.DayPickerInput input').value;
+      if(errorValid(date, "Дата договора", this) === true) {
+        return;
+      }
+      
+      fi_zakaz = document.getElementById('contractFI').value;
+      if(errorValid(fi_zakaz, "ФИ заказчика", this) === true) {
+        return;
+      }
+
+      phone = document.getElementById('contractPhone').value;
+      if(errorValid(phone, "Телефон", this) === true) {
+        return;
+      }
+
       const mInfo = {
         id: this.props.contract.id_dog,
-        name: document.getElementById('contractName').value,
-        //date: document.getElementById('contractDate').value,
-        date: document.querySelector('.DayPickerInput input').value,
-        fi_zakaz: document.getElementById('contractFI').value,
+        name: name,
+        date: date,
+        fi_zakaz: fi_zakaz,
         o_zakaz: document.getElementById('contractO').value,
-        phone: document.getElementById('contractPhone').value,
+        phone: phone,
         comments: document.getElementById('contractComments').value
       }
       this.props.updateMInfo(mInfo);
@@ -58,6 +93,11 @@ class ContractEditor extends Component {
       const docsArr = [];
       const docNodes = document.querySelectorAll('.docBlock');
       for(const item of docNodes) {
+        /*let isUploaded = item.querySelector('.Button').classList.contains('Button_uploaded');
+        console.log(isUploaded);
+        if(isUploaded) {
+          continue;
+        }*/
         docsArr.push({
           id_doc: item.getAttribute('data-docid'),
           //type: item.querySelector('.inputDocsName').value,
@@ -77,6 +117,10 @@ class ContractEditor extends Component {
       const planArr = [];
       const planNodes = document.querySelectorAll('.planBlock');
       for(const item of planNodes) {
+        if(item.querySelector('.inputPlanWorkname').value === "") {
+          continue;
+        }
+
         planArr.push({
           id_plan: item.getAttribute('data-planid'),
           date: item.querySelector('.DayPickerInput input').value,
@@ -95,6 +139,10 @@ class ContractEditor extends Component {
       const payArr = [];
       const payNodes = document.querySelectorAll('.payBlock');
       for(const item of payNodes) {
+        if(item.querySelector('.inputStagePayment').value === "") {
+          continue;
+        }
+
         payArr.push({
           id_pay: item.getAttribute('data-payid'),
           stage_payment: item.querySelector('.inputStagePayment').value,
@@ -143,7 +191,18 @@ class ContractEditor extends Component {
         return <p>Loading data</p>;
       }
 
-      const { name, date, fi_zakaz, o_zakaz, phone, comments, docs, plan, payments, workers } = this.props.contract;
+      const {
+        name,
+        date,
+        fi_zakaz,
+        o_zakaz,
+        phone,
+        comments,
+        docs,
+        plan,
+        payments,workers
+      } = this.props.contract;
+      
         return (
           <div>
             <EditorMenu 
@@ -166,6 +225,8 @@ class ContractEditor extends Component {
               phone={phone}
               comments={comments}
               updateMainInfo={this.handleClickMI}
+              //error={this.state.error.bool}
+              {...this.state.error}
             />
           } 
       />
