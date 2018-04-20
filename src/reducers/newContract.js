@@ -5,7 +5,8 @@ import {
   SAVE_PAYMENTS_TO_STORE,
   SAVE_DW_TO_STORE,
   ADD_CONTRACT_SUCCESS,
-  UPDATE_DOC_UPLOAD_STATUS
+  UPDATE_DOC_UPLOAD_STATUS,
+  SET_LAST_COMPLETE_CHAPTER
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -16,7 +17,8 @@ const initialState = {
     'Приложение',
     'Дополнительное соглашение'
   ],
-  result: true
+  result: true,
+  lastChapter: ""
 };
 
 export const newContract = (state=initialState, action) => {
@@ -79,6 +81,11 @@ export const newContract = (state=initialState, action) => {
         ...state,
         result: action.bool
       };
+    case SET_LAST_COMPLETE_CHAPTER:
+      return {
+        ...state,
+        lastChapter: action.chapter
+      }
     default: return state;
   }
 }

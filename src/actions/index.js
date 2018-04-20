@@ -40,7 +40,8 @@ import {
   SAVE_DOCS_TO_STORE,
   SAVE_PLAN_TO_STORE,
   SAVE_PAYMENTS_TO_STORE,
-  SAVE_DW_TO_STORE
+  SAVE_DW_TO_STORE,
+  SET_LAST_COMPLETE_CHAPTER
 } from '../constants/actionTypes';
 
 export const getAllWorkers = () => {
@@ -372,7 +373,8 @@ export const updatePayments = (data) => {
         dispatch(updatePaymentsSuccess(data.payments));
       })
       .catch(error => {
-        console.log("error", error.response);
+        //console.log("error pays", error.response);
+        console.log("error pays", error);
       });
   }
 }
@@ -583,5 +585,12 @@ export const saveDwToStore = (data) => {
   return {
     type: SAVE_DW_TO_STORE,
     data
+  }
+}
+
+export const setLastCompleteChapter = (chapter) => {
+  return {
+    type: SET_LAST_COMPLETE_CHAPTER,
+    chapter
   }
 }

@@ -16,7 +16,7 @@ $db = $database->connect();
 $dogovor = new Dogovor($db);
 
 $data = json_decode(file_get_contents("php://input"));
-//print_r($data);
+print_r($data);
 $dogovor->id = $data->id;
 $dogovor->payments = $data->payments;
 

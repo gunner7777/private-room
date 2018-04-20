@@ -151,6 +151,7 @@ class ContractEditor extends Component {
           status: item.querySelector('.payStatus').checked ? "1" : "0"
         });
       }
+
       const payUpdater = {
         id: this.props.contract.id_dog,
         payments: payArr
