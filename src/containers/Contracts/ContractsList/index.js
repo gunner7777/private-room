@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getAllContracts } from '../../../actions';
+import { getAllContracts, deleteContract } from '../../../actions';
 import ContractCard from '../../../components/ContractCard';
 
 class ContractsList extends Component {
   constructor() {
     super();
+
+    this.deleteContract = this.deleteContract.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchData();
+  }
+
+  deleteContract(idContract) {
+    //console.log(idContract);
+    this.props.deleteContract(idContract);
   }
 
   render() {
@@ -24,6 +31,7 @@ class ContractsList extends Component {
           o_zakaz={contract.o_zakaz}
           phone={contract.phone}
           comments={contract.comments}
+          deleteThisContract={this.deleteContract}
         />
       )
     });
@@ -43,7 +51,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: () => dispatch(getAllContracts())
+    fetchData: () => dispatch(getAllContracts()),
+    deleteContract: (id) => dispatch(deleteContract(id))
   }
 }
 

@@ -106,7 +106,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveMainInfoToStore: (data) => dispatch(saveMainInfoToStore(data))
+    saveMainInfoToStore: (data) => dispatch(saveMainInfoToStore(data)),
+    
   }
 }
 

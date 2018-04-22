@@ -19,7 +19,7 @@ const ContractCard = (props) => {
             {/*onClick={() => props.getInfo(person)}>*/}
               <i className="fas fa-edit"></i>
           </Link>
-          <span>
+          <span onClick={() => props.deleteThisContract(props.id)}>
           {/*<span onClick={() => props.workerDel('http://теплофф.рф/tyryr/worker/delete.php', props.id)}>*/}
             <i className="fas fa-trash-alt"></i>
           </span>

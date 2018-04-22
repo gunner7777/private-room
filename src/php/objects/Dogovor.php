@@ -194,8 +194,50 @@ class Dogovor {
   }
 
   function readOne() {
+    //dogovor
+    $query = "SELECT id_dog, name, date, fi_zakaz, o_zakaz, phone, comments 
+      FROM " . $this->table_name . " 
+      WHERE id_dog = :id";
+
+    $this->id = htmlspecialchars(strip_tags($this->id));
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindValue(':id', $this->id);
+    $stmt->execute();
+
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    $this->id = $row['id_dog'];
+    $this->name = $row['name'];
+    $this->date = $row['date'];
+    $this->fi_zakaz = $row['fi_zakaz'];
+    $this->o_zakaz = $row['o_zakaz'];
+    $this->phone = $row['phone'];
+    $this->comments = $row['comments'];
+
+    // docs
+    $query = "SELECT id_doc, type, link 
+      FROM " . $this->table_name_docs . " 
+      WHERE id_dog = :id";
+
+    $this->id = htmlspecialchars(strip_tags($this->id));
+
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindValue(':id', $this->id);
+    $stmt->execute();
+
+    while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+      extract($row);
+    
+      $this->docs[] = array(
+        'id_doc' => $row['id_doc'],
+        'type' => $row['type'],
+        'link' => $row['link']
+      );
+    }
+
     // dogovor join docs
-    $query = "SELECT dog.id_dog, dog.name, dog.date, dog.fi_zakaz, dog.o_zakaz, dog.phone, dog.comments, docs.id_doc, docs.type, docs.link 
+    /*$query = "SELECT dog.id_dog, dog.name, dog.date, dog.fi_zakaz, dog.o_zakaz, dog.phone, dog.comments, docs.id_doc, docs.type, docs.link 
       FROM " . $this->table_name . " dog 
       INNER JOIN " . $this->table_name_docs . " docs 
       ON dog.id_dog = docs.id_dog
@@ -222,7 +264,7 @@ class Dogovor {
         'type' => $row['type'],
         'link' => $row['link']
       );
-    }
+    }*/
 
     // dogovor join plan
     $query = "SELECT id_plan, date, workname, status 

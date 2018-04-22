@@ -294,7 +294,7 @@ export const updateMainInfo = (data) => {
     axios.post(url, data)
       .then(response => {
         dispatch(updateMainInfoSuccess(data));
-        //console.log(response);
+        dispatch(setLastCompleteChapter("MI"));
       })
       .catch(error => {
         console.log("error update", error.response);
@@ -532,7 +532,7 @@ export const deletePaySuccess = (id) => {
 }
 
 export const deleteDW = (id) => {
-  console.log("id", id);
+  //console.log("id", id);
   const url = 'http://теплофф.рф/tyryr/dogovor/deleteDw.php';
   return dispatch => {
     axios.post(url, id)
@@ -592,5 +592,18 @@ export const setLastCompleteChapter = (chapter) => {
   return {
     type: SET_LAST_COMPLETE_CHAPTER,
     chapter
+  }
+}
+
+export const deleteContract = (id) => {
+  var url = 'http://теплофф.рф/tyryr/dogovor/delete.php';
+  return dispatch => {
+    axios.post(url, id)
+      .then(response => {
+        console.log("success");
+      })
+      .catch(error => {
+        console.log("contract delete error", error);
+      })
   }
 }
