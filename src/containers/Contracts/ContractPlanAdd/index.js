@@ -6,7 +6,7 @@ import InputDate from '../../../blocks/InputDate';
 import Checkbox from '../../../blocks/Checkbox';
 import Button from '../../../blocks/Button';
 import Select from '../../../blocks/Select';
-import { savePlanToStore } from '../../../actions';
+import { savePlanToStore, setLastCompleteChapter } from '../../../actions';
 
 class ContractPlanAdd extends Component {
   constructor(props) {
@@ -60,6 +60,7 @@ class ContractPlanAdd extends Component {
       })
     }
     this.props.savePlanToStore(planArr);
+    this.props.setLastCompleteChapter("PLAN");
   }
 
   componentDidMount() {
@@ -137,7 +138,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    savePlanToStore: (data) => dispatch(savePlanToStore(data))
+    savePlanToStore: (data) => dispatch(savePlanToStore(data)),
+    setLastCompleteChapter: (tag) => dispatch(setLastCompleteChapter(tag))
   }
 }
 

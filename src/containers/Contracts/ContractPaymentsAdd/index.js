@@ -6,7 +6,7 @@ import InputDate from '../../../blocks/InputDate';
 import Checkbox from '../../../blocks/Checkbox';
 import Button from '../../../blocks/Button';
 import Select from '../../../blocks/Select';
-import { savePaymentsToStore } from '../../../actions';
+import { savePaymentsToStore, setLastCompleteChapter } from '../../../actions';
 
 class ContractPaymentsAdd extends Component {
   constructor(props) {
@@ -62,6 +62,7 @@ class ContractPaymentsAdd extends Component {
       })
     }
     this.props.savePaymentsToStore(payArr);
+    this.props.setLastCompleteChapter("PAYS");
   }
 
   componentDidMount() {
@@ -171,7 +172,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    savePaymentsToStore: (data) => dispatch(savePaymentsToStore(data))
+    savePaymentsToStore: (data) => dispatch(savePaymentsToStore(data)),
+    setLastCompleteChapter: (tag) => dispatch(setLastCompleteChapter(tag))
   }
 }
 

@@ -109,7 +109,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     saveMainInfoToStore: (data) => dispatch(saveMainInfoToStore(data)),
     setLastCompleteChapter: (tag) => dispatch(setLastCompleteChapter(tag))
-    
   }
 }
 

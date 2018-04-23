@@ -59,11 +59,13 @@ class ContractAdder extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     const newState = this.state.links.map(l => {
-      if(this.nextProps.lastChapter.indexOf(l.prevChapter) !== -1) {
+      if(nextProps.lastChapter.indexOf(l.prevChapter) !== -1) {
         l.disabled = false;
       } else {
         l.disabled = true;
+        //l.ssylka = "#";
       }
       return l;
      });
@@ -89,6 +91,7 @@ class ContractAdder extends Component {
   
 
   addNewContract() {
+    console.log(this.props.newContract);
     this.props.addContract(this.props.newContract);
   }
 

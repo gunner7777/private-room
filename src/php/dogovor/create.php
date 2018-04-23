@@ -68,7 +68,7 @@ $dogovor = new Dogovor($db);
 $data = json_decode(file_get_contents("php://input"));
 //$data = json_decode(file_get_contents('http://теплофф.рф/tyryr/1.json'));
 
-//print_r($data);
+print_r($data);
 
 $dogovor->name = $data->name;
 $dogovor->date = $data->date;
