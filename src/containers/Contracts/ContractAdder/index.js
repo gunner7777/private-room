@@ -14,8 +14,79 @@ class ContractAdder extends Component {
   constructor() {
     super();
 
+    this.state = {
+      links: [
+        /*{
+          ssylka: '/addContract',
+          text: 'Home',
+          chapter: 'NULL',
+          disabled: false
+        },*/
+        {
+          ssylka: '/addContract/common',
+          text: 'Common info',
+          prevChapter: 'MUST',
+          disabled: false
+        },
+        {
+          ssylka: '/addContract/docs',
+          text: 'Docs',
+          prevChapter: 'MI',
+          disabled: true
+        },
+        {
+          ssylka: '/addContract/plan-rabot',
+          text: 'Plan rabot',
+          prevChapter: 'DOCS',
+          disabled: true
+        },
+        {
+          ssylka: '/addContract/payments',
+          text: 'Payments',
+          prevChapter: 'PLAN',
+          disabled: true
+        },
+        {
+          ssylka: '/addContract/workers',
+          text: 'Workers',
+          prevChapter: 'PAYS',
+          disabled: true
+        }
+      ]
+    }
+
     this.addNewContract = this.addNewContract.bind(this);
   }
+
+  componentWillReceiveProps(nextProps) {
+    const newState = this.state.links.map(l => {
+      if(this.nextProps.lastChapter.indexOf(l.prevChapter) !== -1) {
+        l.disabled = false;
+      } else {
+        l.disabled = true;
+      }
+      return l;
+     });
+     console.log("newState", newState);
+    this.setState({
+      ...this.state,
+      links: newState
+    })
+  }
+  
+  componentDidMount() {
+     /*const newState = this.state.links.map(l => {
+      if(this.props.lastChapter.indexOf(l.prevChapter) !== -1) {
+        l.disabled = false;
+      } else {
+        l.disabled = true;
+      }
+      return l;
+     });
+
+     console.log("state state", newState);*/
+  }
+  
 
   addNewContract() {
     this.props.addContract(this.props.newContract);
@@ -27,7 +98,10 @@ class ContractAdder extends Component {
      
      return (
       <div>
-        <AdderMenu />
+        <AdderMenu 
+          chapter={this.props.lastChapter}
+          links={this.state.links}
+        />
         <Switch>
           <Route
             path="/addContract/common"
@@ -67,6 +141,7 @@ class ContractAdder extends Component {
 const mapStateToProps = (state) => {
   return {
     newContract: state.newContract.newContract,
+    lastChapter: state.newContract.lastChapter
   }
 }
 

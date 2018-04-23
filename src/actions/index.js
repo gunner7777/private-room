@@ -294,7 +294,6 @@ export const updateMainInfo = (data) => {
     axios.post(url, data)
       .then(response => {
         dispatch(updateMainInfoSuccess(data));
-        dispatch(setLastCompleteChapter("MI"));
       })
       .catch(error => {
         console.log("error update", error.response);
@@ -560,6 +559,10 @@ export const saveMainInfoToStore = (data) => {
   }
 }
 
+/*export const saveMI = (data) => {
+  return dispatch()
+}*/
+
 export const saveDocsToStore = (data) => {
   return {
     type: SAVE_DOCS_TO_STORE,
@@ -589,6 +592,7 @@ export const saveDwToStore = (data) => {
 }
 
 export const setLastCompleteChapter = (chapter) => {
+  console.log(chapter);
   return {
     type: SET_LAST_COMPLETE_CHAPTER,
     chapter

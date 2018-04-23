@@ -4,7 +4,7 @@ import InputText from '../../../blocks/InputText';
 import InputFile from '../../../blocks/InputFile';
 import Button from '../../../blocks/Button';
 import Select from '../../../blocks/Select';
-import { saveDocsToStore } from '../../../actions';
+import { saveDocsToStore, setLastCompleteChapter } from '../../../actions';
 
 class ContractDocsAdd extends Component {
   constructor(props) {
@@ -100,6 +100,7 @@ class ContractDocsAdd extends Component {
       })
     }
     this.props.saveDocsToStore(docArr);
+    this.props.setLastCompleteChapter("DOCS");
   }
 
   componentDidMount() {
@@ -176,7 +177,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    saveDocsToStore: (data) => dispatch(saveDocsToStore(data))
+    saveDocsToStore: (data) => dispatch(saveDocsToStore(data)),
+    setLastCompleteChapter: (tag) => dispatch(setLastCompleteChapter(tag))
   }
 }
 

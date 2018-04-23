@@ -4,7 +4,7 @@ import InputText from '../../../blocks/InputText';
 import Button from '../../../blocks/Button';
 import InputDate from '../../../blocks/InputDate';
 import ErrorValidator from '../../../blocks/ErrorValidator';
-import { saveMainInfoToStore } from '../../../actions';
+import { saveMainInfoToStore, setLastCompleteChapter } from '../../../actions';
 import { errorValid } from '../../../modules/errorValid';
 
 class ContractMainInfoAdd extends Component {
@@ -57,6 +57,7 @@ class ContractMainInfoAdd extends Component {
     };
 
     this.props.saveMainInfoToStore(mainInfo);
+    this.props.setLastCompleteChapter("MI");
   }
 
    render() {
@@ -107,6 +108,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     saveMainInfoToStore: (data) => dispatch(saveMainInfoToStore(data)),
+    setLastCompleteChapter: (tag) => dispatch(setLastCompleteChapter(tag))
     
   }
 }

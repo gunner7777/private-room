@@ -1,35 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const links = [
-  {
-    ssylka: '/addContract',
-    text: 'Home'
-  },
-  {
-    ssylka: '/addContract/common',
-    text: 'Common info'
-  },
-  {
-    ssylka: '/addContract/docs',
-    text: 'Docs'
-  },
-  {
-    ssylka: '/addContract/plan-rabot',
-    text: 'Plan rabot'
-  },
-  {
-    ssylka: '/addContract/payments',
-    text: 'Payments'
-  },
-  {
-    ssylka: '/addContract/workers',
-    text: 'Workers'
+const EditorMenu = (props) => {
+  /*let menu = [];
+  for(let i=0; i<links.length; i++) {
+    if(links[i].chapter !== props.chapter) {
+      menu.push(links[i]);
+    } else
+      break;
   }
-];
-
-const EditorMenu = () => {
-  const menu = links.map(l => {
+  console.log(menu);*/
+  const menu = props.links.map(l => {
     return (
       <Link
       to={l.ssylka} >
@@ -37,6 +18,7 @@ const EditorMenu = () => {
       </Link>
     )
   });
+  console.log(menu);
   return (
     <div>
       {menu}

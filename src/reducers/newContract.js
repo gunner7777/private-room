@@ -18,7 +18,7 @@ const initialState = {
     'Дополнительное соглашение'
   ],
   result: true,
-  lastChapter: ""
+  lastChapter: ["MUST"]
 };
 
 export const newContract = (state=initialState, action) => {
@@ -84,7 +84,7 @@ export const newContract = (state=initialState, action) => {
     case SET_LAST_COMPLETE_CHAPTER:
       return {
         ...state,
-        lastChapter: action.chapter
+        lastChapter: state.lastChapter.concat(action.chapter)
       }
     default: return state;
   }
