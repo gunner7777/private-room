@@ -51,7 +51,104 @@ class Dogovor {
   }
 
   function create() {
-    // add dogovor table
+
+    try {
+      $this->conn->beginTransaction();
+
+      // add dogovor table
+      $query = "INSERT INTO " . $this->table_name . "
+      (name, date, fi_zakaz, o_zakaz, phone, comments) 
+      VALUES(:name, :date, :fi_zakaz, :o_zakaz, :phone, :comments)";
+     // echo $this->name;
+      $this->name = htmlspecialchars(($this->name));
+      $this->date = htmlspecialchars(($this->date));
+      $this->fi_zakaz = htmlspecialchars(($this->fi_zakaz));
+      $this->o_zakaz = htmlspecialchars(($this->o_zakaz));
+      $this->phone = htmlspecialchars(($this->phone));
+      $this->comments = htmlspecialchars(($this->comments));
+
+      $res = $this->conn->prepare($query);
+      $res->bindValue(':name', $this->name);
+      $res->bindValue(':date', $this->date);
+      $res->bindValue(':fi_zakaz', $this->fi_zakaz);
+      $res->bindValue(':o_zakaz', $this->o_zakaz);
+      $res->bindValue(':phone', $this->phone);
+      $res->bindValue(':comments', $this->comments);
+      $res->execute();
+      
+      //get last id
+      $this->id = $this->conn->lastInsertId();
+      
+
+      // insert into docs
+      $query = "INSERT INTO " . $this->table_name_docs . "
+      (id_dog, type, link) 
+      VALUES(:id_dog, :type, :link)";
+
+      $res = $this->conn->prepare($query);
+      $res->bindValue(':id_dog', $this->id);
+
+      foreach($this->docs as $doc) {
+        //print_r($doc->type);
+        $res->bindValue(':type', $doc->type);
+        $res->bindValue(':link', $doc->link);
+        $res->execute();
+      }
+
+
+      // insert into plan_rabot
+      $query = "INSERT INTO " . $this->table_name_plan . "
+      (id_dog, date, workname, status) 
+      VALUES(:id_dog, :date, :workname, :status)";
+
+      $res = $this->conn->prepare($query);
+      $res->bindValue(':id_dog', $this->id);
+
+      foreach($this->plan as $p) {
+        $res->bindValue(':date', $p->date);
+        $res->bindValue(':workname', $p->workname);
+        $res->bindValue(':status', $p->status);
+        $res->execute();
+      }
+
+      // insert into payments
+      $query = "INSERT INTO " . $this->table_name_payments . "
+      (id_dog, stage_payment, date, summa, status) 
+      VALUES(:id_dog, :stage_payment, :date, :summa, :status)";
+
+      $res = $this->conn->prepare($query);
+      $res->bindValue(':id_dog', $this->id);
+
+      foreach($this->payments as $pay) {
+        $res->bindValue(':stage_payment', $pay->stage_payment);
+        $res->bindValue(':date', $pay->date);
+        $res->bindValue(':summa', $pay->summa);
+        $res->bindValue(':status', $pay->status);
+        $res->execute();
+      }
+
+
+      // insert into dogovor_workers
+      $query = "INSERT INTO " . $this->table_name_dogovor_workers . "
+      (id_dog, id_worker, main_worker) 
+      VALUES(:id_dog, :id_worker, :main_worker)";
+
+
+      $res = $this->conn->prepare($query);
+      $res->bindValue(':id_dog', $this->id);
+
+      foreach($this->d_w as $dw) {
+        $res->bindValue(':id_worker', $dw->id_worker);
+        $res->bindValue(':main_worker', $dw->main_worker);
+        $res->execute();
+      }
+
+      $this->conn->commit();
+    } catch(PDOException $e) {
+      $this->conn->rollBack();
+    }
+    
+    /*// add dogovor table
     $query = "INSERT INTO " . $this->table_name . "
       (name, date, fi_zakaz, o_zakaz, phone, comments) 
       VALUES(:name, :date, :fi_zakaz, :o_zakaz, :phone, :comments)";
@@ -98,7 +195,7 @@ class Dogovor {
         $res->bindValue(':id_dog', $this->id);
 
         foreach($this->docs as $doc) {
-          print_r($doc->type);
+          //print_r($doc->type);
           $res->bindValue(':type', $doc->type);
           $res->bindValue(':link', $doc->link);
           $res->execute();
@@ -178,7 +275,7 @@ class Dogovor {
         $this->conn->commit();
       } catch(PDOException $e) {
         $this->conn->rollBack();
-      }
+      }*/
       return true;
   }
 
