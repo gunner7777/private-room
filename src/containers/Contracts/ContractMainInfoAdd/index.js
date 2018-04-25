@@ -61,9 +61,9 @@ class ContractMainInfoAdd extends Component {
   }
 
    render() {
-    setTimeout(() => {
+    /*setTimeout(() => {
       console.log("state comp", this.state.error.bool);
-    }, 800)
+    }, 800)*/
      const hasError = this.state.error.bool === false ? "" : <ErrorValidator fieldName={this.state.error.field} />;
      return (
       <div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import AllStages from '../AllStages';
 import FormInput from '../FormInput';
 import Settings from '../Settings';
@@ -26,6 +26,7 @@ const Main = () => {
       <Route path='/addWorker' component={WorkerAdd} />
       <Route path='/allContracts' component={ContractsList} />
       <Route path="/contract/:id?/edit" component={ContractEditor} />
+      <Redirect to="/" />
     </Switch>
   );
 }

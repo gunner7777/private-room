@@ -21,11 +21,11 @@ class Worker {
             (fi, post, photo_link, phone, mail) 
             VALUES(:fi, :post, :photo_link, :phone, :mail)";
 
-        $this->fi = htmlspecialchars(strip_tags($this->fi));
+        /*$this->fi = htmlspecialchars(strip_tags($this->fi));
         $this->post = htmlspecialchars(strip_tags($this->post));
         $this->photo_link = htmlspecialchars(strip_tags($this->photo_link));
         $this->phone = htmlspecialchars(strip_tags($this->phone));
-        $this->mail = htmlspecialchars(strip_tags($this->mail));
+        $this->mail = htmlspecialchars(strip_tags($this->mail));*/
         
         try {
             $this->conn->beginTransaction();

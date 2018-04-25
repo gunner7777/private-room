@@ -21,8 +21,9 @@ class InputFile extends React.Component {
 
   handleChange(e) {
     const pathArr = e.target.value.split('\\');
+    console.log(pathArr[pathArr.length-1].toLowerCase());
     this.setState({
-      fileName: pathArr[pathArr.length-1]
+      fileName: pathArr[pathArr.length-1].toLowerCase()
     });
   
     const node = e.target.parentElement.parentElement;
