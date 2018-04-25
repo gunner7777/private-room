@@ -45,11 +45,15 @@ class WorkerAdd extends Component {
                 <Select selectOption = {select} selectName="workerPost" />
                 {/*<InputText inputLabelLink="workerPhoto" labelText="Фото сотрудника" />*/}
                 <br/>
-                <InputFile fileType="photo"/>
+                <InputFile
+                    fileType="photo"
+                    uploaded={this.props.file.ok} />
                 <img src={this.state.photoLink}/>
                 <InputText inputLabelLink="workerPhone" labelText="Телефон" />
                 <InputText inputLabelLink="workerMail" labelText="E-mail" />
-                <Button text="Добавить" buttonClick={this.handleClick} />
+                <Button
+                    text="Добавить"
+                    buttonClick={this.handleClick} />
             </React.Fragment>
         );  
     }

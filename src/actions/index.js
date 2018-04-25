@@ -605,6 +605,7 @@ export const deleteContract = (id) => {
     axios.post(url, id)
       .then(response => {
         console.log("success");
+        dispatch(getAllContracts());
       })
       .catch(error => {
         console.log("contract delete error", error);

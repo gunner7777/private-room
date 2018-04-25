@@ -8,7 +8,7 @@ import Select from '../Select';
 class InputFile extends React.Component {
   constructor(props) {
     super(props);
-    let idInput = "0";
+    this.idInput = "0";
     this.state = {
       fileName: this.props.file.fileName,
       uploadSuccess: false
@@ -55,7 +55,9 @@ class InputFile extends React.Component {
   }
 
   render() {
+    //console.log(this.idInput);
     this.idInput = this.props.inputId === undefined ? this.idInput : this.props.inputId;
+    console.log("fName", this.props.fName);
     return (
       <form action="" encType="multipart/form-data" onSubmit={this.handleSubmit}>
         <input
@@ -66,7 +68,7 @@ class InputFile extends React.Component {
           onChange={this.handleChange} />
         <label htmlFor={`addfile_${this.idInput}`}>
           <i className="far fa-folder-open"></i>
-          <span className="InputFile-Text">{this.props.fName !== "" ? this.props.fName : "Choose a file"}</span>
+          <span className="InputFile-Text">{((this.props.fName !== "")&&(this.props.fName !== undefined)) ? this.props.fName : "Choose a file"}</span>
         </label>
 
         <Button

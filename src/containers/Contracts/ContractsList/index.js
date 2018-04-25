@@ -6,7 +6,7 @@ import ContractCard from '../../../components/ContractCard';
 class ContractsList extends Component {
   constructor() {
     super();
-
+    
     this.deleteContract = this.deleteContract.bind(this);
   }
 
