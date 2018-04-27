@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
+import { Route, Switch, Redirect } from 'react-router-dom';
 import InputText from '../../../blocks/InputText';
 import InputFile from '../../../blocks/InputFile';
 import InputDate from '../../../blocks/InputDate';
@@ -87,6 +89,11 @@ class ContractPlanAdd extends Component {
   }
 
   render() {
+
+    if(this.props.newContract.docs === undefined) {
+      return <Redirect to="/allContracts" />
+    }
+
     const planForm = (this.state.plan.map(p => {
       return (
         <div className="planBlock" key={p.id_block} data-blockid={p.id_block}>
@@ -143,4 +150,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContractPlanAdd);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ContractPlanAdd));

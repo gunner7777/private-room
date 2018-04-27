@@ -20,7 +20,6 @@ class ContractsList extends Component {
   }
 
   render() {
-    console.log(this.props.contracts);
     const cList = this.props.contracts === undefined ? "<p>Договоров нет</p>" : this.props.contracts.map((contract) => {
       return (
         <ContractCard 

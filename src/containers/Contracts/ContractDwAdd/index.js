@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
+import { Route, Switch, Redirect } from 'react-router-dom';
 import InputText from '../../../blocks/InputText';
 import Checkbox from '../../../blocks/Checkbox';
 import Button from '../../../blocks/Button';
 import Select from '../../../blocks/Select';
-import { saveDwToStore, getAllWorkers } from '../../../actions';
+import { saveDwToStore, getAllWorkers, setLastCompleteChapter } from '../../../actions';
 
 
 class ContractDwAdd extends Component {
@@ -65,6 +67,7 @@ class ContractDwAdd extends Component {
       })
     }
     this.props.saveDwToStore(dwArr);
+    this.props.setLastCompleteChapter("WORKERS");
   }
 
   componentDidMount() {
@@ -93,6 +96,10 @@ class ContractDwAdd extends Component {
   }
 
   render() {
+    if(this.props.newContract.payments === undefined) {
+      return <Redirect to="/allContracts" />
+    }
+
     if(this.props.workersIsLoading === true) {
       return <p>Идет загрузка</p>
     }
@@ -152,8 +159,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     getAllWorkers: () => dispatch(getAllWorkers()),
-    saveDwToStore: (data) => dispatch(saveDwToStore(data))
+    saveDwToStore: (data) => dispatch(saveDwToStore(data)),
+    setLastCompleteChapter: (tag) => dispatch(setLastCompleteChapter(tag))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContractDwAdd);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ContractDwAdd));

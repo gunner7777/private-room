@@ -58,6 +58,7 @@ class ContractMainInfoAdd extends Component {
 
     this.props.saveMainInfoToStore(mainInfo);
     this.props.setLastCompleteChapter("MI");
+    //this.props.history.push("/addContract/common");
   }
 
    render() {

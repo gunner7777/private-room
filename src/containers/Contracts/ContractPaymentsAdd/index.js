@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
+import { Route, Switch, Redirect } from 'react-router-dom';
 import InputText from '../../../blocks/InputText';
 import InputFile from '../../../blocks/InputFile';
 import InputDate from '../../../blocks/InputDate';
@@ -89,6 +91,10 @@ class ContractPaymentsAdd extends Component {
   }
 
   render() {
+    if(this.props.newContract.plan === undefined) {
+      return <Redirect to="/allContracts" />
+    }
+
     /*const planForm = ((Object.keys(this.state.plan).length === 0)&&(this.props.newContract.plan !== undefined))
     ? (this.props.newContract.plan.map(p => {
       return (
@@ -177,4 +183,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContractPaymentsAdd);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ContractPaymentsAdd));

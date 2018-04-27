@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router'
+import { Route, Switch, Redirect } from 'react-router-dom';
 import InputText from '../../../blocks/InputText';
 import InputFile from '../../../blocks/InputFile';
 import Button from '../../../blocks/Button';
 import Select from '../../../blocks/Select';
+import { redirectToMain } from '../../../modules/redirectToMain';
 import { saveDocsToStore, setLastCompleteChapter } from '../../../actions';
 
 class ContractDocsAdd extends Component {
@@ -23,7 +26,7 @@ class ContractDocsAdd extends Component {
 
   componentWillReceiveProps(nextProps) {
     //console.log("next props", nextProps.file.buttonId);
-    console.log("docs", this.state.docs);
+    //console.log("docs", this.state.docs);
     const newDocsState = this.state.docs.map(doc => {
       if(doc.id_block === nextProps.file.buttonId) {
         //doc.uploaded = true;
@@ -34,7 +37,7 @@ class ContractDocsAdd extends Component {
       return doc;
     });
 
-    console.log(newDocsState);
+    //console.log(newDocsState);
     this.setState({
       docs: newDocsState
     });
@@ -104,6 +107,14 @@ class ContractDocsAdd extends Component {
   }
 
   componentDidMount() {
+    // no complete prev form go to list project
+    /*console.log(this.props.history);
+    if(this.props.history === undefined) {
+      console.log("dfdddfdf");
+      return <Redirect to="/" />
+    }*/
+    //redirectToMain(this.props.newContract, this.props.history);
+
     if(this.props.newContract.docs !== undefined) {
       let count = this.state.counter;
       const arr = this.props.newContract.docs.map(doc => {
@@ -127,6 +138,10 @@ class ContractDocsAdd extends Component {
   }
 
   render() {
+    //console.log("history", this.props.newContract);
+    if(this.props.newContract.name === undefined) {
+      return <Redirect to="/allContracts" />
+    }
     //console.log("new state", this.state.docs);
     const docsForm = this.state.docs.map(doc => {
       return (
@@ -182,4 +197,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ContractDocsAdd);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ContractDocsAdd));

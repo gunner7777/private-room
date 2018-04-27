@@ -10,6 +10,7 @@ import ContractPaymentsAdd from '../../../containers/Contracts/ContractPaymentsA
 import ContractDwAdd from '../../../containers/Contracts/ContractDwAdd';
 import { addContract } from '../../../actions';
 
+
 class ContractAdder extends Component {
   constructor() {
     super();
@@ -98,7 +99,11 @@ class ContractAdder extends Component {
    render() {
      // Просто запоминаем все шаги (основная информация, доки и тд) в сторе.
      // Будет одна кнопка "Сохранить", которая в конце просто выгрузит все в базу
-     
+     const addButton = this.props.lastChapter.length === 6 
+      ? <Button
+        text="Добавить"
+        buttonClick={this.addNewContract} />
+      : "";
      return (
       <div>
         <AdderMenu 
@@ -132,9 +137,7 @@ class ContractAdder extends Component {
               <ContractDwAdd />}
           />
         </Switch>
-        <Button
-        text="Добавить"
-        buttonClick={this.addNewContract} />
+        {addButton}
       </div>
      );
    }
