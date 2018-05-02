@@ -1,10 +1,14 @@
+.InputText {
+  margin: 15px 0;
+}
+
 .InputField {
   box-shadow: inset 0 0 0 1px #e0e6ed;
   border: none;
   border-radius: 4px;
   width: 50%;
   max-width: 300px;
-  margin: 5px;
+  margin: 5px 0;
   padding: 10px;
   transition: box-shadow .2s ease;
   outline: none;

@@ -122,7 +122,7 @@ export const contract = (state=initialState, action) => {
         contract: {
           ...state.contract,
           docs: state.contract.docs.filter(doc => {
-            if(doc.id_doc !== action.id)
+            if(doc.id_block !== action.id)
               return doc;
           })
         }

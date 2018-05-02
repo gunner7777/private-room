@@ -58,26 +58,28 @@ class InputFile extends React.Component {
   render() {
     //console.log(this.idInput);
     this.idInput = this.props.inputId === undefined ? this.idInput : this.props.inputId;
-    console.log("fName", this.props.fName);
+    //console.log("fName", this.props.fName);
     return (
-      <form action="" encType="multipart/form-data" onSubmit={this.handleSubmit}>
-        <input
-          type="file"
-          id={`addfile_${this.idInput}`}
-          className="inputFile"
-          name="upload"
-          onChange={this.handleChange} />
-        <label htmlFor={`addfile_${this.idInput}`}>
-          <i className="far fa-folder-open"></i>
-          <span className="InputFile-Text">{((this.props.fName !== "")&&(this.props.fName !== undefined)) ? this.props.fName : "Choose a file"}</span>
-        </label>
+      <div className="InputFile-Form">
+        <form action="" encType="multipart/form-data" onSubmit={this.handleSubmit}>
+          <input
+            type="file"
+            id={`addfile_${this.idInput}`}
+            className="InputFile"
+            name="upload"
+            onChange={this.handleChange} />
+          <label htmlFor={`addfile_${this.idInput}`}>
+            <i className="far fa-folder-open"></i>
+            <span className="InputFile-Text">{((this.props.fName !== "")&&(this.props.fName !== undefined)) ? this.props.fName : "Choose a file"}</span>
+          </label>
 
-        <Button
-          text="Upload"
-          id={this.idInput}
-          uplFile={this.props.uploaded}
-          buttonClick={this.handleClick} />
-      </form>
+          <Button
+            text="Upload"
+            id={this.idInput}
+            uplFile={this.props.uploaded}
+            buttonClick={this.handleClick} />
+        </form>
+      </div>
     );
   }
 }

@@ -4,7 +4,9 @@ import InputText from '../../../blocks/InputText';
 import InputDate from '../../../blocks/InputDate';
 import Button from '../../../blocks/Button';
 import Checkbox from '../../../blocks/Checkbox';
+import PlusButton from '../../../blocks/PlusButton';
 import { addNewPay, deletePay } from '../../../actions';
+
 
 class ContractPaysEditor extends Component {
   constructor(props) {
@@ -78,9 +80,10 @@ class ContractPaysEditor extends Component {
 
     return (
       <div>
-        <span onClick={this.handleClick}>
+        {/*<span onClick={this.handleClick}>
           <i className="fas fa-plus"></i>
-        </span>
+        </span>*/}
+        <PlusButton addClick={this.handleClick} />
         {paymentsList}
         <Button
           text="Сохранить"

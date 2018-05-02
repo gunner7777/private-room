@@ -4,6 +4,7 @@ import InputText from '../../../blocks/InputText';
 import Button from '../../../blocks/Button';
 import Checkbox from '../../../blocks/Checkbox';
 import InputDate from '../../../blocks/InputDate';
+import PlusButton from '../../../blocks/PlusButton';
 import { addNewPlan, deletePlan } from '../../../actions';
 
 class ContractPlanEditor extends Component {
@@ -53,9 +54,10 @@ class ContractPlanEditor extends Component {
 
     return (
       <div>
-        <span onClick={this.handleClick}>
+        {/*<span onClick={this.handleClick}>
           <i className="fas fa-plus"></i>
-        </span>
+        </span>*/}
+        <PlusButton addClick={this.handleClick} />
         {planForm}
         <Button
           text="Сохранить"

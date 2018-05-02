@@ -1,0 +1,16 @@
+.PlusButton {
+  margin: 10px 0;
+
+  &-Icon {
+    font-size: 24px;
+    color: #fff;
+    background-color: rgba(21, 165, 98, 1);
+    border-radius: 50%;
+    padding: 8px 10px;
+    transition: background-color .3s ease;
+
+    &:hover {
+      background-color: rgba(21, 165, 98, .85);
+    }
+  }
+}

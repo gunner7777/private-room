@@ -95,16 +95,19 @@ class ContractEditor extends Component {
       for(const item of docNodes) {
         /*let isUploaded = item.querySelector('.Button').classList.contains('Button_uploaded');
         console.log(isUploaded);
-        if(isUploaded) {
+        if(!isUploaded) {
           continue;
         }*/
-        docsArr.push({
-          id_doc: item.getAttribute('data-docid'),
-          //type: item.querySelector('.inputDocsName').value,
-          type: item.querySelector('.contractDocs').value,
-          
-          link: '/contracts/' + this.props.contract.name + '/' + item.querySelector('.InputFile-Text').innerHTML,
-        });
+        //if((item.querySelector('.InputFile-Text').innerHTML !== "Choose a file")&&(item.querySelector('.InputFile-Text').innerHTML !== "")) {
+        if(item.querySelector('.Button').classList.contains('Button_uploaded')) {
+          docsArr.push({
+            id_doc: item.getAttribute('data-docid'),
+            //type: item.querySelector('.inputDocsName').value,
+            type: item.querySelector('.contractDocs').value,
+            
+            link: '/contracts/' + this.props.contract.name + '/' + item.querySelector('.InputFile-Text').innerHTML,
+          });
+        }
       }
       const docsUpdater = {
         id: this.props.contract.id_dog,

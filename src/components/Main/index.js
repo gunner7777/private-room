@@ -13,6 +13,7 @@ import WorkerEditor from '../../containers/WorkerEditor';
 import ContractsList from '../../containers/Contracts/ContractsList';
 import ContractEditor from '../../containers/Contracts/ContractEditor';
 import ContractAdder from '../../containers/Contracts/ContractAdder';
+import ContractViewer from '../../components/ContractViewer';
 
 const Main = () => {
   return (
@@ -26,6 +27,7 @@ const Main = () => {
       <Route path='/addWorker' component={WorkerAdd} />
       <Route path='/allContracts' component={ContractsList} />
       <Route path="/contract/:id?/edit" component={ContractEditor} />
+      <Route path="/contract/:id?/view" component={ContractViewer} />
       <Redirect to="/" />
     </Switch>
   );

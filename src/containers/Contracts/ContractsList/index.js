@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getAllContracts, deleteContract } from '../../../actions';
 import ContractCard from '../../../components/ContractCard';
+import './ContractsList.css';
 
 class ContractsList extends Component {
   constructor() {
@@ -35,7 +36,7 @@ class ContractsList extends Component {
       )
     });
     return (
-      <div>
+      <div className="ContractList">
         {cList}
       </div>
     );

@@ -69,7 +69,7 @@ class WorkerAdd extends Component {
     //const select = ['Менеджер', 'Архитектор', 'Прораб'];
     const hasError = this.state.error.bool === false ? "" : <ErrorValidator fieldName={this.state.error.field} />;
     return (
-      <React.Fragment>
+      <div className="WorkerAdder">
         {hasError}
         <InputText inputLabelLink="workerFI" labelText="Фамилия Имя сотрудника" />
         <p>Должность сотрудника</p>
@@ -85,7 +85,7 @@ class WorkerAdd extends Component {
         <Button
           text="Добавить"
           buttonClick={this.handleClick} />
-      </React.Fragment>
+      </div>
     );  
   }
 }

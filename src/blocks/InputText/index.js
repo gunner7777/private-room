@@ -27,7 +27,7 @@ class InputText extends Component {
   render() {
     const allClass = this.props.dopClass === undefined ? "InputField" : `InputField ${this.props.dopClass}`;
     return (
-      <div>
+      <div className="InputText">
         <label>{this.props.labelText}<br/>
         <input 
           type="text"

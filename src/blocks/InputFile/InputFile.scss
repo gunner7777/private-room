@@ -1,26 +1,31 @@
-.inputFile {
+.InputFile {
 	width: 0.1px;
 	height: 0.1px;
 	opacity: 0;
 	overflow: hidden;
 	position: absolute;
-	z-index: -1;
-}
+  z-index: -1;
+  
+  &-Form {
+    margin: 15px 0;
+  }
 
-.inputFile + label {
-  font-size: 1.25em;
-  font-weight: 700;
-  color: white;
-  background-color: black;
-  display: inline-block;
-  cursor: pointer;
-}
+  & + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 10px;
+  }
 
-.inputFile:focus + label,
-.inputFile + label:hover {
-  background-color: red;
-}
-
-.inputFile + label * {
-	pointer-events: none;
+  &:focus + label,
+  & + label:hover {
+    background-color: red;
+  }
+  
+  & + label * {
+    pointer-events: none;
+  }
 }

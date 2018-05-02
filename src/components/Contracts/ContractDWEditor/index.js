@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Checkbox from '../../../blocks/Checkbox';
 import Button from '../../../blocks/Button';
 import Select from '../../../blocks/Select';
+import PlusButton from '../../../blocks/PlusButton';
 import { deleteDW, addNewDW, getAllWorkers } from '../../../actions';
 
 class ContractDWEditor extends Component {
@@ -56,9 +57,10 @@ class ContractDWEditor extends Component {
     });
     return (
       <div>
-        <span onClick={this.handleClick}>
+        {/*<span onClick={this.handleClick}>
           <i className="fas fa-plus"></i>
-        </span>
+        </span>*/}
+        <PlusButton addClick={this.handleClick} />
         <div className="dwArea">
           {workersList}
         </div>

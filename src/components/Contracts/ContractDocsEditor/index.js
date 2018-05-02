@@ -5,6 +5,7 @@ import InputFile from '../../../blocks/InputFile';
 import Button from '../../../blocks/Button';
 import Select from '../../../blocks/Select';
 import { addNewDoc, deleteDoc } from '../../../actions';
+import PlusButton from '../../../blocks/PlusButton';
 
 class ContractDocsEditor extends Component {
   constructor(props) {
@@ -31,10 +32,18 @@ class ContractDocsEditor extends Component {
   }*/
   
   handleClick() {
-    //console.log(this.props.docs.length);
+    console.log(this.props.docs.length);
+    let nowLength = this.props.docs.length;
+    if(nowLength !== 0) { 
+      if(this.props.docs[this.props.docs.length-1].id_block === undefined) {
+        //this.props.docs[this.props.docs.length-1].uploaded = true;
+        this.props.docs[this.props.docs.length-1].id_block = this.props.docs[this.props.docs.length-1].id_doc;
+      }
+    }
     const currDocs = this.props.docs;
+    //this.props.docs.id_block === undefined ? this.props.docs.id_block = +this.props.docs.id_doc : null;
     const newDoc = {
-      id_block: currDocs.length !== 0 ? (+this.props.docs[this.props.docs.length-1].id_doc + 1) : 0,
+      id_block: currDocs.length !== 0 ? (+this.props.docs[this.props.docs.length-1].id_block + 1) : 0,
       id_doc: null,
       type: "",
       link: "",
@@ -61,8 +70,8 @@ class ContractDocsEditor extends Component {
       let fileName = pathArr[pathArr.length-1];
       //console.log(fileName);
       return (
-        <div className="docBlock" data-docid={doc.id_doc} key={doc.id_doc}>
-          <span onClick={() => this.props.deleteDoc(doc.id_doc)}>
+        <div className="docBlock" data-docid={doc.id_block} key={doc.id_block}>
+          <span onClick={() => this.props.deleteDoc(doc.id_block)}>
             <i className="fas fa-trash-alt"></i>
           </span>
           <p>Тип документа</p>
@@ -90,9 +99,10 @@ class ContractDocsEditor extends Component {
 
     return (
       <div>
-        <span onClick={this.handleClick}>
+        {/*<span onClick={this.handleClick}>
           <i className="fas fa-plus"></i>
-        </span>
+        </span>*/}
+        <PlusButton addClick={this.handleClick} />
         <div className="docsArea">
           {docsForm}
         </div>

@@ -471,6 +471,7 @@ export const addContractSuccess = (bool) => {
 }
 
 export const deleteDoc = (id) => {
+  console.log("id", id);
   const url = 'http://теплофф.рф/tyryr/dogovor/deleteDoc.php';
   return dispatch => {
     axios.post(url, id)

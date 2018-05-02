@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Select.css';
 
 class Select extends Component {
   constructor() {
@@ -31,8 +32,9 @@ class Select extends Component {
 
     return (
       <select
+
         id={this.props.selectName}
-        className={this.props.selectName}
+        className={`Select ${this.props.selectName}`}
         value={this.state.value}
         onChange={this.handleChange} >
         {opt}

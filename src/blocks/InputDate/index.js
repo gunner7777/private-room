@@ -8,11 +8,12 @@ import MomentLocaleUtils, {
 } from 'react-day-picker/moment';
 
 import 'moment/locale/ru';
+import './InputDate.css';
 
 const InputDate = (props) => {
   return (
-    <div>
-      <p>Please type a day:</p>
+    <div className="InputDate">
+      <p className="InputDate-Text">Дата</p>
       <DayPickerInput
         formatDate={formatDate}
         parseDate={parseDate}
