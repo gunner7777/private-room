@@ -1,5 +1,5 @@
 import React from 'react';
-import Stage from '../../blocks/Stage';
+import Stage from '../Stage';
 import Title from '../../blocks/Title';
 import './AllStages.css';
 
