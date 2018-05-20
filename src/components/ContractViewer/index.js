@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import MainWorkerOnProject from '../MainWorkerOnProject';
 import DocsFromProject from '../DocsFromProject';
 import Payments from '../Payments';
@@ -10,8 +11,10 @@ const ContractViewer = props => {
     <div>
       <p>Личный кабинет</p>
       <p>Договор № 111111</p>
-      <DocsFromProject />
-      <MainWorkerOnProject />
+      <div className='Container'>
+        <DocsFromProject />
+        <MainWorkerOnProject />
+      </div>
       <Payments />
       <Plan />
       <WorkersProject />

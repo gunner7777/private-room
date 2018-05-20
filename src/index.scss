@@ -4,15 +4,40 @@ html {
   box-sizing: border-box;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-size: 14px;
+  line-height: 1.5;
   font-family: 'Open Sans', sans-serif;
 }
 
 p,
 h2,
-h3 {
+h3,
+h4 {
   margin: 0;
+}
+
+img,
+video,
+audio {
+  max-width: 100%;
+  height: auto;
+}
+
+.flexblock {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.Container {
+  padding: 15px;
 }

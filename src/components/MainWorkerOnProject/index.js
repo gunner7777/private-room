@@ -1,14 +1,16 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import './MainWorkerOnProject.css';
 
 const MainWorkerOnProject = props => {
   return (
-    <div>
-      <h2>Ответственный за проект</h2>
-      <div>
-        <div>
-          foto
+    <div className='MainWorker'>
+      <h2 className='MainWorker-Title'>Ответственный за проект</h2>
+      <div className='flexblock'>
+        <div className='MainWorker-Photo'>
+          <img src='http://теплофф.рф/upploaddds/cover.jpg' alt='main worker' />
         </div>
-        <div>
+        <div className='MainWorker-Info'>
           <p>Вася Пупкин, медежер</p>
           <h3>Здравствуйте, Уважаемый заказчик!</h3>
           <p>

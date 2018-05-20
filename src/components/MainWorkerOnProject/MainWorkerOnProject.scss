@@ -1,0 +1,14 @@
+.MainWorker {
+
+  &-Title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  &-Photo {
+    width: 15%;
+    flex-basis: 14%;
+  }
+  &-Info {
+    width: 85%;
+  }
+}
