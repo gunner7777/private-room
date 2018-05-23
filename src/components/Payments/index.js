@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Stage from '../Stage';
+import './Payments.css';
 
 const Payments = props => {
   return (
@@ -10,7 +11,7 @@ const Payments = props => {
         <p className='Payments-Sum'>1430000 р.</p>
       </div>
 
-      <div className='flexblock'>
+      <div className='flexblock Payments-Stage'>
         <Stage 
           stageName = "Stage 1"
           sum="200000"

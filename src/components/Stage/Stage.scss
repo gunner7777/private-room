@@ -1,10 +1,18 @@
 .Stage {
+  /*position: relative;*/
   flex: 1;
   border: 2px solid #000000;
   margin: 10px;
+  text-align: center;
 
   &_Active {
     border: 2px solid #005300;
+  }
+
+  &-Info {
+    /*position: absolute;
+    top: 50%;
+    transform: translateY(-50%);*/
   }
 
   &-Status {

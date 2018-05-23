@@ -1,0 +1,20 @@
+.WorkerProject {
+  flex: 0 1 30%;
+
+  &-Outer {
+    padding: 5px;
+    flex-flow: row nowrap;
+  }
+
+  &-Photo,
+  &-Info {
+    padding: 5px;
+  }
+
+  &-Photo {
+    width: 40%;
+  }
+  &-Info {
+    width: 60%;
+  }
+}

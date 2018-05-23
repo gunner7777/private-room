@@ -14,9 +14,11 @@ const Stage = (props) => {
     : <p className='Stage-Status Stage-Status_Wait'><span><i className="far fa-hourglass"></i></span>&nbsp;<span>Ожидается оплата</span></p>;
   return (
     <div className={'Stage ' + (isComplete && 'Stage_Active')}>
-      {stageName}
-      {stageStatusIcon}
-      <p>{sum}</p>
+      <div className='Stage-Info'>
+        {stageName}
+        {stageStatusIcon}
+        <p>{sum}</p>
+      </div>
     </div>
   );
 };

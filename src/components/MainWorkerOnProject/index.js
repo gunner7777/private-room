@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Title from '../Title';
 import './MainWorkerOnProject.css';
 
 const MainWorkerOnProject = props => {
   return (
     <div className='MainWorker'>
-      <h2 className='MainWorker-Title'>Ответственный за проект</h2>
+      <Title>Ответственный за проект</Title>
       <div className='flexblock'>
         <div className='MainWorker-Photo'>
           <img src='http://теплофф.рф/upploaddds/cover.jpg' alt='main worker' />
