@@ -1,0 +1,13 @@
+.PlanItem {
+  margin: 5px 0;
+
+  &-StatusIcon,
+  &-Date,
+  &-Text {
+    margin: 0 10px;
+  }
+
+  &:nth-child(2n+1) {
+    background-color: rgba(0, 0, 0, 0.09);
+  }
+}

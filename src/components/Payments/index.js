@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Stage from '../Stage';
+import Title from '../Title';
 import './Payments.css';
 
 const Payments = props => {
   return (
     <div className='Container'>
+      <Title>Оплата</Title>
       <div className='Payments'>
         <h4 className='Payments-Title'>Сумма</h4>
         <p className='Payments-Sum'>1430000 р.</p>
