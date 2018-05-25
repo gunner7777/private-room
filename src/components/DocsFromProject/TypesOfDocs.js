@@ -5,6 +5,7 @@ const TypesOfDocs = props => {
   const types = props.types.map((type, index) => {
     return (
       <p
+        className="DocsFromProject-Item"
         key={index}
         data-type={type}
         onClick={props.clickDoc}>
@@ -13,7 +14,7 @@ const TypesOfDocs = props => {
     )
   });
   return (
-    <div>
+    <div className="DocsFromProject-Column">
       {types}
     </div>
   )

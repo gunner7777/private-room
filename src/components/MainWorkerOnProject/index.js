@@ -17,7 +17,7 @@ const MainWorkerOnProject = props => {
           <p>
             Я ваш менеджер. Я отвечаю за то, чтобы процесс строительства прошел для вас максимально комфортно. По всем вопросом проекта обращайтесь ко мне.
           </p>
-          <button>Заказать обратный звонок</button>
+          <button type="submit" className="MainWorker-Button">Заказать обратный звонок</button>
         </div>
       </div>
     </div>

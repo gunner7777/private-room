@@ -1,14 +1,32 @@
 .MainWorker {
+  margin: 5px;
+  flex: 0 1 68%;
 
   &-Title {
     font-size: 20px;
     margin-bottom: 10px;
   }
   &-Photo {
-    width: 15%;
-    flex-basis: 14%;
+    width: 25%;
+    flex-basis: 25%;
+    padding: 5px;
   }
   &-Info {
-    width: 85%;
+    width: 75%;
+    padding: 5px;
+  }
+
+  &-Button {
+    border: none;
+    padding: 10px 15px;
+    background-color: #2196f3;
+    transition: background-color .25s ease;
+    cursor: pointer;
+    color: #fff;
+
+    &:hover,
+    &:active {
+      background-color: #1976d2;
+    }
   }
 }

@@ -11,7 +11,7 @@ const ContractViewer = props => {
     <div>
       <p>Личный кабинет</p>
       <p>Договор № 111111</p>
-      <div className='Container'>
+      <div className='Container flexblock'>
         <DocsFromProject />
         <MainWorkerOnProject />
       </div>
