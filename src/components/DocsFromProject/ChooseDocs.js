@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const ChooseDocs = props => {
   const choose = props.choosenDocs.map((doc, index) => {
@@ -8,7 +9,7 @@ const ChooseDocs = props => {
         className="DocsFromProject-Item"
         key={index}>
         <span>{doc.type}</span>
-        <a href={doc.link} className="DocsFromProject-Link"><i className="fas fa-download"></i></a>
+        <Link to='' className="DocsFromProject-Link" onClick={(event) => { event.preventDefault(); window.open(doc.link); }}><i className="fas fa-download"></i></Link>
       </p>
     );
   });

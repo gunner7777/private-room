@@ -5,6 +5,7 @@ import Button from '../../../blocks/Button';
 import Checkbox from '../../../blocks/Checkbox';
 import InputDate from '../../../blocks/InputDate';
 import PlusButton from '../../../blocks/PlusButton';
+import Select from '../../../blocks/Select';
 import { addNewPlan, deletePlan } from '../../../actions';
 
 class ContractPlanEditor extends Component {
@@ -26,6 +27,7 @@ class ContractPlanEditor extends Component {
   }
 
   render() {
+    const selectStatus = ['ожидается', 'в процессе', 'выполнено'];
     const planForm = this.props.plan.map(p => {
       return (
         <div className="planBlock" data-planid={p.id_plan}>
@@ -41,13 +43,19 @@ class ContractPlanEditor extends Component {
             dopClass="inputPlanWorkname"
             inpValue={p.workname}
           />
-          <p>
+          <p>Статус готовности</p>
+          <Select
+            selectOption = {selectStatus}
+            selectName="planStatus"
+            selValue={p.status} 
+          />
+          {/*<p>
             <Checkbox
               nameClass="planStatus"
               checkValue={p.status}
             />
             Статус готовности
-          </p>
+          </p>*/}
         </div>
       );
     });

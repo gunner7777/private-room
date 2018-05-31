@@ -5,7 +5,7 @@ import './MainWorkerOnProject.css';
 
 const MainWorkerOnProject = props => {
   return (
-    <div className='MainWorker'>
+    <div className='MainWorker ComponentBlock'>
       <Title>Ответственный за проект</Title>
       <div className='flexblock'>
         <div className='MainWorker-Photo'>

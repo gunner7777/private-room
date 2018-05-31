@@ -5,7 +5,7 @@ import './WorkersProject.css';
 
 const WorkersProject = props => {
   return (
-    <div className='Container'>
+    <div className='Container ComponentBlock'>
       <Title>Обратная связь</Title>
       <div className='WorkerProject-Outer flexblock'>
         <div className="WorkerProject flexblock">

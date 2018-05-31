@@ -58,7 +58,8 @@ class ContractPlanAdd extends Component {
       planArr.push({
         date: item.querySelector('.DayPickerInput input').value,
         workname: item.querySelector('.inputPlanWorkname').value,
-        status: item.querySelector('.planStatus').checked ? "1" : "0"
+        status: item.querySelector('.planStatus').value
+        //status: item.querySelector('.planStatus').checked ? "1" : "0"
       })
     }
     this.props.savePlanToStore(planArr);
@@ -89,7 +90,7 @@ class ContractPlanAdd extends Component {
   }
 
   render() {
-
+    const selectStatus = ['ожидается', 'в процессе', 'выполнено'];
     if(this.props.newContract.docs === undefined) {
       return <Redirect to="/allContracts" />
     }
@@ -109,13 +110,19 @@ class ContractPlanAdd extends Component {
             dopClass="inputPlanWorkname"
             inpValue={p.workname}
           />
-          <p>
+          <p>Статус готовности</p>
+          <Select
+            selectOption = {selectStatus}
+            selectName="planStatus"
+            selValue={p.status} 
+          />
+          {/*<p>
             <Checkbox
               nameClass="planStatus"
               checkValue={p.status}
             />
             Статус готовности
-          </p>
+          </p>*/}
         </div>
       );
     }));

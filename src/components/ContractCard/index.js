@@ -20,6 +20,13 @@ const ContractCard = (props) => {
       <p className="ContractCard-Line"><strong>Телефон:</strong> {props.phone}</p>
       <p className="ContractCard-Line"><strong>Комментарии к договору:</strong></p>
       <p className="ContractCard-Line">{props.comments}</p>
+      <div>
+        <Link 
+          to={`/contract/${props.id}/view`}
+          className='ContractCard-More' >
+          Подробнее
+        </Link>
+        </div>
       <div className="ContractCard-Controls">
           <Link
             to={`/contract/${props.id}/edit`}>

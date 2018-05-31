@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+
 import TypesOfDocs from './TypesOfDocs';
 import ChooseDocs from './ChooseDocs';
 import Title from '../Title';
@@ -47,17 +48,17 @@ class DocsFromProject extends Component {
       {
         id_doc: "24",
         type: "Договор",
-        link: "/contracts/null/34563.pdf"
+        link: "http://теплофф.рф/contracts/6765/34563.pdf"
       },
       {
         id_doc: "25",
         type: "Приложение",
-        link: "/contracts/null/345635.pdf"
+        link: "http://теплофф.рф/contracts/6765/345635.pdf"
       },
       {
         id_doc: "26",
         type: "Приложение",
-        link: "/contracts/null/34563ss5.pdf"
+        link: "http://теплофф.рф/contracts/6765/34563ss5.pdf"
       }
       
     ];
@@ -83,7 +84,7 @@ class DocsFromProject extends Component {
 
   render() {
     return (
-      <div className="DocsFromProject">
+      <div className="DocsFromProject ComponentBlock">
         <Title>
           Документы
         </Title>

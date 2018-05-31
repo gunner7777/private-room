@@ -128,7 +128,8 @@ class ContractEditor extends Component {
           id_plan: item.getAttribute('data-planid'),
           date: item.querySelector('.DayPickerInput input').value,
           workname: item.querySelector('.inputPlanWorkname').value,
-          status: item.querySelector('.planStatus').checked ? "1" : "0"
+          status: item.querySelector('.planStatus').value,
+          //status: item.querySelector('.planStatus').checked ? "1" : "0"
         });
       }
       const planUpdater = {

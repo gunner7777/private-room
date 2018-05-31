@@ -18,6 +18,10 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 p,
 h2,
 h3,
@@ -40,4 +44,10 @@ audio {
 
 .Container {
   padding: 15px;
+  margin: 10px 0;
+}
+
+.ComponentBlock {
+  background-color: rgba(135, 197, 248, .12);
+  padding: 5px;
 }

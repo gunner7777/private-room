@@ -28,7 +28,7 @@ const Main = () => {
       <Route path='/allContracts' component={ContractsList} />
       <Route path="/contract/:id?/edit" component={ContractEditor} />
       <Route path="/contract/:id?/view" component={ContractViewer} />
-      <Redirect to="/" />
+      {/*<Redirect to="/" />*/}
     </Switch>
   );
 }

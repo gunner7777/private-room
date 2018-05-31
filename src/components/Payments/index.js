@@ -6,7 +6,7 @@ import './Payments.css';
 
 const Payments = props => {
   return (
-    <div className='Container'>
+    <div className='Container ComponentBlock'>
       <Title>Оплата</Title>
       <div className='Payments'>
         <h4 className='Payments-Title'>Сумма</h4>
