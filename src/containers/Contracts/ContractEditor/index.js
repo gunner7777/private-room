@@ -196,6 +196,8 @@ class ContractEditor extends Component {
         return <p>Loading data</p>;
       }
 
+      console.log("editro", this.props.contract);
+
       const {
         name,
         date,
@@ -205,7 +207,8 @@ class ContractEditor extends Component {
         comments,
         docs,
         plan,
-        payments,workers
+        payments,
+        workers
       } = this.props.contract;
       
         return (

@@ -7,14 +7,33 @@ import './Plan.css';
 import PlanItem from './PlanItem';
 
 const Plan = (props) => {
-  /*const planList = props.plan.map((p, index) => {
+  let doneDate = [];
+  let waitDate = [];
+  //workDate is one process always
+  let workDate;
+  const planList = props.plan.map((p, index) => {
+    let splitDate = p.date.split('.');
+    let dateForPicker = new Date(splitDate[2], splitDate[1]-1, splitDate[0]);
+    switch(p.status) {
+      case 'выполнено':
+        doneDate.push(dateForPicker);
+        break;
+      case 'ожидается':
+        waitDate.push(dateForPicker);
+        break;
+      case 'в процессе':
+        workDate.push(dateForPicker);
+        break;
+      default: break;
+    }
     return (
-      <PlanItem 
-        keyNum={index}
+      <PlanItem
+        key={index}
         planItem={p}
       />
     )
-  });*/
+  });
+
   const WEEKDAYS_SHORT = {
     ru: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб']
   };
@@ -54,15 +73,22 @@ const Plan = (props) => {
   const LABELS = {
     ru: { nextMonth: 'следующий месяц', previousMonth: 'предыдущий месяц' }
   };
-  
+
   const modifiers = {
-    ready: [new Date(2018, 8, 14),
-      new Date(2018, 8, 16),]
+    ready: doneDate,
+    wait: waitDate,
+    work: workDate
   };
 
   const modifiersStyles = {
     ready: {
+      backgroundColor: '#00ff00'
+    },
+    wait: {
       backgroundColor: '#ff0000'
+    },
+    work: {
+      backgroundColor: '#0000ff'
     }
   };
 
@@ -72,12 +98,12 @@ const Plan = (props) => {
       <Title>План работ</Title>
       <div className='flexblock'>
         <div>
-          <p><span>C</span> <span>24.04.2018</span> <span>Just do it 1</span></p>
+          {/*<p><span>C</span> <span>24.04.2018</span> <span>Just do it 1</span></p>
           <p><span>C</span> <span>25.04.2018</span> <span>Just do it 2</span></p>
           <p><span>N</span> <span>26.04.2018</span> <span>Just do it 3</span></p>
           <p><span>N</span> <span>27.04.2018</span> <span>Just do it 4</span></p>
-          <p><span>N</span> <span>28.04.2018</span> <span>Just do it 5</span></p>
-          {/*{planList}*/}
+          <p><span>N</span> <span>28.04.2018</span> <span>Just do it 5</span></p>*/}
+          {planList}
         </div>
         <DayPicker
           locale={'ru'}
@@ -87,7 +113,7 @@ const Plan = (props) => {
           firstDayOfWeek={FIRST_DAY_OF_WEEK['ru']}
           labels={LABELS['ru']}
           month={new Date(2018, 8)}
-          fromMonth={new Date(2018, 8)}
+          fromMonth={new Date(2018, 3)}
           toMonth={new Date(2018, 11)}
           fixedWeeks
           numberOfMonths={2}

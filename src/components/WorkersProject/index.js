@@ -4,11 +4,27 @@ import Title from '../Title';
 import './WorkersProject.css';
 
 const WorkersProject = props => {
+  const workersList = props.workers.map(w => {
+    return (
+      <div className="WorkerProject flexblock" key={w.id_worker}>
+        <div className="WorkerProject-Photo">
+          <img src={w.photo_link} alt="worker" />
+        </div>
+        <div className="WorkerProject-Info">
+          <p>{w.fi}</p>
+          <p>{w.post}</p>
+          <p>тел.: {w.phone}</p>
+          <p>mail: {w.mail}</p>
+        </div>
+      </div>
+    );
+  });
+
   return (
     <div className='Container ComponentBlock'>
       <Title>Обратная связь</Title>
       <div className='WorkerProject-Outer flexblock'>
-        <div className="WorkerProject flexblock">
+        {/*<div className="WorkerProject flexblock">
           <div className="WorkerProject-Photo">
             <img src='http://теплофф.рф/upploaddds/cover.jpg' alt="worker" />
           </div>
@@ -51,7 +67,8 @@ const WorkersProject = props => {
             <p>тел.: 43-43-43</p>
             <p>mail: mail2@mail.ru</p>
           </div>
-        </div>
+        </div>*/}
+        {workersList}
       </div>
     </div>
   )

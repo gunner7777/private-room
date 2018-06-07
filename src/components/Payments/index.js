@@ -5,16 +5,28 @@ import Title from '../Title';
 import './Payments.css';
 
 const Payments = props => {
+  let sum = 0;
+  const payList = props.payments.map((pay) => {
+    sum += +pay.summa;
+    return (
+      <Stage
+        key={pay.id_pay}
+        stageName={pay.stage_payment}
+        sum={pay.summa}
+        isComplete={pay.status}
+      />
+    );
+  });
   return (
     <div className='Container ComponentBlock'>
       <Title>Оплата</Title>
       <div className='Payments'>
-        <h4 className='Payments-Title'>Сумма</h4>
-        <p className='Payments-Sum'>1430000 р.</p>
+        <h4 className='Payments-Title'>Сумма по договору</h4>
+        <p className='Payments-Sum'>{sum} р.</p>
       </div>
 
       <div className='flexblock Payments-Stage'>
-        <Stage 
+        {/*<Stage 
           stageName = "Stage 1"
           sum="200000"
           isComplete={true}
@@ -53,7 +65,8 @@ const Payments = props => {
           stageName = "Stage 8"
           sum="300000"
           isComplete={false}
-        />
+        />*/}
+        {payList}
       </div>
     </div>
   );

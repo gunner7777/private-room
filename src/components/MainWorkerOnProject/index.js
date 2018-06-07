@@ -12,7 +12,7 @@ const MainWorkerOnProject = props => {
           <img src='http://теплофф.рф/upploaddds/cover.jpg' alt='main worker' />
         </div>
         <div className='MainWorker-Info'>
-          <p>Вася Пупкин, медежер</p>
+          <p>{props.main.fi}, {props.main.post}</p>
           <h3>Здравствуйте, Уважаемый заказчик!</h3>
           <p>
             Я ваш менеджер. Я отвечаю за то, чтобы процесс строительства прошел для вас максимально комфортно. По всем вопросом проекта обращайтесь ко мне.

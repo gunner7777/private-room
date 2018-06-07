@@ -66,18 +66,18 @@ class DocsFromProject extends Component {
     const typesDocs = ['Договор'];
     //const docs = [];
 
-    for(let doc of docs) {
+    for(let doc of this.props.docs) {
       if(typesDocs.indexOf(doc.type) === -1) {
         typesDocs.push(doc.type);
       }
     }
 
-    console.log(typesDocs[0]);
-    const chooseDocs = this.getChoosenDocs(docs, typesDocs[0]);
+    //console.log(typesDocs[0]);
+    const chooseDocs = this.getChoosenDocs(this.props.docs, typesDocs[0]);
 
     this.setState({
       typesDocs: typesDocs,
-      docs: docs,
+      docs: this.props.docs,
       chooseDocs: chooseDocs
     })
   }
