@@ -6,4 +6,16 @@
   &-Day {
     padding: 5px;
   }
+
+  &-Legend {
+    & > span:nth-of-type(1) {
+      margin-right: 5px;
+    }
+  }
+
+  &-Exp {
+    & > span:nth-of-type(1) {
+      margin-right: 5px;
+    }
+  }
 }

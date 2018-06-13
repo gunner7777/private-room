@@ -1,13 +1,24 @@
 .PlanItem {
-  margin: 5px 0;
+  margin: 7px 0;
+  font-size: 14px;
 
-  &-StatusIcon,
-  &-Date,
+  &-StatusIcon {
+    margin: 0 15px;
+  }
+
+  &-Date {
+    margin-right: 15px;
+  }
   &-Text {
-    margin: 0 10px;
+    margin-left: 15px;
   }
 
-  &:nth-child(2n+1) {
-    background-color: rgba(0, 0, 0, 0.09);
+  &_Complete {
+    color: #0f0;
   }
+
+  &_Wait {
+    color: #135310;
+  }
+
 }

@@ -124,6 +124,20 @@ const Plan = (props) => {
           modifiers={modifiers}
           modifiersStyles={modifiersStyles}/>
       </div>
+      <div className='Plan-Legend flexblock'>
+        <div className="Plan-Exp">
+          <span className="PlanItem_Complete"><i className='fas fa-check'></i></span>
+          <span>Выполнено</span>
+        </div>
+        <div className="Plan-Exp">
+          <span className="PlanItem_Work"><i className="far fa-hourglass"></i></span>
+          <span>В процессе</span>
+        </div>
+        <div className="Plan-Exp">
+          <span className="PlanItem_Wait"><i className="fas fa-cog"></i></span>
+          <span>Ожидается</span>
+        </div>
+      </div>
     </div>
   );
 }
