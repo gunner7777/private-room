@@ -71,7 +71,7 @@ class ContractDocsEditor extends Component {
       //console.log(fileName);
       return (
         <div className="docBlock infoBlock" data-docid={doc.id_block} key={doc.id_block}>
-          <span className="infoBlock-Delete" onClick={() => this.props.deleteDoc(doc.id_block)}>
+          <span className="infoBlock-Delete"  onClick={() => this.props.deleteDoc(doc.id_block)}>
             <i className="fas fa-trash-alt"></i>
           </span>
           <p>Тип документа</p>
