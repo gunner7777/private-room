@@ -70,8 +70,8 @@ class ContractDocsEditor extends Component {
       let fileName = pathArr[pathArr.length-1];
       //console.log(fileName);
       return (
-        <div className="docBlock" data-docid={doc.id_block} key={doc.id_block}>
-          <span onClick={() => this.props.deleteDoc(doc.id_block)}>
+        <div className="docBlock infoBlock" data-docid={doc.id_block} key={doc.id_block}>
+          <span className="infoBlock-Delete" onClick={() => this.props.deleteDoc(doc.id_block)}>
             <i className="fas fa-trash-alt"></i>
           </span>
           <p>Тип документа</p>
@@ -99,6 +99,7 @@ class ContractDocsEditor extends Component {
 
     return (
       <div>
+        <h4 className="Title_h4">Документы</h4>
         {/*<span onClick={this.handleClick}>
           <i className="fas fa-plus"></i>
         </span>*/}

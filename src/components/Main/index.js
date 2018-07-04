@@ -14,22 +14,25 @@ import ContractsList from '../../containers/Contracts/ContractsList';
 import ContractEditor from '../../containers/Contracts/ContractEditor';
 import ContractAdder from '../../containers/Contracts/ContractAdder';
 import ContractViewer from '../../components/ContractViewer';
+import './Main.css';
 
 const Main = () => {
   return (
-    <Switch>
-      <Route exact path='/' component={InputFile} />
-      <Route path='/about' component={FormInput} />
-      <Route path='/settings' component={Select} />
-      <Route path='/addContract' component={ContractAdder} />
-      <Route path='/allWorkers' component={WorkerList} />
-      <Route exact path="/workers/:id?/edit" component={WorkerEditor} />
-      <Route path='/addWorker' component={WorkerAdd} />
-      <Route path='/allContracts' component={ContractsList} />
-      <Route path="/contract/:id?/edit" component={ContractEditor} />
-      <Route path="/contract/:id?/view" component={ContractViewer} />
-      {/*<Redirect to="/" />*/}
-    </Switch>
+    <div className="Main">
+      <Switch>
+        <Route exact path='/' component={ContractsList} />
+        <Route path='/about' component={FormInput} />
+        <Route path='/settings' component={Select} />
+        <Route path='/addContract' component={ContractAdder} />
+        <Route path='/allWorkers' component={WorkerList} />
+        <Route exact path="/workers/:id?/edit" component={WorkerEditor} />
+        <Route path='/addWorker' component={WorkerAdd} />
+        <Route path='/allContracts' component={ContractsList} />
+        <Route path="/contract/:id?/edit" component={ContractEditor} />
+        <Route path="/contract/:id?/view" component={ContractViewer} />
+        {/*<Redirect to="/" />*/}
+      </Switch>
+    </div>
   );
 }
 

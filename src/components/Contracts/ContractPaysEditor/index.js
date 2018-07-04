@@ -29,8 +29,8 @@ class ContractPaysEditor extends Component {
   render() {
     const paymentsList = this.props.payments.map(pay => {
       return (
-        <div className="payBlock" data-payid={pay.id_pay} key={pay.id_pay}>
-          <span onClick={() => this.props.deletePay(pay.id_pay)}>
+        <div className="payBlock infoBlock" data-payid={pay.id_pay} key={pay.id_pay}>
+          <span className="infoBlock-Delete" onClick={() => this.props.deletePay(pay.id_pay)}>
             <i className="fas fa-trash-alt"></i>
           </span>
           <InputText
@@ -80,6 +80,7 @@ class ContractPaysEditor extends Component {
 
     return (
       <div>
+        <h4 className="Title_h4">Платежи</h4>
         {/*<span onClick={this.handleClick}>
           <i className="fas fa-plus"></i>
         </span>*/}

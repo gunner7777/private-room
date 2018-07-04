@@ -1,0 +1,21 @@
+.EditorMenu {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  height: 40px;
+  line-height: 40px;
+  margin: 10px 0;
+
+  &-Item {
+    padding: 0 15px;
+    margin: 0 10px;
+    background-color: #009EEB;
+    color: #ffffff;
+    border-radius: 3px;
+    transition: background-color .3s ease;
+    
+    &:hover {
+      background-color: #1FB6FF;
+    }
+  }
+}

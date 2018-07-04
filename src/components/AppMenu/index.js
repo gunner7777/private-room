@@ -5,13 +5,11 @@ import './AppMenu.css';
 const AppMenu = () => {
   return (
     <ul className="AppMenu">
-      <AppMenuItem alink="/">Main</AppMenuItem>
-      <AppMenuItem alink="/about">About</AppMenuItem>
-      <AppMenuItem alink="/settings">Settings</AppMenuItem>
-      <AppMenuItem alink="/addContract">New contract</AppMenuItem>
-      <AppMenuItem alink="/allWorkers">All workers</AppMenuItem>
-      <AppMenuItem alink="/addWorker">New worker</AppMenuItem>
-      <AppMenuItem alink="/allContracts">All contracts</AppMenuItem>
+      <AppMenuItem alink="/">Главная</AppMenuItem>
+      <AppMenuItem alink="/addContract">Новый договор</AppMenuItem>
+      <AppMenuItem alink="/allContracts">Договоры</AppMenuItem>
+      <AppMenuItem alink="/allWorkers">Работники</AppMenuItem>
+      <AppMenuItem alink="/addWorker">Новый работник</AppMenuItem>   
     </ul>
   );
 };

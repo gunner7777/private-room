@@ -10,6 +10,7 @@ import DatesOfBuilding from './components/DatesOfBuilding';
 import InputFile from './blocks/InputFile';
 
 import './App.css';
+import Footer from './components/Footer';
 
 class App extends React.Component {
   render() {
@@ -17,6 +18,7 @@ class App extends React.Component {
       <div className="App">
         <Header />        
         <Main />
+        <Footer />
       </div>
     );
   }

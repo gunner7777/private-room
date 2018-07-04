@@ -8,6 +8,7 @@ import Plan from '../Plan';
 import WorkersProject from '../WorkersProject';
 import Title from '../Title';
 import { getContract, getAllWorkers } from '../../actions';
+import AuthGenerator from '../../containers/AuthGenerator';
 
 class ContractViewer extends Component {
   constructor() {
@@ -48,6 +49,7 @@ class ContractViewer extends Component {
         <Title>
           Договор № {name}
         </Title>
+        <AuthGenerator />
         <div className='Container flexblock'>
           <DocsFromProject docs={docs} />
           <MainWorkerOnProject main={mainWorker}/>

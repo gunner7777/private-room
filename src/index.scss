@@ -40,6 +40,11 @@ audio {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  align-items: center;
+
+  &_center {
+    justify-content: space-around;
+  }
 }
 
 .Container {
@@ -50,4 +55,35 @@ audio {
 .ComponentBlock {
   background-color: rgba(135, 197, 248, .12);
   padding: 15px 25px;
+}
+
+.Title {
+  &_h4 {
+    font-size: 18px;
+  }
+}
+
+.infoBlock {
+  position: relative;
+  background-color: #f4f4f1;
+  margin: 15px 0;
+  width: 40%;
+  padding: 15px;
+  border-radius: 3px;
+
+  &-Delete {
+    position: absolute;
+    background-color: red;
+    color: #fff;
+    padding: 3px 5px;
+    border-radius: 3px;
+    right: 10px;
+    top: 15px;
+    cursor: pointer;
+    transition: background-color .3s ease;
+
+    &:hover {
+      background-color: #ff3f00;
+    }
+  }
 }

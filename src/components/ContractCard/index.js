@@ -29,7 +29,7 @@ const ContractCard = (props) => {
         </div>
       <div className="ContractCard-Controls">
           <Link
-            to={`/contract/${props.id}/edit`}>
+            to={`/contract/${props.id}/edit/common`}>
             {/*onClick={() => props.getInfo(person)}>*/}
               <i className="fas fa-edit ContractCard-Icon ContractCard-Icon_Update"></i>
           </Link>

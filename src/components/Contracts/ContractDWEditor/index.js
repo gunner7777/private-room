@@ -30,8 +30,8 @@ class ContractDWEditor extends Component {
   render() {
     const workersList = this.props.dwlink.map(dw => {
       return (
-        <div className="dwBlock" data-dwid={dw.id_dw} key={dw.id_dw}>
-          <span onClick={() => this.props.deleteDW(dw.id_dw)}>
+        <div className="dwBlock infoBlock" data-dwid={dw.id_dw} key={dw.id_dw}>
+          <span className="infoBlock-Delete" onClick={() => this.props.deleteDW(dw.id_dw)}>
             <i className="fas fa-trash-alt"></i>
           </span>
           <p>Сотрудник</p>
@@ -57,6 +57,7 @@ class ContractDWEditor extends Component {
     });
     return (
       <div>
+        <h4 className="Title_h4">Работники</h4>
         {/*<span onClick={this.handleClick}>
           <i className="fas fa-plus"></i>
         </span>*/}

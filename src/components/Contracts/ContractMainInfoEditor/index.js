@@ -9,7 +9,7 @@ const ContractMainInfoEditor = (props) => {
   return (
     <div>
       {hasError}
-      <h4>Общая информация</h4>
+      <h4 className="Title_h4">Общая информация</h4>
       <InputText inputLabelLink="contractName" labelText="Договор" inpValue={props.name}/>
       <InputDate 
         eventDate={props.date}

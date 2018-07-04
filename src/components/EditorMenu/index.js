@@ -1,32 +1,33 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import './EditorMenu.css';
 
 const EditorMenu = (props) => {
   return (
-    <div>
-      <Link
+    <div className="EditorMenu">
+      {/*<Link className="EditorMenu-Item"
         to={`/contract/${props.urlId}/edit`}>
         Home
-      </Link>
-      <Link
+      </Link>*/}
+      <Link className="EditorMenu-Item"
         to={`/contract/${props.urlId}/edit/common`}>
-        Common info
+        Общая информация
       </Link>
-      <Link
+      <Link className="EditorMenu-Item"
         to={`/contract/${props.urlId}/edit/docs`}>
-        Docs
+        Документы
       </Link>
-      <Link
+      <Link className="EditorMenu-Item"
         to={`/contract/${props.urlId}/edit/plan-rabot`}>
-        Plan rabot
+        План работ
       </Link>
-      <Link
+      <Link className="EditorMenu-Item"
         to={`/contract/${props.urlId}/edit/payments`}>
-        Payments
+        Платежи
       </Link>
-      <Link
+      <Link className="EditorMenu-Item"
         to={`/contract/${props.urlId}/edit/workers`}>
-        Workers
+        Работники
       </Link>
     </div>
   )

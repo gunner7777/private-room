@@ -30,8 +30,8 @@ class ContractPlanEditor extends Component {
     const selectStatus = ['ожидается', 'в процессе', 'выполнено'];
     const planForm = this.props.plan.map(p => {
       return (
-        <div className="planBlock" data-planid={p.id_plan}>
-          <span onClick={() => this.props.deletePlan(p.id_plan)}>
+        <div className="planBlock infoBlock" data-planid={p.id_plan}>
+          <span className="infoBlock-Delete" onClick={() => this.props.deletePlan(p.id_plan)}>
             <i className="fas fa-trash-alt"></i>
           </span>
           <InputDate 
@@ -62,6 +62,7 @@ class ContractPlanEditor extends Component {
 
     return (
       <div>
+        <h4 className="Title_h4">План работ</h4>
         {/*<span onClick={this.handleClick}>
           <i className="fas fa-plus"></i>
         </span>*/}
