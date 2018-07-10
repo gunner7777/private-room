@@ -3,7 +3,7 @@ import './errorValidator.css';
 
 const ErrorValidator = (props) => {
   return (
-    <p className="errorValidator">Поле {`${props.fieldName}`} не может быть пустым</p>
+    <p className="errorValidator">Поле "{`${props.fieldName}`}" не может быть пустым</p>
   );
 }
 

@@ -56,18 +56,20 @@ class ContractDWEditor extends Component {
       );
     });
     return (
-      <div>
-        <h4 className="Title_h4">Работники</h4>
-        {/*<span onClick={this.handleClick}>
-          <i className="fas fa-plus"></i>
-        </span>*/}
-        <PlusButton addClick={this.handleClick} />
-        <div className="dwArea">
-          {workersList}
+      <div className="FormFills-Outer">
+        <div className="FormFills">
+          <h4 className="Title_h4">Работники</h4>
+          {/*<span onClick={this.handleClick}>
+            <i className="fas fa-plus"></i>
+          </span>*/}
+          <PlusButton addClick={this.handleClick} />
+          <div className="dwArea">
+            {workersList}
+          </div>
+        <Button
+          text="Сохранить"
+          buttonClick={this.props.updateDwLink} />
         </div>
-      <Button
-        text="Сохранить"
-        buttonClick={this.props.updateDwLink} />
       </div>
     );
   }

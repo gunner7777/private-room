@@ -25,7 +25,7 @@ const Payments = props => {
         <p className='Payments-Sum'>{sum} р.</p>
       </div>
 
-      <div className='flexblock Payments-Stage'>
+      <div className='flexblock flexblock_center Payments-Stage'>
         {/*<Stage 
           stageName = "Stage 1"
           sum="200000"

@@ -43,6 +43,9 @@ audio {
   align-items: center;
 
   &_center {
+    justify-content: center;
+  }
+  &_around {
     justify-content: space-around;
   }
 }
@@ -65,9 +68,9 @@ audio {
 
 .infoBlock {
   position: relative;
-  background-color: #f4f4f1;
+  background-color: #fbf9f2;
   margin: 15px 0;
-  width: 40%;
+  /*width: 40%;*/
   padding: 15px;
   border-radius: 3px;
 
@@ -85,5 +88,15 @@ audio {
     &:hover {
       background-color: #ff3f00;
     }
+  }
+}
+
+.FormFills {
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+
+  &-Outer {
+    padding: 15px;
   }
 }

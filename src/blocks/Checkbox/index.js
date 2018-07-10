@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './Checkbox.css';
 
 class Checkbox extends Component {
   constructor() {
@@ -26,7 +27,7 @@ class Checkbox extends Component {
   render() {
     return (
       <input
-        className={this.props.nameClass}
+        className={`Checkbox ${this.props.nameClass}`}
         onChange={this.handleChange}
         type="checkbox"
         value="1"

@@ -23,7 +23,7 @@ const WorkersProject = props => {
   return (
     <div className='Container ComponentBlock'>
       <Title>Обратная связь</Title>
-      <div className='WorkerProject-Outer flexblock flexblock_center'>
+      <div className='WorkerProject-Outer flexblock flexblock_around'>
         {/*<div className="WorkerProject flexblock">
           <div className="WorkerProject-Photo">
             <img src='http://теплофф.рф/upploaddds/cover.jpg' alt="worker" />

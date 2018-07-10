@@ -79,16 +79,18 @@ class ContractPaysEditor extends Component {
     });
 
     return (
-      <div>
-        <h4 className="Title_h4">Платежи</h4>
-        {/*<span onClick={this.handleClick}>
-          <i className="fas fa-plus"></i>
-        </span>*/}
-        <PlusButton addClick={this.handleClick} />
-        {paymentsList}
-        <Button
-          text="Сохранить"
-          buttonClick={this.props.updatePays} />
+      <div className="FormFills-Outer">
+        <div className="FormFills">
+          <h4 className="Title_h4">Платежи</h4>
+          {/*<span onClick={this.handleClick}>
+            <i className="fas fa-plus"></i>
+          </span>*/}
+          <PlusButton addClick={this.handleClick} />
+          {paymentsList}
+          <Button
+            text="Сохранить"
+            buttonClick={this.props.updatePays} />
+        </div>
       </div>
     );
   }

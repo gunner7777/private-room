@@ -61,16 +61,18 @@ class ContractPlanEditor extends Component {
     });
 
     return (
-      <div>
-        <h4 className="Title_h4">План работ</h4>
-        {/*<span onClick={this.handleClick}>
-          <i className="fas fa-plus"></i>
-        </span>*/}
-        <PlusButton addClick={this.handleClick} />
-        {planForm}
-        <Button
-          text="Сохранить"
-          buttonClick={this.props.updatePlan} />
+      <div className="FormFills-Outer">
+        <div className="FormFills">
+          <h4 className="Title_h4">План работ</h4>
+          {/*<span onClick={this.handleClick}>
+            <i className="fas fa-plus"></i>
+          </span>*/}
+          <PlusButton addClick={this.handleClick} />
+          {planForm}
+          <Button
+            text="Сохранить"
+            buttonClick={this.props.updatePlan} />
+        </div>
       </div>
     );
   }

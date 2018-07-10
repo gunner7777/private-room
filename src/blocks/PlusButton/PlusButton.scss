@@ -1,11 +1,12 @@
 .PlusButton {
   margin: 10px 0;
+  cursor: pointer;
 
   &-Icon {
     font-size: 45px;
     color: #fff;
     background-color: rgba(21, 165, 98, 1);
-    border-radius: 50%;
+    border-radius: 4px;
     padding: 8px;
     height: 40px;
     width: 40px;

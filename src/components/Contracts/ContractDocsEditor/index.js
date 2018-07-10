@@ -98,18 +98,20 @@ class ContractDocsEditor extends Component {
     });
 
     return (
-      <div>
-        <h4 className="Title_h4">Документы</h4>
-        {/*<span onClick={this.handleClick}>
-          <i className="fas fa-plus"></i>
-        </span>*/}
-        <PlusButton addClick={this.handleClick} />
-        <div className="docsArea">
-          {docsForm}
+      <div className="FormFills-Outer">
+        <div className="FormFills">
+          <h4 className="Title_h4">Документы</h4>
+          {/*<span onClick={this.handleClick}>
+            <i className="fas fa-plus"></i>
+          </span>*/}
+          <PlusButton addClick={this.handleClick} />
+          <div className="docsArea">
+            {docsForm}
+          </div>
+        <Button
+          text="Сохранить"
+          buttonClick={this.props.updateDocs} />
         </div>
-      <Button
-        text="Сохранить"
-        buttonClick={this.props.updateDocs} />
       </div>
     );
   }
