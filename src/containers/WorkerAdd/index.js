@@ -69,22 +69,24 @@ class WorkerAdd extends Component {
     //const select = ['Менеджер', 'Архитектор', 'Прораб'];
     const hasError = this.state.error.bool === false ? "" : <ErrorValidator fieldName={this.state.error.field} />;
     return (
-      <div className="WorkerAdder">
-        {hasError}
-        <InputText inputLabelLink="workerFI" labelText="Фамилия Имя сотрудника" />
-        <p>Должность сотрудника</p>
-        <Select selectOption = {this.props.selectPost} selectName="workerPost" />
-        {/*<InputText inputLabelLink="workerPhoto" labelText="Фото сотрудника" />*/}
-        <br/>
-        <InputFile
-          fileType="photo"
-          uploaded={this.props.file.ok} />
-        {/*<img src={this.state.photoLink}/>*/}
-        <InputText inputLabelLink="workerPhone" labelText="Телефон" />
-        <InputText inputLabelLink="workerMail" labelText="E-mail" />
-        <Button
-          text="Добавить"
-          buttonClick={this.handleClick} />
+      <div className="WorkerAdder FormFills-Outer">
+        <div className="FormFills">
+          {hasError}
+          <InputText inputLabelLink="workerFI" labelText="Фамилия Имя сотрудника" />
+          <p>Должность сотрудника</p>
+          <Select selectOption = {this.props.selectPost} selectName="workerPost" />
+          {/*<InputText inputLabelLink="workerPhoto" labelText="Фото сотрудника" />*/}
+          <br/>
+          <InputFile
+            fileType="photo"
+            uploaded={this.props.file.ok} />
+          {/*<img src={this.state.photoLink}/>*/}
+          <InputText inputLabelLink="workerPhone" labelText="Телефон" />
+          <InputText inputLabelLink="workerMail" labelText="E-mail" />
+          <Button
+            text="Добавить"
+            buttonClick={this.handleClick} />
+        </div>
       </div>
     );  
   }

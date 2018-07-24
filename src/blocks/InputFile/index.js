@@ -69,12 +69,12 @@ class InputFile extends React.Component {
             name="upload"
             onChange={this.handleChange} />
           <label htmlFor={`addfile_${this.idInput}`}>
-            <i className="far fa-folder-open"></i>
-            <span className="InputFile-Text">{((this.props.fName !== "")&&(this.props.fName !== undefined)) ? this.props.fName : "Choose a file"}</span>
+            <i className="far fa-folder-open InputFile-Icon"></i>
+            <span className="InputFile-Text">{((this.props.fName !== "")&&(this.props.fName !== undefined)) ? this.props.fName : "Выберите файл"}</span>
           </label>
 
           <Button
-            text="Upload"
+            text="Загрузить"
             id={this.idInput}
             uplFile={this.props.uploaded}
             buttonClick={this.handleClick} />

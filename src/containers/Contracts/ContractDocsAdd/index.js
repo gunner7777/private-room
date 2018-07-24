@@ -8,6 +8,7 @@ import Button from '../../../blocks/Button';
 import Select from '../../../blocks/Select';
 import { redirectToMain } from '../../../modules/redirectToMain';
 import { saveDocsToStore, setLastCompleteChapter } from '../../../actions';
+import PlusButton from '../../../blocks/PlusButton';
 
 class ContractDocsAdd extends Component {
   constructor(props) {
@@ -167,16 +168,20 @@ class ContractDocsAdd extends Component {
     });
 
     return (
-      <div>
-        <span onClick={this.handleClickAdd}>
-          <i className="fas fa-plus"></i>
-        </span>
-        <div className="docsArea">
-          {docsForm}
+      <div className="FormFills-Outer">
+        <div className="FormFills">
+          <h4 className="Title_h4">Документы</h4>
+          {/*<span onClick={this.handleClickAdd}>
+            <i className="fas fa-plus"></i>
+          </span>*/}
+          <PlusButton addClick={this.handleClickAdd} />
+          <div className="docsArea">
+            {docsForm}
+          </div>
+          <Button
+            text="Сохранить"
+            buttonClick={this.saveDocs} />
         </div>
-      <Button
-        text="Сохранить"
-        buttonClick={this.saveDocs} />
       </div>
     );
   }

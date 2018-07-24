@@ -9,6 +9,7 @@ import Checkbox from '../../../blocks/Checkbox';
 import Button from '../../../blocks/Button';
 import Select from '../../../blocks/Select';
 import { savePlanToStore, setLastCompleteChapter } from '../../../actions';
+import PlusButton from '../../../blocks/PlusButton';
 
 class ContractPlanAdd extends Component {
   constructor(props) {
@@ -128,16 +129,20 @@ class ContractPlanAdd extends Component {
     }));
 
     return (
-      <div>
-        <span onClick={this.handleClickAdd}>
+      <div className="FormFills-Outer">
+        <div className="FormFills">
+          <h4 className="Title_h4">План работ</h4>
+        {/*<span onClick={this.handleClickAdd}>
           <i className="fas fa-plus"></i>
-        </span>
+        </span>*/}
+        <PlusButton addClick={this.handleClickAdd} />
         <div className="planArea">
           {planForm}
         </div>
       <Button
         text="Сохранить"
         buttonClick={this.savePlan} />
+      </div>
       </div>
     );
   }

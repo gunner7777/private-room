@@ -2,18 +2,20 @@
   position: relative;
   flex: 0 1 300px;
   border: 0;
-  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, .2);
+  box-shadow: 0 2px 1px 0 rgba(#6b2d21, .5);
   padding: 10px 30px 40px 10px;
   margin: 10px;
-  transition: background-color .3s ease;
+  border-radius: 3px;
+  color: rgb(63, 63, 70);
+  /*transition: background-color .3s ease;*/
 
-  &:hover {
+  /*&:hover {
     background-color: #f6f6f6;
-  }
+  }*/
 
   &-Line {
     margin: 5px 0;
-    
+
     &_Title {
       margin: 0 0 10px;
     }
@@ -35,13 +37,14 @@
     transition: background-color .25s ease;
     cursor: pointer;
     color: #fff;
+    border-radius: 3px;
 
     &:hover,
     &:active {
       background-color: #1976d2;
     }
   }
-  
+
 
   &-Controls {
     position: absolute;
@@ -62,7 +65,7 @@
 
     &_Update {
       background-color: rgba(90, 90, 247, 1);
-      
+
       &:hover {
         background-color: rgba(90, 90, 247, .8);
       }
@@ -79,10 +82,19 @@
 
 .Title {
   &-LeftSide {
-    margin: 0 8px;
-    font-size: 30px;
+    margin-right: 8px;
   }
   &-RightSide {
-    margin: 0 8px;
+    margin-left: 8px;
+  }
+
+  &-Name {
+    font-size: 18px;
+  }
+  &-SubName {
+    font-size: 17px;
+  }
+  &-Icon {
+    font-size: 35px;
   }
 }

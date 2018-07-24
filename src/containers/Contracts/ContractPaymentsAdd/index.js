@@ -9,6 +9,7 @@ import Checkbox from '../../../blocks/Checkbox';
 import Button from '../../../blocks/Button';
 import Select from '../../../blocks/Select';
 import { savePaymentsToStore, setLastCompleteChapter } from '../../../actions';
+import PlusButton from '../../../blocks/PlusButton';
 
 class ContractPaymentsAdd extends Component {
   constructor(props) {
@@ -154,16 +155,20 @@ class ContractPaymentsAdd extends Component {
     }));
 
     return (
-      <div>
-        <span onClick={this.handleClickAdd}>
+      <div className="FormFills-Outer">
+        <div className="FormFills">
+          <h4 className="Title_h4">Платежи</h4>
+        {/*<span onClick={this.handleClickAdd}>
           <i className="fas fa-plus"></i>
-        </span>
+        </span>*/}
+        <PlusButton addClick={this.handleClickAdd} />
         <div className="payArea">
           {payForm}
         </div>
       <Button
         text="Сохранить"
         buttonClick={this.savePay} />
+      </div>
       </div>
     );
   }

@@ -1,22 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './AdderMenu.css';
 
 const EditorMenu = (props) => {
 
   const menu = props.links.map((l,index) => {
     return (
       l.disabled
-        ? <p>{l.text}</p>
+        ? <p className="AdderMenu-Text">{l.text}</p>
         : <Link
+            className="AdderMenu-Link"
             key={index}
             to={l.ssylka} >
               {l.text}
           </Link>
     )
   });
-  console.log(menu);
+
   return (
-    <div>
+    <div className="AdderMenu">
       {menu}
     </div>
   )

@@ -6,7 +6,9 @@
   &-Day {
     padding: 5px;
   }
+}
 
+.Plan {
   &-Legend {
     & > span:nth-of-type(1) {
       margin-right: 5px;
@@ -14,6 +16,8 @@
   }
 
   &-Exp {
+    margin: 0 15px;
+
     & > span:nth-of-type(1) {
       margin-right: 5px;
     }

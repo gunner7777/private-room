@@ -5,26 +5,33 @@
 	overflow: hidden;
 	position: absolute;
   z-index: -1;
-  
+
   &-Form {
     margin: 15px 0;
   }
 
+  &-Icon {
+    margin-right: 5px;
+  }
+
   & + label {
     font-size: 1.25em;
-    font-weight: 700;
-    color: white;
-    background-color: black;
+    font-weight: 400;
+    color: #000;
+    background-color: #f7f0d7;
     display: inline-block;
     cursor: pointer;
-    margin: 0 10px;
+    margin: 0 10px 0 0;
+    padding: 5px 10px;
+    border-radius: 3px;
+    transition: background-color .2s ease;
   }
 
   &:focus + label,
   & + label:hover {
-    background-color: red;
+    background-color: #f5e19c;
   }
-  
+
   & + label * {
     pointer-events: none;
   }

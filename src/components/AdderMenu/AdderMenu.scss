@@ -1,0 +1,29 @@
+.AdderMenu {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    height: 40px;
+    line-height: 40px;
+    margin: 10px 0;
+
+    &-Link,
+    &-Text {
+      padding: 0 15px;
+      margin: 0 10px;
+      border-radius: 3px;
+      transition: background-color .3s ease;
+    }
+    &-Link {
+      background-color: #009EEB;
+      color: #ffffff;
+
+      &:hover {
+        background-color: #1FB6FF;
+      }
+    }
+
+    &-Text {
+      background-color: rgb(221, 219, 219);
+      color: #000;
+    }
+}

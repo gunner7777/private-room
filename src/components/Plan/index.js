@@ -2,7 +2,7 @@ import React from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import Title from '../Title';
-import './PlanItem';
+import './PlanItem.css';
 import './Plan.css';
 import PlanItem from './PlanItem';
 
@@ -124,7 +124,7 @@ const Plan = (props) => {
           modifiers={modifiers}
           modifiersStyles={modifiersStyles}/>
       </div>
-      <div className='Plan-Legend flexblock'>
+      <div className='Plan-Legend flexblock flexblock_center'>
         <div className="Plan-Exp">
           <span className="PlanItem_Complete"><i className='fas fa-check'></i></span>
           <span>Выполнено</span>

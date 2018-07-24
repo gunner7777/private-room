@@ -9,10 +9,10 @@ const ContractCard = (props) => {
     <div className="ContractCard">
       {/*<p>ID {props.id}</p>*/}
       <div className="ContractCard-Title Title">
-        <div className="Title-LeftSide"><i class="far fa-folder"></i></div>
+        <div className="Title-LeftSide"><i class="far fa-folder Title-Icon"></i></div>
         <div className="Title-RightSide">
-          <h3 className="">Договор</h3>
-          <p>{props.name} от {props.date}</p>
+          <h3 className="Title-Name">Договор</h3>
+          <p className="Title-SubName">{props.name} от {props.date}</p>
         </div>
       </div>
       {/*<h3 className="ContractCard-Line ContractCard-Line_Title"><strong>Договор:</strong> {props.name} от {props.date}</h3>*/}
@@ -21,7 +21,7 @@ const ContractCard = (props) => {
       <p className="ContractCard-Line"><strong>Комментарии к договору:</strong></p>
       <p className="ContractCard-Line">{props.comments}</p>
       <div>
-        <Link 
+        <Link
           to={`/contract/${props.id}/view`}
           className='ContractCard-More' >
           Подробнее
@@ -37,7 +37,7 @@ const ContractCard = (props) => {
           {/*<span onClick={() => props.workerDel('http://теплофф.рф/tyryr/worker/delete.php', props.id)}>*/}
             <i className="fas fa-trash-alt ContractCard-Icon ContractCard-Icon_Remove"></i>
           </span>
-        </div>  
+        </div>
     </div>
   )
 }

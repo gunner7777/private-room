@@ -9,6 +9,7 @@ import ContractPlanAdd from '../../../containers/Contracts/ContractPlanAdd';
 import ContractPaymentsAdd from '../../../containers/Contracts/ContractPaymentsAdd';
 import ContractDwAdd from '../../../containers/Contracts/ContractDwAdd';
 import { addContract } from '../../../actions';
+import './ContractAdder.css';
 
 
 class ContractAdder extends Component {
@@ -25,31 +26,31 @@ class ContractAdder extends Component {
         },*/
         {
           ssylka: '/addContract/common',
-          text: 'Common info',
+          text: 'Общая информация',
           prevChapter: 'MUST',
           disabled: false
         },
         {
           ssylka: '/addContract/docs',
-          text: 'Docs',
+          text: 'Документы',
           prevChapter: 'MI',
           disabled: true
         },
         {
           ssylka: '/addContract/plan-rabot',
-          text: 'Plan rabot',
+          text: 'План работ',
           prevChapter: 'DOCS',
           disabled: true
         },
         {
           ssylka: '/addContract/payments',
-          text: 'Payments',
+          text: 'Платежи',
           prevChapter: 'PLAN',
           disabled: true
         },
         {
           ssylka: '/addContract/workers',
-          text: 'Workers',
+          text: 'Работники',
           prevChapter: 'PAYS',
           disabled: true
         }
@@ -100,9 +101,11 @@ class ContractAdder extends Component {
      // Просто запоминаем все шаги (основная информация, доки и тд) в сторе.
      // Будет одна кнопка "Сохранить", которая в конце просто выгрузит все в базу
      const addButton = this.props.lastChapter.length === 6 
-      ? <Button
-        text="Добавить"
-        buttonClick={this.addNewContract} />
+      ? <div className="ContractAdder-AddButton">
+          <Button
+            text="Добавить договор"
+            buttonClick={this.addNewContract} />
+        </div>
       : "";
      return (
       <div>
@@ -111,6 +114,11 @@ class ContractAdder extends Component {
           links={this.state.links}
         />
         <Switch>
+        <Route
+            exact path="/addContract"
+            render={() => 
+              <ContractMainInfoAdd />}
+          />
           <Route
             path="/addContract/common"
             render={() => 

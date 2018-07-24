@@ -13,7 +13,7 @@ const ContractMainInfoEditor = (props) => {
         {hasError}
         <h4 className="Title_h4">Общая информация</h4>
         <InputText inputLabelLink="contractName" labelText="Договор" inpValue={props.name}/>
-        <InputDate 
+        <InputDate
           eventDate={props.date}
         />
         <InputText inputLabelLink="contractFI" labelText="Фамилия Имя заказчика" inpValue={props.fi_zakaz}/>
