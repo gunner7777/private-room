@@ -49,7 +49,6 @@ class ContractViewer extends Component {
         <Title>
           Договор № {name}
         </Title>
-        <AuthGenerator />
         <div className='Container flexblock'>
           <DocsFromProject docs={docs} />
           <MainWorkerOnProject main={mainWorker}/>

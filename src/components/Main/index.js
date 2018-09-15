@@ -15,6 +15,7 @@ import ContractEditor from '../../containers/Contracts/ContractEditor';
 import ContractAdder from '../../containers/Contracts/ContractAdder';
 import ContractViewer from '../../components/ContractViewer';
 import './Main.css';
+import AuthGenerator from '../../containers/AuthGenerator';
 
 const Main = () => {
   return (
@@ -30,6 +31,7 @@ const Main = () => {
         <Route path='/allContracts' component={ContractsList} />
         <Route path="/contract/:id?/edit" component={ContractEditor} />
         <Route path="/contract/:id?/view" component={ContractViewer} />
+        <Route path="/contract/:id?/set-login" component={ AuthGenerator } />
         {/*<Redirect to="/" />*/}
       </Switch>
     </div>
